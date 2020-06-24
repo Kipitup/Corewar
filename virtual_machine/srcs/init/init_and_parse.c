@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   init_and_parse.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 11:18:57 by amartinod         #+#    #+#             */
-/*   Updated: 2020/06/23 20:01:43 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/06/24 12:34:54 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,17 +29,20 @@ static int8_t		opt_position_player(t_vm *vm, size_t *i, char **av)
 	ssize_t		position;
 	int8_t		ret;
 
-	ret = SUCCESS;
-	ft_printf("position %s\n",  av[*i]);
 	(*i)++;
-	ft_printf("position nb %s\n",  av[*i]);
+	ret = FAILURE;
 	position = get_nb(av[*i]);
-	if (position == FAILURE)
-		ret = FAILURE;
-	else
+	if (position > MAX_PLAYERS || position == 0)
+		ft_perror(POSITION_OUT_OF_RANGE, __FILE__, __LINE__);
+	else if ((vm->option & ((1 << position) << BITWISE_OPT_SHIFT)) != 0)
+		ft_perror(INDEX_ALREADY_USED, __FILE__, __LINE__);	
+	else if (position != FAILURE)
 	{
+		vm->option |= ((1 << position) << BITWISE_OPT_SHIFT);
+		ret = SUCCESS;
 		(*i)++;
-		get_player(vm, i, av, position);
+		position--;
+		ret = get_player(vm, i, av, position);
 	}
 	return (ret);
 }
@@ -48,8 +51,6 @@ static int8_t		opt_dump(t_vm *vm, size_t *i, char **av, uint8_t dump_type)
 {
 	ssize_t		nb;
 	int8_t		ret;
-
-	ft_printf("dump %s\n",  av[*i]);
 
 	ret = SUCCESS;
 	vm->option |= OPT_DUMP;
@@ -60,7 +61,6 @@ static int8_t		opt_dump(t_vm *vm, size_t *i, char **av, uint8_t dump_type)
 		ret = FAILURE;
 	else
 	{
-		ft_printf("dump nb %s\n",  av[*i]);
 		vm->opt_dump = nb;
 		(*i)++;
 	}
@@ -78,7 +78,6 @@ static int8_t		get_option(t_vm *vm, size_t *i, char **av)
 	{
 		vm->option |= OPT_VISU;
 		(*i)++;
-		ft_printf("visu %s\n",  str);
 	}
 	else if (ft_strequ(str, "-dump32") == TRUE)
 		ret = opt_dump(vm, i ,av, OPT_DUMP32);
@@ -87,7 +86,7 @@ static int8_t		get_option(t_vm *vm, size_t *i, char **av)
 	else if (ft_strequ(str, "-n") == TRUE)
 		ret = opt_position_player(vm, i, av);
 	else
-		ret = ft_perror_failure("error", __FILE__, __LINE__);
+		ret = ft_perror_failure(INVALID_OPT, __FILE__, __LINE__);
 	return (ret);
 }
 
@@ -109,6 +108,8 @@ t_vm				*init(size_t ac, char **av)
 			else
 				ret = get_player(vm, &i, av, NO_SPECIFIC_POSITION);
 		}
+		ft_printf("opt %08b\n",  2, vm->option);
+		ft_printf("dump nb %zu\n", vm->opt_dump);
 		if (ret == FAILURE)
 			clean_vm(&vm);
 	}

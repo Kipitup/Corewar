@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 12:52:38 by amartinod         #+#    #+#             */
-/*   Updated: 2020/06/23 18:52:02 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/06/24 11:49:42 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,6 @@
 # include "libft.h"
 # include "op.h"
 # include "define_vm.h"
-
-//enum	e_states
-//{
-//	E_ERROR = FAILURE,
-//	E_PARSE_ARG = 0,
-//	E_PARSE_FILE = 1,
-//	E_OPTION = 2,
-//	E_PLAYER = 3,
-//	E_END = 4
-//};
 
 typedef struct	s_player
 {
@@ -56,7 +46,6 @@ typedef struct	s_vm
 {
 	t_player		all_player[MAX_PLAYERS];
 	uint8_t			arena[MEM_SIZE];
-//	enum e_states	state;
 	t_carriage		*carriage;
 	size_t			cycles_to_die;
 	size_t			nb_total_cycle;
@@ -66,13 +55,6 @@ typedef struct	s_vm
 	uint8_t			option;
 	uint8_t			last_player_alive;
 }				t_vm;
-
-//typedef void 	(*t_state_func)(t_vm *vm, size_t *ac, char **av);
-
-# define OPT_DUMP		0b00000001
-# define OPT_DUMP32		0b00000010
-# define OPT_DUMP64		0b00000100
-# define OPT_VISU		0b00001000
 
 /*
 ** ############################################################################

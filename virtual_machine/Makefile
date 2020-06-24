@@ -6,7 +6,7 @@
 #    By: amartino <amartino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/26 11:56:39 by amartino          #+#    #+#              #
-#    Updated: 2020/06/23 18:58:41 by amartinod        ###   ########.fr        #
+#    Updated: 2020/06/24 10:34:56 by amartinod        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
                      ####################################
@@ -79,7 +79,7 @@ vpath %.c $(PATH_SRC)
 SRCS += main
 
 # init
-SRCS += init
+SRCS += init_and_parse
 SRCS += parsing_utilities
 
 # clean
