@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 11:16:29 by amartino          #+#    #+#             */
-/*   Updated: 2020/06/24 16:18:07 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/06/24 16:52:30 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # define OPT_DUMP64				0b00000100
 # define OPT_VISU				0b00001000
 
+# define CANT_OPEN				"can't open a file"
 # define MALLOC_ERR				"memory allocation failed"	
 # define WRONG_OPT_VALUE 		"option value should be a positive int"
 # define INVALID_OPT			"this is not a valid option"

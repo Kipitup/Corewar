@@ -6,32 +6,49 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 14:03:49 by amartinod         #+#    #+#             */
-/*   Updated: 2020/06/24 16:40:25 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/06/24 17:38:22 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-int8_t			parse_file_and_get_info(t_vm *vm, t_vector *file, size_t index)
+static t_vector		*get_file(char *file_name)
 {
 	t_vector		*line;
-	int				fd;	
+	t_vector		*file;
+	int32_t			fd;
 	int8_t			ret;
 
-	line = NULL;
 	ret = TRUE;
-	fd = open(vct_getstr(file), O_RDONLY);
+	line = NULL;
+	file = NULL;
+	fd = open(file_name, O_RDWR);
 	if (fd != FAILURE)
 	{
 		while (ret == TRUE)
 		{
-			ret = vct_read_line(STD_IN, &line);
-			vct_del(&line);
+			ret = vct_read_line(fd, &line);
+			file = vct_joinfree(&file, &line, BOTH);
+			if (file == NULL)
+				ret = ft_perror_failure(MALLOC_ERR, __FILE__, __LINE__);
 		}
 		vct_del(&line);
 		vct_read_line(CLEANUP, &line);
 	}
 	else
-		ret = ft_perror_failure(CANT_OPEN, __FILE__, __LINE__);
+		ft_perror("can't open the file", __FILE__, __LINE__);
+	return (file);
+}
+
+int8_t			parse_file_and_get_info(t_vm *vm, t_vector *name, size_t index)
+{
+	t_vector		*file;
+	int8_t			ret;
+
+	(void)vm;
+	(void)index;
+	ret = SUCCESS;
+	file = get_file(vct_getstr(name));
+	vct_dprint_debug(STD_ERR, file);
 	return (ret);
 }
