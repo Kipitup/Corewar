@@ -6,24 +6,16 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 12:52:38 by amartinod         #+#    #+#             */
-/*   Updated: 2020/06/19 18:27:35 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/06/24 11:49:42 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VM_H
 # define VM_H
 
-//# include "libft.h"
-//# include "define_corewar.h"
-
-enum	e_states
-{
-	E_ERROR = FAILLURE,
-	E_PARSE = 0,
-	E_OPTION = 1,
-	E_PLAYER = 2,
-	E_END = 3
-};
+# include "libft.h"
+# include "op.h"
+# include "define_vm.h"
 
 typedef struct	s_player
 {
@@ -54,7 +46,6 @@ typedef struct	s_vm
 {
 	t_player		all_player[MAX_PLAYERS];
 	uint8_t			arena[MEM_SIZE];
-	enum e_states	state;
 	t_carriage		*carriage;
 	size_t			cycles_to_die;
 	size_t			nb_total_cycle;
@@ -65,9 +56,19 @@ typedef struct	s_vm
 	uint8_t			last_player_alive;
 }				t_vm;
 
+/*
+** ############################################################################
+** ################################# INIT #####################################
+** ############################################################################
+*/
+t_vm		*init(size_t ac, char **av);
+ssize_t		get_nb(char *nb_str);
 
-# define OPT_DUMP	0b00000001
-# define OPT_VISU	0b00000010
-
+/*
+** ############################################################################
+** ################################ CLEAN #####################################
+** ############################################################################
+*/
+void 		clean_vm(t_vm **vm);
 
 #endif
