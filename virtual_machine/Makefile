@@ -6,7 +6,7 @@
 #    By: amartino <amartino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/26 11:56:39 by amartino          #+#    #+#              #
-#    Updated: 2020/06/24 10:34:56 by amartinod        ###   ########.fr        #
+#    Updated: 2020/06/24 16:15:08 by amartinod        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
                      ####################################
@@ -80,6 +80,7 @@ SRCS += main
 
 # init
 SRCS += init_and_parse
+SRCS += parse_player_file
 SRCS += parsing_utilities
 
 # clean

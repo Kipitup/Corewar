@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 12:52:38 by amartinod         #+#    #+#             */
-/*   Updated: 2020/06/24 11:49:42 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/06/24 16:14:28 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ typedef struct	s_vm
 */
 t_vm		*init(size_t ac, char **av);
 ssize_t		get_nb(char *nb_str);
+int8_t		check_file_name(char *file, size_t len);
+int8_t		parse_file_and_get_info(t_vm *vm, t_vector *file, size_t index);
 
 /*
 ** ############################################################################

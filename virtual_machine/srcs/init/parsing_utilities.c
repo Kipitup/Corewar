@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 18:47:50 by amartinod         #+#    #+#             */
-/*   Updated: 2020/06/24 10:57:44 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/06/24 16:16:47 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,22 @@ ssize_t				get_nb(char *nb_str)
 	else
 		ft_perror(WRONG_OPT_VALUE, __FILE__, __LINE__);
 	return (nb);
+}
+
+int8_t				check_file_name(char *file, size_t len)
+{
+	int8_t		ret;
+
+	if (len < MINIMUM_LEN)
+		ret = ft_perror_failure(NOT_VALID_FILE, __FILE__, __LINE__);
+	else if (ft_strequ(file + len - 4, ".cor") == FALSE)
+		ret = ft_perror_failure(WRONG_EXTENSION, __FILE__, __LINE__);
+	else if (ft_strchr(file, ' ') != NULL || ft_strchr(file, '\n') != NULL
+			|| ft_strchr(file, '\t') != NULL)
+	{
+		ret = ft_perror_failure(INCORRECT_FILE_NAME, __FILE__, __LINE__);
+	}
+	else
+		ret = SUCCESS;
+	return (ret);
 }

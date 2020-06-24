@@ -6,24 +6,38 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 11:18:57 by amartinod         #+#    #+#             */
-/*   Updated: 2020/06/24 12:34:54 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/06/24 16:13:55 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-static int8_t		get_player(t_vm *vm, size_t *i, char **av, size_t position)
+static int8_t		get_player(t_vm *vm, size_t *i, char **av, size_t index)
 {
+	t_vector	*file;
 	int8_t		ret;
 
-	ret = SUCCESS;
-	(void)vm;
-	(void)position;
-	ft_printf("player %s\n",  av[*i]);
+	ret = check_file_name(av[*i], ft_strlen(av[*i]));
+	if (ret == SUCCESS)
+	{
+		file = vct_newstr(av[*i]);
+		if (file != NULL)
+			ret = parse_file_and_get_info(vm, file, index);
+		else
+			ret = ft_perror_failure(MALLOC_ERR, __FILE__, __LINE__);
+	}
 	(*i)++;
 	return (ret);
 }
 
+/*
+** The first 4 bit of vm->option are used by the classic option, dump and visu.
+** The last 4 are used to remember if a specific position was put with the "-n"
+** option. So here: (vm->option & ((1 << position) << BITWISE_OPT_SHIFT)
+** The BITWISE_OPT_SHIFT is there to skip the first 4 bit of the classic option.
+**
+** Also the position is decremented so it can be used as an index
+*/
 static int8_t		opt_position_player(t_vm *vm, size_t *i, char **av)
 {
 	ssize_t		position;
@@ -90,6 +104,9 @@ static int8_t		get_option(t_vm *vm, size_t *i, char **av)
 	return (ret);
 }
 
+/*
+** The address of i send in the function, so it incrementation is done there.
+*/
 t_vm				*init(size_t ac, char **av)
 {
 	t_vm		*vm;
