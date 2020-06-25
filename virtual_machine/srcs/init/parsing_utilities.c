@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 18:47:50 by amartinod         #+#    #+#             */
-/*   Updated: 2020/06/24 16:16:47 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/06/25 11:47:44 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,9 @@ int8_t				check_file_name(char *file, size_t len)
 	else
 		ret = SUCCESS;
 	return (ret);
+}
+
+uint8_t				hexa(t_vector *file, size_t i)
+{
+	return ((uint8_t)vct_getchar_at(file, i));
 }

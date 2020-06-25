@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 12:52:38 by amartinod         #+#    #+#             */
-/*   Updated: 2020/06/24 16:14:28 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/06/25 12:42:13 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,12 @@
 
 typedef struct	s_player
 {
-	t_vector		*file;
 	t_vector		*name;
 	t_vector		*comment;
 	uint8_t			*exe;
-	size_t			size;
+	uint32_t		size;
 	uint8_t			id;
-	char			padding[7];
+	char			padding[3];
 }				t_player;
 
 typedef struct	s_carriage
@@ -65,6 +64,7 @@ t_vm		*init(size_t ac, char **av);
 ssize_t		get_nb(char *nb_str);
 int8_t		check_file_name(char *file, size_t len);
 int8_t		parse_file_and_get_info(t_vm *vm, t_vector *file, size_t index);
+uint8_t		hexa(t_vector *file, size_t i);
 
 /*
 ** ############################################################################
