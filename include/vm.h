@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 12:52:38 by amartinod         #+#    #+#             */
-/*   Updated: 2020/06/25 12:42:13 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/06/25 17:58:50 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ typedef struct	s_player
 {
 	t_vector		*name;
 	t_vector		*comment;
-	uint8_t			*exe;
+	uint8_t			*exec;
 	uint32_t		size;
 	uint8_t			id;
 	char			padding[3];
@@ -43,7 +43,7 @@ typedef struct	s_carriage
 
 typedef struct	s_vm
 {
-	t_player		all_player[MAX_PLAYERS];
+	t_player		**all_players;
 	uint8_t			arena[MEM_SIZE];
 	t_carriage		*carriage;
 	size_t			cycles_to_die;
@@ -72,5 +72,7 @@ uint8_t		hexa(t_vector *file, size_t i);
 ** ############################################################################
 */
 void 		clean_vm(t_vm **vm);
+void		clean_player(t_player **player);
+void		clean_carriage(t_carriage **carriage);
 
 #endif
