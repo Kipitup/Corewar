@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 12:52:38 by amartinod         #+#    #+#             */
-/*   Updated: 2020/06/25 17:58:50 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/06/26 17:58:12 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ typedef struct	s_player
 	char			padding[3];
 }				t_player;
 
-typedef struct	s_carriage
+typedef struct	s_cursor
 {
-	uint8_t				registers[REG_NUMBER][REG_SIZE];
+	int32_t				registers[REG_NUMBER + 1];
 	size_t				current;
 	size_t				go_to_next_ope;
 	size_t				nb_cycle_before_op;
@@ -38,14 +38,14 @@ typedef struct	s_carriage
 	uint8_t				carry;
 	uint8_t				id;
 	char				padding[5];
-	struct s_carriage	*next;
-}				t_carriage;
+	struct s_cursor	*next;
+}				t_cursor;
 
 typedef struct	s_vm
 {
 	t_player		**all_players;
 	uint8_t			arena[MEM_SIZE];
-	t_carriage		*carriage;
+	t_cursor		*cursor;
 	size_t			cycles_to_die;
 	size_t			nb_total_cycle;
 	size_t			nb_total_live;
@@ -60,11 +60,24 @@ typedef struct	s_vm
 ** ################################# INIT #####################################
 ** ############################################################################
 */
-t_vm		*init(size_t ac, char **av);
+t_vm		*init_and_parse(size_t ac, char **av);
 ssize_t		get_nb(char *nb_str);
 int8_t		check_file_name(char *file, size_t len);
 int8_t		parse_file_and_get_info(t_vm *vm, t_vector *file, size_t index);
 uint8_t		hexa(t_vector *file, size_t i);
+t_vm		*malloc_vm_and_players(void);
+int8_t		is_player_well_assigned(t_vm *vm);
+t_vm		*set_up_arena(t_vm *vm);
+
+/*
+** ############################################################################
+** ################################ PRINT #####################################
+** ############################################################################
+*/
+void		print_all_player_and_option(t_vm *vm);
+void		print_player(t_player *player);
+void		print_cursor(t_cursor *cursor);
+void		dump_option(t_vm *vm);
 
 /*
 ** ############################################################################
@@ -73,6 +86,6 @@ uint8_t		hexa(t_vector *file, size_t i);
 */
 void 		clean_vm(t_vm **vm);
 void		clean_player(t_player **player);
-void		clean_carriage(t_carriage **carriage);
+void		clean_cursor(t_cursor **cursor);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 14:03:49 by amartinod         #+#    #+#             */
-/*   Updated: 2020/06/25 18:38:07 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/06/26 12:53:28 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,15 @@ static int8_t	rearrange_player(t_vm *vm, t_player *player,
 	t_player	*tmp;
 
 	if (position == NO_SPECIFIC_POSITION)
+	{
+		player->id = i + 1;
 		vm->all_players[i] = player;
+	}
 	else
 	{
 		tmp = vm->all_players[position - 1];
 		vm->all_players[position - 1] = player;
+		tmp->id = i + 1;
 		vm->all_players[i] = tmp;
 	}
 	return (SUCCESS);
@@ -95,7 +99,7 @@ static t_player	*init_player(t_vector *file, size_t position)
 		if (player != NULL)
 		{
 			player->size = code_size;
-			player->id = position;
+			player->id = (position == NO_SPECIFIC_POSITION) ? 1 : position;
 		}
 	}
 	return (player);

@@ -6,31 +6,11 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 18:47:50 by amartinod         #+#    #+#             */
-/*   Updated: 2020/06/25 11:47:44 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/06/26 14:56:20 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
-
-static uint8_t		is_it_all_digit(char *nb_str)
-{
-	size_t		i;
-	size_t		len;
-	int8_t		ret;
-
-	i = (nb_str[0] == '-') ? 1 : 0;
-	len = ft_strlen(nb_str);
-	if (len == 0)
-		return (FALSE);
-	while (i < len)
-	{
-		ret = ft_isdigit(nb_str[i]);
-		if (ret == FALSE)
-			return (FALSE);
-		i++;
-	}
-	return (TRUE);
-}
 
 ssize_t				get_nb(char *nb_str)
 {
@@ -38,7 +18,7 @@ ssize_t				get_nb(char *nb_str)
 	int64_t		tmp;
 
 	nb = FAILURE;
-	if (is_it_all_digit(nb_str) == TRUE)
+	if (ft_is_str_a_number(nb_str) == TRUE)
 	{
 		tmp = ft_atol(nb_str);
 		if (tmp <= INT_MAX && tmp >= 0 && ft_check_int_len(nb_str) == SUCCESS)
@@ -72,4 +52,36 @@ int8_t				check_file_name(char *file, size_t len)
 uint8_t				hexa(t_vector *file, size_t i)
 {
 	return ((uint8_t)vct_getchar_at(file, i));
+}
+
+t_vm				*malloc_vm_and_players(void)
+{
+	t_vm		*vm;
+
+	vm = ft_memalloc(sizeof(t_vm));
+	if (vm != NULL)
+		vm->all_players = ft_memalloc(sizeof(t_player*) * MAX_PLAYERS);
+	if (vm == NULL || vm->all_players == NULL)
+		ft_perror_failure(MALLOC_ERR, __FILE__, __LINE__);
+	return (vm);
+}
+
+int8_t				is_player_well_assigned(t_vm *vm)
+{
+	size_t		i;
+	int8_t		ret;
+	uint8_t		is_free;
+
+	i = 0;
+	ret = SUCCESS;
+	is_free = FALSE;
+	while (i < MAX_PLAYERS)
+	{
+		if (vm->all_players[i] == NULL)
+			is_free = TRUE;
+		else if (is_free == TRUE)
+			ret = ft_perror_failure(WRONG_POSITION, __FILE__, __LINE__);
+		i++;
+	}
+	return (ret);
 }

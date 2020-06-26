@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 11:18:57 by amartinod         #+#    #+#             */
-/*   Updated: 2020/06/25 18:39:09 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/06/26 15:07:47 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ static int8_t		get_option(t_vm *vm, size_t *i, size_t ac, char **av)
 /*
 ** The address of i send in the function, so it incrementation is done there.
 */
-t_vm				*init(size_t ac, char **av)
+t_vm				*init_and_parse(size_t ac, char **av)
 {
 	t_vm		*vm;
 	size_t		i;
@@ -124,12 +124,9 @@ t_vm				*init(size_t ac, char **av)
 
 	i = 1;
 	ret = SUCCESS;
-	vm = ft_memalloc(sizeof(t_vm));
+	vm = malloc_vm_and_players();
 	if (vm != NULL)
 	{
-		vm->all_players = ft_memalloc(sizeof(t_player*) * MAX_PLAYERS);
-		if (vm->all_players == NULL)
-			ret = ft_perror_failure(MALLOC_ERR, __FILE__, __LINE__);
 		while (i < ac && ret == SUCCESS)
 		{
 			if (av[i][0] == '-')
@@ -137,12 +134,10 @@ t_vm				*init(size_t ac, char **av)
 			else
 				ret = get_player(vm, &i, av, NO_SPECIFIC_POSITION);
 		}
-		ft_printf("opt %08b\n",  2, vm->option);
-		ft_printf("dump nb %zu\n", vm->opt_dump);
+		if (ret == SUCCESS)
+			ret = is_player_well_assigned(vm);
 		if (ret == FAILURE)
 			clean_vm(&vm);
 	}
-	else
-		ft_perror(MALLOC_ERR, __FILE__, __LINE__);
 	return (vm);
 }

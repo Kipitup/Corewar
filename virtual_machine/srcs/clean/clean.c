@@ -6,20 +6,20 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 11:07:28 by amartinod         #+#    #+#             */
-/*   Updated: 2020/06/25 18:21:42 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/06/26 15:49:10 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-void			clean_carriage(t_carriage **carriage)
+void			clean_cursor(t_cursor **cursor)
 {
-	t_carriage	*tmp;
-	t_carriage	*to_del;
+	t_cursor	*tmp;
+	t_cursor	*to_del;
 
-	if (carriage != NULL && *carriage != NULL)
+	if (cursor != NULL && *cursor != NULL)
 	{
-		to_del = *carriage;
+		to_del = *cursor;
 		while (to_del != NULL)
 		{
 			tmp = to_del->next;
@@ -68,8 +68,7 @@ void 			clean_vm(t_vm **vm)
 			}
 			free(tmp->all_players);
 		}
-		clean_carriage(&(tmp->carriage));
-		free(*vm);
-		vm = NULL;
+		clean_cursor(&(tmp->cursor));
+		ft_memdel((void**)vm);
 	}
 }
