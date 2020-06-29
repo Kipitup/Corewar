@@ -1,34 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   battle.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/23 11:05:47 by amartinod         #+#    #+#             */
-/*   Updated: 2020/06/29 14:57:24 by amartinod        ###   ########.fr       */
+/*   Created: 2020/06/29 14:38:45 by amartinod         #+#    #+#             */
+/*   Updated: 2020/06/29 14:56:11 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-int		main(int ac, char **av)
+void			battle(t_vm *vm)
 {
-	t_vm	*vm;
-
-	if (ac > 1)
-	{
-		vm = init_and_parse((size_t)ac, av);
-		if (vm != NULL)
-			vm = set_up_arena(vm);
-		if (vm != NULL)
-		{
-			annonce_player(vm->all_players);
-			battle(vm);
-		}
-		clean_vm(&vm);
-	}
-	else
-		ft_printf("Usage: \n");
-	return (EXIT_SUCCESS);
+	if (vm->option & OPT_DUMP)
+		dump_option(vm);
 }

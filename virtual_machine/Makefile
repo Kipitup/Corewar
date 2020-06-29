@@ -6,7 +6,7 @@
 #    By: amartino <amartino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/26 11:56:39 by amartino          #+#    #+#              #
-#    Updated: 2020/06/26 12:13:40 by amartinod        ###   ########.fr        #
+#    Updated: 2020/06/29 14:38:31 by amartinod        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
                      ####################################
@@ -66,6 +66,8 @@ LIB_PATH = $(LIB_DIR)/$(LIB)
 # SRCS
 PATH_SRC += srcs
 PATH_SRC += srcs/init
+PATH_SRC += srcs/operation
+PATH_SRC += srcs/battle
 PATH_SRC += srcs/print
 PATH_SRC += srcs/clean
 
@@ -85,8 +87,16 @@ SRCS += parse_player_file
 SRCS += parsing_utilities
 SRCS += set_up_arena
 
+# operation
+SRCS += operation
+
+# battle
+SRCS += battle
+
 # print
 SRCS += print_debug
+SRCS += option_dump
+SRCS += print_output
 
 # clean
 SRCS += clean

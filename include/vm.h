@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 12:52:38 by amartinod         #+#    #+#             */
-/*   Updated: 2020/06/26 17:58:12 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/06/29 14:52:15 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,23 @@ typedef struct	s_player
 	char			padding[3];
 }				t_player;
 
+
+/*
+** id: unique.
+** carry: flag changed by certain operations and which affects zjmp operation.
+** opcode: operation code, before the battle starts it is not initialised.
+** last_live: nb of cycle in which current cursor performed ope live last time.
+** wait_cycles: amount of cycles to wait before operation execution.
+** position: address in memory
+** jump: amount of bytes cursor must jump to get to the next operation
+** registries[REG_NUMBER]: registries of current cursor
+*/
 typedef struct	s_cursor
 {
-	int32_t				registers[REG_NUMBER + 1];
-	size_t				current;
-	size_t				go_to_next_ope;
-	size_t				nb_cycle_before_op;
+	int32_t				registries[REG_NUMBER + 1];
+	size_t				position;
+	size_t				jump;
+	size_t				wait_cycle;
 	size_t				last_live;
 	uint8_t				op_code;
 	uint8_t				carry;
@@ -47,9 +58,9 @@ typedef struct	s_vm
 	uint8_t			arena[MEM_SIZE];
 	t_cursor		*cursor;
 	size_t			cycles_to_die;
-	size_t			nb_total_cycle;
-	size_t			nb_total_live;
-	size_t			nb_total_check;
+	size_t			cycle_counter;
+	size_t			live_counter;
+	size_t			check_counter;
 	size_t			opt_dump;
 	uint8_t			option;
 	uint8_t			last_player_alive;
@@ -71,9 +82,16 @@ t_vm		*set_up_arena(t_vm *vm);
 
 /*
 ** ############################################################################
+** ############################### BATTLE #####################################
+** ############################################################################
+*/
+void		battle(t_vm *vm);
+/*
+** ############################################################################
 ** ################################ PRINT #####################################
 ** ############################################################################
 */
+void		annonce_player(t_player **all_players);
 void		print_all_player_and_option(t_vm *vm);
 void		print_player(t_player *player);
 void		print_cursor(t_cursor *cursor);

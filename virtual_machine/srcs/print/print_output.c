@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   print_output.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/23 11:05:47 by amartinod         #+#    #+#             */
-/*   Updated: 2020/06/29 14:57:24 by amartinod        ###   ########.fr       */
+/*   Created: 2020/06/29 10:32:07 by amartinod         #+#    #+#             */
+/*   Updated: 2020/06/29 10:38:05 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-int		main(int ac, char **av)
+void		annonce_player(t_player **all_players)
 {
-	t_vm	*vm;
+	size_t		i;
+	t_player	*p;
 
-	if (ac > 1)
+	i = 0;
+	ft_printf("Introducing contestants...\n");
+	while (all_players[i] != NULL)
 	{
-		vm = init_and_parse((size_t)ac, av);
-		if (vm != NULL)
-			vm = set_up_arena(vm);
-		if (vm != NULL)
-		{
-			annonce_player(vm->all_players);
-			battle(vm);
-		}
-		clean_vm(&vm);
+		p = all_players[i];
+		ft_printf("* Player %zu, weighing %3zu bytes, \"%s\" (\"%s\")\n", p->id,
+				p->size, p->name->str, p->comment->str);
+		i++;
 	}
-	else
-		ft_printf("Usage: \n");
-	return (EXIT_SUCCESS);
 }

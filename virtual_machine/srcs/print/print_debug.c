@@ -6,13 +6,13 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/26 12:14:01 by amartinod         #+#    #+#             */
-/*   Updated: 2020/06/26 17:58:17 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/06/29 10:37:25 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-void		print_player(t_player *player)
+void			print_player(t_player *player)
 {
 	size_t		i;
 
@@ -36,7 +36,7 @@ void		print_player(t_player *player)
 	}
 }
 
-void		print_all_player_and_option(t_vm *vm)
+void			print_all_player_and_option(t_vm *vm)
 {
 	size_t		i;
 
@@ -61,7 +61,7 @@ void		print_all_player_and_option(t_vm *vm)
 	}
 }
 
-void		print_cursor(t_cursor *cursor)
+void			print_cursor(t_cursor *cursor)
 {
 	size_t		i;
 
@@ -69,13 +69,13 @@ void		print_cursor(t_cursor *cursor)
 	{
 		i = 1;
 		ft_dprintf(STD_ERR, "{c_cyan}Cursor ID: %d{c_end}\n", cursor->id);
-		ft_dprintf(STD_ERR, "Current  : {c_green}%zu{c_end}\n", cursor->current);
+		ft_dprintf(STD_ERR, "Current  : {c_green}%zu{c_end}\n", cursor->position);
 		ft_dprintf(STD_ERR, "Registers: | r1   | r2   | r3   | r4   | r5   |\
  r6   | r7   | r8   | r9   | r10  | r11  | r12  | r13  | r14  | r15  | r16  |\
  \n\t   {c_yellow}");
 		while (i <= REG_NUMBER)
 		{
-			ft_dprintf(STD_ERR, "| %-4d ", cursor->registers[i]);
+			ft_dprintf(STD_ERR, "| %-4d ", cursor->registries[i]);
 			i++;
 		}
 		ft_dprintf(STD_ERR, "|{c_end}\n");
@@ -84,28 +84,3 @@ void		print_cursor(t_cursor *cursor)
 		cursor = cursor->next;
 	}
 }
-
-void		dump_option(t_vm *vm)
-{
-	size_t		i;
-	size_t		dump_type;
-
-	i = 0;
-	if (vm != NULL)
-	{
-		dump_type = (vm->option & OPT_DUMP32) ? 32 : 64;
-		while (i < MEM_SIZE)
-		{
-			if (i % dump_type == 0)
-				ft_dprintf(STD_ERR, "\n 0x%04X : ", i);
-			else if (i % 8 == 0 && i != 0)
-				ft_dprintf(STD_ERR, " ");
-			ft_dprintf(STD_ERR, "%02b ", 16, vm->arena[i]);
-			i++;
-		}
-		ft_dprintf(STD_ERR, "{c_end}\n");
-	}
-}
-
-
-

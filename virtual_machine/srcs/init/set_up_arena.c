@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/26 12:09:56 by amartinod         #+#    #+#             */
-/*   Updated: 2020/06/26 17:43:43 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/06/29 09:59:20 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static t_cursor		*init_cursor_and_set_id(t_player *player)
 	if (cursor != NULL)
 	{
 		cursor->id = player->id;
-		cursor->registers[1] = player->id * -1;
+		cursor->registries[1] = player->id * -1;
 	}
 	return (cursor);
 }
@@ -71,7 +71,7 @@ static void			set_player_and_cursor_in_arena(t_vm *vm)
 	tmp = vm->cursor;
 	while (tmp != NULL)
 	{
-		tmp->current = space * (tmp->id - 1);
+		tmp->position = space * (tmp->id - 1);
 		tmp = tmp->next;
 	}
 }
