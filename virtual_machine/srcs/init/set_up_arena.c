@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/26 12:09:56 by amartinod         #+#    #+#             */
-/*   Updated: 2020/06/29 09:59:20 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/06/29 17:49:07 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,9 @@ t_vm				*set_up_arena(t_vm *vm)
 	else
 	{
 		set_player_and_cursor_in_arena(vm);
-		vm->cycles_to_die = CYCLE_TO_DIE;
+		vm->cycle_to_die = CYCLE_TO_DIE;
 		vm->last_player_alive = vm->cursor->id;
+		vm->nb_of_player_alive = vm->cursor->id;
 	}
 	return (vm);
 }

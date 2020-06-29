@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 12:52:38 by amartinod         #+#    #+#             */
-/*   Updated: 2020/06/29 14:52:15 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/06/29 18:35:44 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ typedef struct	s_player
 	uint8_t			id;
 	char			padding[3];
 }				t_player;
-
 
 /*
 ** id: unique.
@@ -57,13 +56,14 @@ typedef struct	s_vm
 	t_player		**all_players;
 	uint8_t			arena[MEM_SIZE];
 	t_cursor		*cursor;
-	size_t			cycles_to_die;
+	long			cycle_to_die;
 	size_t			cycle_counter;
 	size_t			live_counter;
 	size_t			check_counter;
 	size_t			opt_dump;
 	uint8_t			option;
 	uint8_t			last_player_alive;
+	uint8_t			nb_of_player_alive;
 }				t_vm;
 
 /*
@@ -86,12 +86,14 @@ t_vm		*set_up_arena(t_vm *vm);
 ** ############################################################################
 */
 void		battle(t_vm *vm);
+void		lets_fight(t_vm *vm, t_cursor *cursor);
 /*
 ** ############################################################################
 ** ################################ PRINT #####################################
 ** ############################################################################
 */
 void		annonce_player(t_player **all_players);
+void		and_the_winner_is(t_vm *vm);
 void		print_all_player_and_option(t_vm *vm);
 void		print_player(t_player *player);
 void		print_cursor(t_cursor *cursor);

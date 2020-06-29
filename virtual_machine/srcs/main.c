@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 11:05:47 by amartinod         #+#    #+#             */
-/*   Updated: 2020/06/29 14:57:24 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/06/29 19:04:23 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int		main(int ac, char **av)
 		{
 			annonce_player(vm->all_players);
 			battle(vm);
+			if (vm->nb_of_player_alive == 0)
+				and_the_winner_is(vm);
 		}
 		clean_vm(&vm);
 	}

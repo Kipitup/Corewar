@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/29 10:32:07 by amartinod         #+#    #+#             */
-/*   Updated: 2020/06/29 10:38:05 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/06/29 18:10:30 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,12 @@ void		annonce_player(t_player **all_players)
 				p->size, p->name->str, p->comment->str);
 		i++;
 	}
+}
+
+void		and_the_winner_is(t_vm *vm)
+{
+	t_player	*p;
+
+	p = vm->all_players[vm->last_player_alive - 1];
+	ft_printf("Contestant %d, \"%s\", has won !\n", p->id, p->name->str);
 }
