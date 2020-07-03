@@ -6,7 +6,7 @@
 #    By: amartino <amartino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/26 11:56:39 by amartino          #+#    #+#              #
-#    Updated: 2020/06/29 18:35:57 by amartinod        ###   ########.fr        #
+#    Updated: 2020/07/02 18:33:44 by amartinod        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
                      ####################################
@@ -88,11 +88,31 @@ SRCS += parsing_utilities
 SRCS += set_up_arena
 
 # operation
+SRCS += check_bytecode_and_param
 SRCS += operation
+SRCS += op
+SRCS += live
+SRCS += ld
+SRCS += st
+SRCS += add
+SRCS += sub
+SRCS += and
+SRCS += or
+SRCS += xor
+SRCS += zjmp
+SRCS += ldi
+SRCS += sti
+SRCS += fork
+SRCS += lld
+SRCS += lldi
+SRCS += lfork
+SRCS += aff
 
 # battle
 SRCS += battle
 SRCS += lets_fight
+SRCS += move_to_next_op
+SRCS += get_param
 
 # print
 SRCS += print_debug

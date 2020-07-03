@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/26 12:14:01 by amartinod         #+#    #+#             */
-/*   Updated: 2020/06/29 10:37:25 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/06/30 18:00:15 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void			print_cursor(t_cursor *cursor)
 	{
 		i = 1;
 		ft_dprintf(STD_ERR, "{c_cyan}Cursor ID: %d{c_end}\n", cursor->id);
-		ft_dprintf(STD_ERR, "Current  : {c_green}%zu{c_end}\n", cursor->position);
+		ft_dprintf(STD_ERR, "Current  : {c_green}%zu{c_end}\n", cursor->pc);
 		ft_dprintf(STD_ERR, "Registers: | r1   | r2   | r3   | r4   | r5   |\
  r6   | r7   | r8   | r9   | r10  | r11  | r12  | r13  | r14  | r15  | r16  |\
  \n\t   {c_yellow}");
@@ -83,4 +83,7 @@ void			print_cursor(t_cursor *cursor)
 			ft_dprintf(STD_ERR, "\t\t\t\t\t{c_red}||\n\t\t\t\t\t\\/{c_end}\n");
 		cursor = cursor->next;
 	}
+	ft_dprintf(STD_ERR, " - - - - - - - - - - - - - - - - - - - - - - - - - -");
+	ft_dprintf(STD_ERR, " - - - - - - - - - - - - - - - - - - - - - - - - - -");
+	ft_dprintf(STD_ERR, " - - - - - - - - - - \n");
 }

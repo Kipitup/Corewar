@@ -6,37 +6,52 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/29 14:38:45 by amartinod         #+#    #+#             */
-/*   Updated: 2020/06/29 19:04:39 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/06/30 16:25:00 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-static uint8_t			remove_dead_cursor(t_vm *vm, t_cursor *cursor)
+static void			remove_cursor(t_vm *vm)
+{
+	t_cursor	*cursor;
+	t_cursor	*tmp;
+
+	if (vm->cursor != NULL && vm->cursor->last_live > (size_t)vm->cycle_to_die)
+	{
+		tmp = vm->cursor->next;
+		free(vm->cursor);
+		vm->cursor = tmp;
+		remove_cursor(vm);
+	}
+	cursor = vm->cursor;
+	while (cursor != NULL && cursor->next != NULL)
+	{
+		if (cursor->next->last_live > (size_t)vm->cycle_to_die)
+		{
+			tmp = cursor->next->next;
+			free(cursor->next);
+			cursor->next = tmp;
+		}
+		else
+			cursor = cursor->next;
+	}
+}
+
+
+static uint8_t		remove_dead_cursor(t_vm *vm)
 {
 	t_cursor	*tmp;
 	uint8_t		alive;
 
 	alive = 0;
-//	ft_printf("nb alive %zu\n", vm->nb_of_player_alive);
-	while (cursor != NULL)
+	remove_cursor(vm);
+	tmp = vm->cursor;
+	while (tmp != NULL)
 	{
-		if (cursor->last_live > (size_t)vm->cycle_to_die)
-		{
-			ft_printf("ok\n");
-			tmp = cursor->next;
-			free(cursor);
-			cursor = tmp;
-			remove_dead_cursor(vm, vm->cursor);
-		}
-		else
-		{
-			alive++;
-			cursor = cursor->next;
-		}
+		alive++;
+		tmp = tmp->next;
 	}
-//	ft_printf("nb alive out %zu\n", vm->nb_of_player_alive);
-//	alive = vm->nb_of_player_alive;
 	return (alive);
 }
 
@@ -59,7 +74,7 @@ static uint8_t		check(t_vm *vm)
 	if (vm->cycle_to_die <= 0)
 		alive = 0;
 	else
-		alive = remove_dead_cursor(vm, vm->cursor);
+		alive = remove_dead_cursor(vm);
 	return (alive);
 }
 
@@ -77,7 +92,7 @@ void				battle(t_vm *vm)
 		{
 			cycle = 0;
 			vm->nb_of_player_alive = check(vm);
-	//		ft_dprintf(STD_ERR, "cycle_to_die %ld\n", vm->cycle_to_die);
+			ft_dprintf(STD_ERR, "cycle_to_die %ld\n", vm->cycle_to_die);
 		}
 		if (vm->option & OPT_DUMP && vm->opt_dump == vm->cycle_counter)
 		{

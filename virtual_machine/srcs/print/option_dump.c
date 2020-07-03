@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/29 10:36:55 by amartinod         #+#    #+#             */
-/*   Updated: 2020/06/29 10:40:48 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/06/30 18:00:35 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static uint8_t	is_it_on_cursor(t_cursor *cursor, size_t i)
 	ret = FALSE;
 	while (cursor != NULL)
 	{
-		if (cursor->position == i)
+		if (cursor->pc == i)
 		{
 			ret = TRUE;
 			break ;

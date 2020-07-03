@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 11:16:29 by amartino          #+#    #+#             */
-/*   Updated: 2020/06/26 15:01:54 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/06/30 17:46:12 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # define EXEC_CODE_SIZE			4
 # define FILE_PADDING			4
 # define BITWISE_OPT_SHIFT		3
+# define NB_OF_OPE				16
 
 # define OPT_DUMP				0b00000001
 # define OPT_DUMP32				0b00000010
@@ -53,5 +54,42 @@
 # define CODE_TOO_LONG			"executable code size exceed CHAMP_MAX_SIZE"
 # define FILE_TOO_SHORT			"file is too short to be valid"
 
+
+/*
+** ope code 
+*/
+# define OPE_LIVE				0x01
+# define OPE_LD					0x02
+# define OPE_ST					0x03
+# define OPE_ADD				0x04
+# define OPE_SUB				0x05
+# define OPE_AND				0x06
+# define OPE_OR					0x07
+# define OPE_XOR				0x08
+# define OPE_ZJMP				0x09
+# define OPE_LDI				0x0a
+# define OPE_STI				0x0b
+# define OPE_FORK				0x0c
+# define OPE_LLD				0x0d
+# define OPE_LLDI				0x0e
+# define OPE_LFORK				0x0f
+# define OPE_AFF				0x10
+
+# define W_LIVE					10
+# define W_LD					5
+# define W_ST					5
+# define W_ADD					10
+# define W_SUB					10
+# define W_AND					6
+# define W_OR					6
+# define W_XOR					6
+# define W_ZJMP					20
+# define W_LDI					25
+# define W_STI					25
+# define W_FORK					800
+# define W_LLD					10
+# define W_LLDI					50
+# define W_LFORK				1000
+# define W_AFF					2
 
 #endif

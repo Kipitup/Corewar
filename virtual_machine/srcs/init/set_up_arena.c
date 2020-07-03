@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/26 12:09:56 by amartinod         #+#    #+#             */
-/*   Updated: 2020/06/29 17:49:07 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/06/30 18:00:50 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static void			set_player_and_cursor_in_arena(t_vm *vm)
 {
 	size_t		i;
 	size_t		space;
-	size_t		position;
+	size_t		pc;
 	t_player	*player;
 	t_cursor	*tmp;
 
@@ -63,15 +63,15 @@ static void			set_player_and_cursor_in_arena(t_vm *vm)
 	space = MEM_SIZE / vm->cursor->id;
 	while (i < vm->cursor->id)
 	{
-		position = space * i;
+		pc = space * i;
 		player = vm->all_players[i];
-		ft_memcpy(&(vm->arena[position]), player->exec, player->size);
+		ft_memcpy(&(vm->arena[pc]), player->exec, player->size);
 		i++;
 	}
 	tmp = vm->cursor;
 	while (tmp != NULL)
 	{
-		tmp->position = space * (tmp->id - 1);
+		tmp->pc = space * (tmp->id - 1);
 		tmp = tmp->next;
 	}
 }
