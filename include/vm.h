@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 12:52:38 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/03 12:05:35 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/07/04 10:21:19 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ t_vm		*set_up_arena(t_vm *vm);
 void		battle(t_vm *vm);
 void		lets_fight(t_vm *vm, t_cursor *cursor);
 void		move_to_next_op(t_vm *vm, t_cursor *cursor, uint8_t op_code);
-void		get_param(t_vm *vm, t_cursor *cursor, uint8_t op_cod, size_t pc);
+uint8_t		get_param(t_vm *vm, t_cursor *cursor, size_t pc);
 
 /*
 ** ############################################################################

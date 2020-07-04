@@ -6,35 +6,13 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/01 18:12:42 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/03 12:17:05 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/07/04 10:22:35 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
 //ft_printf("bytecode       %08b\n", 2, bytecode);
-
-uint8_t				check_register(t_vm *vm, size_t pc, uint8_t bytecode)
-{
-	long		reg_number;
-	uint8_t		bit_shift;
-	uint8_t		ret;
-
-	ret = TRUE;
-	bit_shift = 6;
-	while (bit_shift > 0)
-	{
-		pc++;
-		if (bytecode & (T_REG << bit_shift))
-		{
-			reg_number = vm->arena[pc];
-			if (reg_number < 1 || reg_number > REG_NUMBER)
-				ret = FALSE;
-		}
-		bit_shift -= 2;
-	}
-	return (ret);
-}
 
 /*
 ** The problem with the param type is that it doesn't match the parameter.

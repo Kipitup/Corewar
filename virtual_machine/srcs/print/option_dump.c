@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/29 10:36:55 by amartinod         #+#    #+#             */
-/*   Updated: 2020/06/30 18:00:35 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/07/04 10:33:19 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,9 @@ void			dump_option(t_vm *vm)
 		while (i < MEM_SIZE)
 		{
 			if (i % dump_type == 0)
-				ft_dprintf(STD_ERR, "\n 0x%04X :  ", i);
-			else if (i % 8 == 0 && i != 0)
+				ft_dprintf(STD_ERR, "\n");
+				//ft_dprintf(STD_ERR, "\n 0x%04X : ", i);
+			if (i % 8 == 0)
 				ft_dprintf(STD_ERR, " ");
 			if (is_it_on_cursor(vm->cursor, i) == TRUE)
 				ft_dprintf(STD_ERR, "{c_red}%02b {c_end}", 16, vm->arena[i]);
