@@ -6,13 +6,13 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/20 09:15:55 by francis           #+#    #+#             */
-/*   Updated: 2020/07/04 11:38:05 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/04 12:12:44 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "visu.h"
 
-void	draw_header_box(t_window *win)
+void	draw_header_rec(t_window *win)
 {
 	SDL_Rect	main_rec;
 	SDL_Rect	title_rec;
@@ -28,11 +28,11 @@ void	draw_header_box(t_window *win)
 	draw_rectangle(win, main_rec, set_color(20, 20, 20, 255));
 	draw_rectangle(win, title_rec, set_color(20, 20, 20, 255));
 	draw_rectangle(win, name_rec, set_color(20, 20, 20, 255));
-	font_writing(win, &title_rec, "Corewar", 70);
-	font_writing(win, &name_rec, "By Amartino, Efischer, Fkante", 70);
+	classic_writing(win, &title_rec, "Corewar");
+	classic_writing(win, &name_rec, "By Amartino, Efischer, Fkante");
 }
 
-void	draw_players_box(t_window *win)
+void	draw_players_rec(t_window *win)
 {
 	SDL_Rect	main_rec;
 	int			x;
@@ -42,8 +42,9 @@ void	draw_players_box(t_window *win)
 	y = win->h * 0.11;
 	main_rec = init_new_rect(x, y, win->w * 0.24, win->h * 0.885);
 	draw_rectangle(win, main_rec, set_color(20, 20, 20, 255));
-	write_player_box(win, x + 15, y + 25);
-	write_info_box(win, x + 15, y + 545);
+	write_player_rec(win, x + 15, y + 25);
+	write_info_rec(win, x + 15, y + 545);
+	write_command_rec(win, x + 15, y + 845);
 }
 
 void	draw_arena(t_window *win)
@@ -65,8 +66,8 @@ int8_t	draw_zones(t_window *win)
 		if (SDL_RenderClear(win->renderer) >= 0)
 		{
 			draw_arena(win);
-			draw_header_box(win);
-			draw_players_box(win);
+			draw_header_rec(win);
+			draw_players_rec(win);
 			SDL_RenderPresent(win->renderer);
 		}
 	}

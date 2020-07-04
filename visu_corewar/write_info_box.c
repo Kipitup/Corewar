@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/20 20:12:40 by francis           #+#    #+#             */
-/*   Updated: 2020/06/21 22:22:11 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/04 12:11:28 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,13 @@ static void	info_input_writing(t_window *win, int x, int y)
 	draw_rectangle(win, delta_input, set_color(20, 20, 20, 255));
 	draw_rectangle(win, nb_live_input, set_color(20, 20, 20, 255));
 	draw_rectangle(win, check_input, set_color(20, 20, 20, 255));
-	font_writing(win, &to_die_input, "itoa(nb)", 70);
-	font_writing(win, &delta_input, "itoa(nb)", 70);
-	font_writing(win, &nb_live_input, "itoa(nb)", 70);
-	font_writing(win, &check_input, "itoa(nb)", 70);
+	classic_writing(win, &to_die_input, "itoa(nb)");
+	classic_writing(win, &delta_input, "itoa(nb)");
+	classic_writing(win, &nb_live_input, "itoa(nb)");
+	classic_writing(win, &check_input, "itoa(nb)");
 }
 
-void		write_info_box(t_window *win, int x, int y)
+void		write_info_rec(t_window *win, int x, int y)
 {
 	SDL_Rect	to_die_rec;
 	SDL_Rect	delta_rec;
@@ -49,9 +49,9 @@ void		write_info_box(t_window *win, int x, int y)
 	draw_rectangle(win, delta_rec, set_color(20, 20, 20, 255));
 	draw_rectangle(win, nb_live_rec, set_color(20, 20, 20, 255));
 	draw_rectangle(win, check_rec, set_color(20, 20, 20, 255));
-	font_writing(win, &to_die_rec, "CYCLE_TO_DIE:", 70);
-	font_writing(win, &delta_rec, "CYCLE_DELTA:", 70);
-	font_writing(win, &nb_live_rec, "NBR_LIVES:", 70);
-	font_writing(win, &check_rec, "MAX_CHECKS:", 70);
+	classic_writing(win, &to_die_rec, "CYCLE_TO_DIE:");
+	classic_writing(win, &delta_rec, "CYCLE_DELTA:");
+	classic_writing(win, &nb_live_rec, "NBR_LIVES:");
+	classic_writing(win, &check_rec, "MAX_CHECKS:");
 	info_input_writing(win, x, y);
 }

@@ -8,6 +8,7 @@ SRCS += font_writing
 SRCS += write_arena
 SRCS += write_player_box
 SRCS += write_info_box
+SRCS += write_command_box
 SRCS += player_input_writing
 SRCS += visu_tools
 BUILD_DIR = objs/

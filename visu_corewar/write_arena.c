@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/04 09:19:26 by francis           #+#    #+#             */
-/*   Updated: 2020/07/04 11:37:53 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/04 12:06:21 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int8_t	write_init_arena(t_window *win)
 	{
 		rec = init_new_rect(point.x, point.y, win->w * 0.009, win->h * 0.015);
 		draw_rectangle(win, rec, set_color(20, 20, 20, 255));
-		font_writing(win, &rec, "00", 70);
+		classic_writing(win, &rec, "00");
 		point.x = point.x + win->w * 0.012;
 		if ((count + 1) % 64 == 0 && count != 0)
 		{

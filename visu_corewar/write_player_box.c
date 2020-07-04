@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/20 19:22:40 by francis           #+#    #+#             */
-/*   Updated: 2020/06/20 20:24:36 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/04 12:11:47 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,13 +78,16 @@ static void	player1(t_window *win, int x, int y)
 	draw_rectangle(win, name_rec, set_color(20, 20, 20, 255));
 	draw_rectangle(win, processus_rec, set_color(20, 20, 20, 255));
 	draw_rectangle(win, last_live_rec, set_color(20, 20, 20, 255));
-	font_writing(win, &name_rec, "Player -1 :", 70);
-	font_writing(win, &processus_rec, "Processes:", 70);
-	font_writing(win, &last_live_rec, "Last live:", 70);
+	classic_writing(win, &name_rec, "Player -1 :");
+	classic_writing(win, &processus_rec, "Processes:");
+	classic_writing(win, &last_live_rec, "Last live:");
 	player1_input_writing(win, x, y);
 }
 
-void	write_player_box(t_window *win, int x, int y)
+/*
+**	I'll add if statement or state to switch on/on players [!]
+*/
+void	write_player_rec(t_window *win, int x, int y)
 {
 	player1(win, x, y);
 	player2(win, x, y + 100);
