@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_memory.c                                      :+:      :+:    :+:   */
+/*   draw_main_zone.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/20 09:15:55 by francis           #+#    #+#             */
-/*   Updated: 2020/06/20 20:21:22 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/04 11:38:05 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,13 @@ void	draw_players_box(t_window *win)
 	write_info_box(win, x + 15, y + 545);
 }
 
-void	draw_memory(t_window *win)
+void	draw_arena(t_window *win)
 {
 	SDL_Rect	position1;
 
 	position1 = init_new_rect(5, 5, win->w * 0.75, win->h * 0.99);
 	draw_rectangle(win, position1, set_color(20, 20, 20, 255));
+	write_init_arena(win);
 }
 
 int8_t	draw_zones(t_window *win)
@@ -63,7 +64,7 @@ int8_t	draw_zones(t_window *win)
 	{
 		if (SDL_RenderClear(win->renderer) >= 0)
 		{
-			draw_memory(win);
+			draw_arena(win);
 			draw_header_box(win);
 			draw_players_box(win);
 			SDL_RenderPresent(win->renderer);

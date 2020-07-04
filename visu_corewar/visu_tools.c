@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/20 11:28:03 by francis           #+#    #+#             */
-/*   Updated: 2020/06/20 11:28:40 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/04 11:38:11 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,21 +44,6 @@ SDL_Point	set_point(int x, int y)
 	point.x = x;
 	point.y = y;
 	return (point);
-}
-
-int8_t      set_tab_int3(int *dest, int size, int color, int style)
-{
-	int8_t	ret;
-
-	ret = FAILURE;
-	if (dest != NULL)
-	{
-		dest[0] = size;
-		dest[1] = color;
-		dest[2] = style;
-		ret = SUCCESS;
-	}
-	return (ret);
 }
 
 int8_t	draw_rectangle(t_window *win, SDL_Rect rect, SDL_Color color)

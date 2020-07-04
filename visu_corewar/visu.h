@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/20 09:28:58 by francis           #+#    #+#             */
-/*   Updated: 2020/06/20 20:13:44 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/04 11:41:03 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # define	SUCCESS			0
 # define	FAILURE			-1
 # define	RENDER_FAILURE	-2
+# define	MEM_SIZE		4096
 # define	FONT_PATH "comfortaa/Comfortaa-Regular.ttf" 
 # include <stdio.h>
 # include <SDL2/SDL.h>
@@ -53,11 +54,12 @@ int8_t		red_writing(t_window *win, SDL_Rect *rect, char *str);
 ** ****************************** DRAWING **************************************
 */
 int8_t		draw_zones(t_window *win);
-void		draw_memory(t_window *win);
+void		draw_arena(t_window *win);
 void		draw_header_box(t_window *win);
 void		draw_players_box(t_window *win);
 void		write_player_box(t_window *win, int x, int y);
 void		write_info_box(t_window *win, int x, int y);
+int8_t		write_init_arena(t_window *win);
 void		player1_input_writing(t_window *win, int x, int y);
 void		player2_input_writing(t_window *win, int x, int y);
 void		player3_input_writing(t_window *win, int x, int y);

@@ -1,25 +1,32 @@
+NAME := corewar_visu
+HEAD := visu.h 
 CC := clang
 CFLAGS := `sdl2-config --libs --cflags` -Wall -lSDL2_image -lSDL2_ttf
-SRCS += setup_window.c
-SRCS += draw_memory.c
-SRCS += font_writing.c
-SRCS += write_player_box.c
-SRCS += write_info_box.c
-SRCS += player_input_writing.c
-SRCS += visu_tools.c
-OBJS := $(SRCS:.c=.o)
-EXEC := corewar_visu 
+SRCS += setup_window
+SRCS += draw_main_zone
+SRCS += font_writing
+SRCS += write_arena
+SRCS += write_player_box
+SRCS += write_info_box
+SRCS += player_input_writing
+SRCS += visu_tools
+BUILD_DIR = objs/
+OBJS := $(patsubst %, $(BUILD_DIR)%.o, $(SRCS))
 
-all: $(EXEC)
+all: $(NAME)
 
-$(EXEC): $(OBJS) $(HDRS) Makefile
+$(NAME): $(OBJS) $(HDRS) Makefile
 	$(CC) -o $@ $(OBJS) $(CFLAGS)
 
+$(OBJS): $(BUILD_DIR)%.o: %.c $(HEAD) Makefile
+	mkdir -p $(BUILD_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@
+
 clean:
-	$(RM) $(OBJS)
+	$(RM) -r $(BUILD_DIR)
 
 fclean:
-	$(RM) $(EXEC) $(OBJS)
+	$(RM) -r $(NAME) $(BUILD_DIR)
 
 re: fclean all
 
