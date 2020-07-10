@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 11:16:29 by amartino          #+#    #+#             */
-/*   Updated: 2020/06/24 16:18:07 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/07/10 16:41:28 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,6 @@
 # define INCORRECT_FILE_NAME	"incorrect file name"
 # define NOT_VALID_FILE			"this is not a valid file"
 # define WRONG_EXTENSION		"only '.cor' file are accepted"
+# define CANT_OPEN				"cant open, NEED DEFINE[?]"
 
 #endif

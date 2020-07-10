@@ -6,23 +6,23 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/20 09:28:58 by francis           #+#    #+#             */
-/*   Updated: 2020/07/04 12:16:48 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/10 21:05:30 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VISU_H
 # define VISU_H
 
-# define	SUCCESS			0
-# define	FAILURE			-1
-# define	RENDER_FAILURE	-2
-# define	MEM_SIZE		4096
-# define	FONT_PATH "comfortaa/Comfortaa-Regular.ttf" 
+# include "vm.h"
 # include <stdio.h>
 # include <SDL2/SDL.h>
 # include <SDL2/SDL_timer.h>
 # include <SDL2/SDL_image.h>
 # include <SDL2/SDL_ttf.h>
+# define	SUCCESS			0
+# define	FAILURE			-1
+# define	RENDER_FAILURE	-2
+# define	FONT_PATH "../virtual_machine/visualizator/font/Font-Regular.ttf"
 
 typedef struct	s_window
 {
@@ -32,6 +32,11 @@ typedef struct	s_window
 	SDL_Surface		*background;
 	SDL_Renderer	*renderer;
 }				t_window;
+
+/*
+** ******************************** INIT ***************************************
+*/
+int			setup_window(t_vm *vm);
 
 /*
 ** ******************************** TOOLS **************************************

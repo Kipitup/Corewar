@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 14:03:49 by amartinod         #+#    #+#             */
-/*   Updated: 2020/06/24 16:40:25 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/07/10 20:36:32 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@ int8_t			parse_file_and_get_info(t_vm *vm, t_vector *file, size_t index)
 
 	line = NULL;
 	ret = TRUE;
+	(void)vm;
+	(void)index;
+	return	(1);
 	fd = open(vct_getstr(file), O_RDONLY);
 	if (fd != FAILURE)
 	{

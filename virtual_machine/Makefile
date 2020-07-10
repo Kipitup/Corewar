@@ -6,7 +6,7 @@
 #    By: amartino <amartino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/26 11:56:39 by amartino          #+#    #+#              #
-#    Updated: 2020/06/24 16:15:08 by amartinod        ###   ########.fr        #
+#    Updated: 2020/07/10 20:22:11 by francis          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
                      ####################################
@@ -18,12 +18,13 @@ NAME = corewar
 LIB_DIR = ../libft
 LIB = libft.a
 CC = clang
-CFLAGS += -Wall -Wextra -Werror
+CFLAGS += -Wall -Wextra 
 INCLUDES += -I../include
 INCLUDES += -I../libft/includes
 INCLUDES += -I../libft/ft_printf/includes
 
 HEAD += ../include/define_vm.h
+HEAD += ../include/visu.h
 HEAD += ../include/vm.h
 
 
@@ -33,6 +34,9 @@ HEAD += ../include/vm.h
                      #                   				#
                      ####################################
 # FLAGS
+ifeq ($(visu), 1)
+	CFLAGS += `sdl2-config --libs --cflags` -lSDL2_image -lSDL2_ttf
+endif
 ifeq ($(debug), 0)
 	CFLAGS += -g3
 else ifeq ($(debug), 1)
@@ -67,6 +71,7 @@ LIB_PATH = $(LIB_DIR)/$(LIB)
 PATH_SRC += srcs
 PATH_SRC += srcs/init
 PATH_SRC += srcs/clean
+PATH_SRC += visualizator
 
 vpath %.c $(PATH_SRC)
 
@@ -82,6 +87,19 @@ SRCS += main
 SRCS += init_and_parse
 SRCS += parse_player_file
 SRCS += parsing_utilities
+
+# visu
+ifeq ($(visu), 1)
+	SRCS += draw_main_zone
+	SRCS += font_writing
+	SRCS += player_input_writing
+	SRCS += setup_window
+	SRCS += visu_tools
+	SRCS += write_arena
+	SRCS += write_player_box
+	SRCS += write_info_box
+	SRCS += write_command_box
+endif
 
 # clean
 SRCS += clean

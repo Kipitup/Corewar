@@ -6,11 +6,12 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 11:18:57 by amartinod         #+#    #+#             */
-/*   Updated: 2020/06/24 16:13:55 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/07/10 20:42:54 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
+#include "visu.h"
 
 static int8_t		get_player(t_vm *vm, size_t *i, char **av, size_t index)
 {
@@ -125,6 +126,8 @@ t_vm				*init(size_t ac, char **av)
 			else
 				ret = get_player(vm, &i, av, NO_SPECIFIC_POSITION);
 		}
+		if (vm->option == OPT_VISU)
+			setup_window(vm);
 		ft_printf("opt %08b\n",  2, vm->option);
 		ft_printf("dump nb %zu\n", vm->opt_dump);
 		if (ret == FAILURE)

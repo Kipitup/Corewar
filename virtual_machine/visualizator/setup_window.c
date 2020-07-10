@@ -6,11 +6,12 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 12:03:48 by francis           #+#    #+#             */
-/*   Updated: 2020/06/20 18:35:28 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/10 20:43:48 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "visu.h"
+
 /*
 **	setup the window to host program corewar.
 **	important steps are to create the window depending on the user's screen
@@ -39,7 +40,7 @@ int8_t			create_window(t_window *win)
 			ret = SUCCESS;
 	}
 	else
-		printf("error initializing SDL: %s\n", SDL_GetError());
+		ft_printf("error initializing SDL: %s\n", SDL_GetError());
 	return (ret);
 }
 
@@ -61,14 +62,15 @@ static int8_t	close_window(void)
 	return (close_request);
 }
 
-int				main(void)
+int				setup_window(t_vm *vm)
 {
 	t_window	win;
 
+	(void)vm;
 	if (create_window(&win) == SUCCESS)
 	{
 		if	(draw_zones(&win) == FAILURE)
-			printf("error initializing SDL: %s\n", SDL_GetError());
+			ft_printf("error initializing SDL: %s\n", SDL_GetError());
 		if (close_window() == 1)
 		{
 			SDL_DestroyWindow(win.window);
@@ -77,7 +79,7 @@ int				main(void)
 	}
 	else
 	{
-		printf("error creating window: %s\n", SDL_GetError());
+		ft_printf("error creating window: %s\n", SDL_GetError());
 		SDL_Quit();
 		return (FAILURE);
 	}
