@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/20 09:15:55 by francis           #+#    #+#             */
-/*   Updated: 2020/07/04 12:12:44 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/10 21:27:40 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ int8_t	draw_zones(t_window *win)
 			draw_header_rec(win);
 			draw_players_rec(win);
 			SDL_RenderPresent(win->renderer);
+			ret = SUCCESS;
 		}
 	}
 	return (ret);
