@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   setup_window.c                                     :+:      :+:    :+:   */
+/*   init_visu.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 12:03:48 by francis           #+#    #+#             */
-/*   Updated: 2020/07/10 21:27:20 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/12 19:33:24 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "visu.h"
 
 /*
-**	setup the window to host program corewar.
-**	important steps are to create the window depending on the user's screen
-**	and set the renderer. Renderer depends on the surface of the window.
-**	Avoid using directly the surface so SDL will not loose the pointer to it,
-**	As the renderer works on the surface.
-*/
+ **	setup the window to host program corewar.
+ **	important steps are to create the window depending on the user's screen
+ **	and set the renderer. Renderer depends on the surface of the window.
+ **	Avoid using directly the surface so SDL will not loose the pointer to it,
+ **	As the renderer works on the surface.
+ */
 int8_t			create_window(t_window *win)
 {
 	SDL_DisplayMode	display_info;
@@ -33,33 +33,36 @@ int8_t			create_window(t_window *win)
 		win->window = SDL_CreateWindow("Corewar", SDL_WINDOWPOS_CENTERED,
 				SDL_WINDOWPOS_CENTERED, win->w, win->h, 0);
 		win->renderer = SDL_CreateRenderer(win->window, -1,
-						SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+				SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 		if (SDL_SetRenderDrawBlendMode(win->renderer, SDL_BLENDMODE_BLEND) < 0)
 			ret = RENDER_FAILURE;
 		if (win->window != NULL && win->renderer != NULL && ret == FAILURE)
+		{
+			win->play = ON;
 			ret = SUCCESS;
+		}
 	}
 	else
 		ft_printf("error initializing SDL: %s\n", SDL_GetError());
 	return (ret);
 }
 
-static int8_t	close_window(void)
+static void	event_handler(t_window *win)
 {
 	SDL_Event	event;
-	int	close_request;
 
-	close_request = 0;
-	while (close_request == 0)
+	while (win->play == ON)
 	{
-		while (SDL_PollEvent(&event) != 0)
+		if (SDL_PollEvent(&win->event) != 0)
 		{
+			event = win->event;
 			if (event.type == SDL_QUIT)
-				close_request = 1;
+				win->play = OFF;
+			if (event.type == SDL_KEYUP && event.key.keysym.sym == SDLK_ESCAPE)
+				win->play = OFF;
+			//	SPEED UP AND DOWN HERE IF NEEDED
 		}
-		SDL_Delay(10);
 	}
-	return (close_request);
 }
 
 int				setup_window(t_vm *vm)
@@ -71,11 +74,13 @@ int				setup_window(t_vm *vm)
 	{
 		if	(draw_zones(&win) == FAILURE)
 			ft_printf("error initializing SDL: %s\n", SDL_GetError());
-		if (close_window() == 1)
+		event_handler(&win);
+		if (win.play == OFF)
 		{
 			SDL_DestroyWindow(win.window);
 			SDL_Quit();
 		}
+		SDL_Delay(200);
 	}
 	else
 	{

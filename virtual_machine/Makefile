@@ -6,7 +6,7 @@
 #    By: amartino <amartino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/26 11:56:39 by amartino          #+#    #+#              #
-#    Updated: 2020/07/10 20:22:11 by francis          ###   ########.fr        #
+#    Updated: 2020/07/12 19:01:36 by francis          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
                      ####################################
@@ -92,8 +92,8 @@ SRCS += parsing_utilities
 ifeq ($(visu), 1)
 	SRCS += draw_main_zone
 	SRCS += font_writing
+	SRCS += init_visu
 	SRCS += player_input_writing
-	SRCS += setup_window
 	SRCS += visu_tools
 	SRCS += write_arena
 	SRCS += write_player_box

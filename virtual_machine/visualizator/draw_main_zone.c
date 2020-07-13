@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/20 09:15:55 by francis           #+#    #+#             */
-/*   Updated: 2020/07/10 21:27:40 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/11 10:58:14 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ void	draw_players_rec(t_window *win)
 	main_rec = init_new_rect(x, y, win->w * 0.24, win->h * 0.885);
 	draw_rectangle(win, main_rec, set_color(20, 20, 20, 255));
 	write_player_rec(win, x + 15, y + 25);
-	write_info_rec(win, x + 15, y + 545);
-	write_command_rec(win, x + 15, y + 845);
+	write_info_rec(win, x + 15, y + win->h * 0.38);
+	write_command_rec(win, x + 15, y + win->h * 0.60);
 }
 
 void	draw_arena(t_window *win)

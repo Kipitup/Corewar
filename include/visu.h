@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/20 09:28:58 by francis           #+#    #+#             */
-/*   Updated: 2020/07/10 21:05:30 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/12 19:04:13 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include <SDL2/SDL_timer.h>
 # include <SDL2/SDL_image.h>
 # include <SDL2/SDL_ttf.h>
+# define	ON				1
+# define	OFF				0
 # define	SUCCESS			0
 # define	FAILURE			-1
 # define	RENDER_FAILURE	-2
@@ -28,9 +30,11 @@ typedef struct	s_window
 {
 	int				w;
 	int				h;
+	uint8_t			play;
 	SDL_Window		*window;
 	SDL_Surface		*background;
 	SDL_Renderer	*renderer;
+	SDL_Event		event;
 }				t_window;
 
 /*
