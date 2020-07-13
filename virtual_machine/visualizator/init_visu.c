@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 12:03:48 by francis           #+#    #+#             */
-/*   Updated: 2020/07/12 19:33:24 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/13 22:55:37 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
  **	Avoid using directly the surface so SDL will not loose the pointer to it,
  **	As the renderer works on the surface.
  */
-int8_t			create_window(t_window *win)
+int8_t		create_window(t_window *win)
 {
 	SDL_DisplayMode	display_info;
 	int8_t	ret;
@@ -65,27 +65,34 @@ static void	event_handler(t_window *win)
 	}
 }
 
-int				setup_window(t_vm *vm)
+void		destroy_visual(t_window *win)
+{
+	if (win != NULL)
+	{
+		SDL_DestroyWindow(win->window);
+		SDL_DestroyRenderer(win->renderer);
+	}
+	SDL_Quit();
+}
+
+int			setup_window(t_vm *vm)
 {
 	t_window	win;
 
 	(void)vm;
 	if (create_window(&win) == SUCCESS)
 	{
-		if	(draw_zones(&win) == FAILURE)
+		if (draw_zones(&win) == FAILURE)
 			ft_printf("error initializing SDL: %s\n", SDL_GetError());
 		event_handler(&win);
 		if (win.play == OFF)
-		{
-			SDL_DestroyWindow(win.window);
-			SDL_Quit();
-		}
+			destroy_visual(&win);
 		SDL_Delay(200);
 	}
 	else
 	{
 		ft_printf("error creating window: %s\n", SDL_GetError());
-		SDL_Quit();
+		destroy_visual(&win);
 		return (FAILURE);
 	}
 	TTF_Quit();

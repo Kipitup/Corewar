@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/20 09:28:58 by francis           #+#    #+#             */
-/*   Updated: 2020/07/12 19:04:13 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/13 22:13:47 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ typedef struct	s_window
 	int				h;
 	uint8_t			play;
 	SDL_Window		*window;
-	SDL_Surface		*background;
 	SDL_Renderer	*renderer;
 	SDL_Event		event;
 }				t_window;
