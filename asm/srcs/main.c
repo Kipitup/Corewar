@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 12:00:11 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/13 12:47:58 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/13 15:51:36 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int		main(int ac, char **av)
 {
-	char	*file_name;
-	char	*file_content;
+	t_vector	*file_content;
+	char		*file_name;
 
 	if (ac == 2)
 	{
@@ -23,8 +23,8 @@ int		main(int ac, char **av)
 		if (check_file_name(file_name) == false)
 			return (EXIT_FAILURE);
 		file_content = get_file_content(file_name);
-		ft_putendl(file_content);
-		ft_strdel(&file_content);
+		vct_print(file_content);
+		vct_del(&file_content);
 	}
 	else
 		return (usage_error(ac));

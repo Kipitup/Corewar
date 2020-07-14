@@ -6,7 +6,7 @@
 #    By: amartino <amartino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/26 11:56:39 by amartino          #+#    #+#              #
-#    Updated: 2020/07/13 12:20:50 by efischer         ###   ########.fr        #
+#    Updated: 2020/07/13 19:14:26 by efischer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
                      ####################################
@@ -75,6 +75,12 @@ vpath %.c $(PATH_SRC)
 SRCS += main
 SRCS += check_file_name
 SRCS += usage_error 
+SRCS += get_file_content
+SRCS += lexer_parser
+SRCS += lexer
+SRCS += get_word
+SRCS += exit_error
+SRCS += utils
                      ####################################
                      #                   				#
                      #       	  VARIABLES    			#
