@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 12:03:48 by francis           #+#    #+#             */
-/*   Updated: 2020/07/13 22:55:37 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/14 12:32:32 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ int8_t		create_window(t_window *win)
 			ret = RENDER_FAILURE;
 		if (win->window != NULL && win->renderer != NULL && ret == FAILURE)
 		{
-			win->play = ON;
+			win->running = ON;
+			win->play = VISU_STOP;
 			ret = SUCCESS;
 		}
 	}
@@ -51,26 +52,27 @@ static void	event_handler(t_window *win)
 {
 	SDL_Event	event;
 
-	while (win->play == ON)
-	{
-		if (SDL_PollEvent(&win->event) != 0)
-		{
-			event = win->event;
-			if (event.type == SDL_QUIT)
-				win->play = OFF;
-			if (event.type == SDL_KEYUP && event.key.keysym.sym == SDLK_ESCAPE)
-				win->play = OFF;
-			//	SPEED UP AND DOWN HERE IF NEEDED
-		}
-	}
+	event = win->event;
+	if (event.type == SDL_QUIT)
+		win->running = OFF;
+	if (event.type == SDL_KEYUP && event.key.keysym.sym == SDLK_ESCAPE)
+		win->running = OFF;
+	if (event.type == SDL_KEYUP && event.key.keysym.sym == SDLK_SPACE
+			&& win->play == VISU_STOP)
+		win->play = VISU_START;
+	else if (event.type == SDL_KEYUP && event.key.keysym.sym == SDLK_SPACE
+			&& win->play == VISU_START)
+		win->play = VISU_STOP;
+	//	SPEED UP AND DOWN HERE IF NEEDED
 }
 
 void		destroy_visual(t_window *win)
 {
 	if (win != NULL)
 	{
-		SDL_DestroyWindow(win->window);
+		SDL_RenderClear(win->renderer);
 		SDL_DestroyRenderer(win->renderer);
+		SDL_DestroyWindow(win->window);
 	}
 	SDL_Quit();
 }
@@ -78,16 +80,20 @@ void		destroy_visual(t_window *win)
 int			setup_window(t_vm *vm)
 {
 	t_window	win;
+	t_all_rec	all_rec;
 
 	(void)vm;
 	if (create_window(&win) == SUCCESS)
 	{
-		if (draw_zones(&win) == FAILURE)
+		if (draw_init_zones(&win, &all_rec) == FAILURE)
 			ft_printf("error initializing SDL: %s\n", SDL_GetError());
-		event_handler(&win);
-		if (win.play == OFF)
-			destroy_visual(&win);
-		SDL_Delay(200);
+		while (win.running == ON)
+		{
+			if (SDL_PollEvent(&win.event) != 0)
+				event_handler(&win);
+			active_zones(&win, &all_rec);
+			SDL_RenderPresent(win.renderer);
+		}
 	}
 	else
 	{
@@ -95,6 +101,8 @@ int			setup_window(t_vm *vm)
 		destroy_visual(&win);
 		return (FAILURE);
 	}
+	if (win.running == OFF)
+		destroy_visual(&win);
 	TTF_Quit();
 	return (SUCCESS);
 }

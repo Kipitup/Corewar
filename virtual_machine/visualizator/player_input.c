@@ -6,13 +6,13 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/20 19:22:40 by francis           #+#    #+#             */
-/*   Updated: 2020/07/04 12:02:32 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/14 16:40:12 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "visu.h"
 
-void	player4_input_writing(t_window *win, int x, int y)
+void	player4_input_writing(t_window *win, t_all_rec *all_rec, int x, int y)
 {
 	SDL_Rect	name_input;
 	SDL_Rect	processus_input;
@@ -26,11 +26,11 @@ void	player4_input_writing(t_window *win, int x, int y)
 	draw_rectangle(win, processus_input, set_color(20, 20, 20, 255));
 	draw_rectangle(win, last_live_input, set_color(20, 20, 20, 255));
 	red_writing(win, &name_input, "name of the player4");
-	red_writing(win, &processus_input, "itoa(nb)"); 
-	red_writing(win, &last_live_input, "itoa(nb)"); 
+	all_rec->player4_process = processus_input;
+	all_rec->player4_live = last_live_input;
 }
 
-void	player3_input_writing(t_window *win, int x, int y)
+void	player3_input_writing(t_window *win, t_all_rec *all_rec, int x, int y)
 {
 	SDL_Rect	name_input;
 	SDL_Rect	processus_input;
@@ -44,11 +44,11 @@ void	player3_input_writing(t_window *win, int x, int y)
 	draw_rectangle(win, processus_input, set_color(20, 20, 20, 255));
 	draw_rectangle(win, last_live_input, set_color(20, 20, 20, 255));
 	green_writing(win, &name_input, "name of the player3");
-	green_writing(win, &processus_input, "itoa(nb)"); 
-	green_writing(win, &last_live_input, "itoa(nb)"); 
+	all_rec->player3_process = processus_input;
+	all_rec->player3_live = last_live_input;
 }
 
-void	player2_input_writing(t_window *win, int x, int y)
+void	player2_input_writing(t_window *win, t_all_rec *all_rec, int x, int y)
 {
 	SDL_Rect	name_input;
 	SDL_Rect	processus_input;
@@ -62,11 +62,11 @@ void	player2_input_writing(t_window *win, int x, int y)
 	draw_rectangle(win, processus_input, set_color(20, 20, 20, 255));
 	draw_rectangle(win, last_live_input, set_color(20, 20, 20, 255));
 	blue_writing(win, &name_input, "name of the player2");
-	blue_writing(win, &processus_input, "itoa(nb)"); 
-	blue_writing(win, &last_live_input, "itoa(nb)"); 
+	all_rec->player2_process = processus_input;
+	all_rec->player2_live = last_live_input;
 }
 
-void	player1_input_writing(t_window *win, int x, int y)
+void	player1_input_writing(t_window *win, t_all_rec *all_rec, int x, int y)
 {
 	SDL_Rect	name_input;
 	SDL_Rect	processus_input;
@@ -80,6 +80,6 @@ void	player1_input_writing(t_window *win, int x, int y)
 	draw_rectangle(win, processus_input, set_color(20, 20, 20, 255));
 	draw_rectangle(win, last_live_input, set_color(20, 20, 20, 255));
 	classic_writing(win, &name_input, "name of the player1");
-	classic_writing(win, &processus_input, "itoa(nb)"); 
-	classic_writing(win, &last_live_input, "itoa(nb)"); 
+	all_rec->player1_process = processus_input;
+	all_rec->player1_live = last_live_input;
 }

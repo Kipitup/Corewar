@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   write_info_box.c                                   :+:      :+:    :+:   */
+/*   info_box.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/20 20:12:40 by francis           #+#    #+#             */
-/*   Updated: 2020/07/04 12:11:28 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/14 17:28:09 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "visu.h"
 
-static void	info_input_writing(t_window *win, int x, int y)
+static void	info_input_writing(t_window *win, t_all_rec *all_rec, int x, int y)
 {
 	SDL_Rect	to_die_input;
 	SDL_Rect	delta_input;
@@ -28,13 +28,13 @@ static void	info_input_writing(t_window *win, int x, int y)
 	draw_rectangle(win, delta_input, set_color(20, 20, 20, 255));
 	draw_rectangle(win, nb_live_input, set_color(20, 20, 20, 255));
 	draw_rectangle(win, check_input, set_color(20, 20, 20, 255));
-	classic_writing(win, &to_die_input, "itoa(nb)");
-	classic_writing(win, &delta_input, "itoa(nb)");
-	classic_writing(win, &nb_live_input, "itoa(nb)");
-	classic_writing(win, &check_input, "itoa(nb)");
+	all_rec->to_die = to_die_input;
+	all_rec->delta = delta_input;
+	all_rec->nb_live = nb_live_input;
+	all_rec->check = check_input;
 }
 
-void		write_info_rec(t_window *win, int x, int y)
+void		info_box(t_window *win, t_all_rec *all_rec, int x, int y)
 {
 	SDL_Rect	to_die_rec;
 	SDL_Rect	delta_rec;
@@ -53,5 +53,5 @@ void		write_info_rec(t_window *win, int x, int y)
 	classic_writing(win, &delta_rec, "CYCLE_DELTA:");
 	classic_writing(win, &nb_live_rec, "NBR_LIVES:");
 	classic_writing(win, &check_rec, "MAX_CHECKS:");
-	info_input_writing(win, x, y);
+	info_input_writing(win, all_rec, x, y);
 }

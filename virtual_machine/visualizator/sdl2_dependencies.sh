@@ -20,7 +20,7 @@ then
 	fi
 	if [[ $1 == -macos ]]
 	then
-		brew install libsdl2-2.0-0 libsdl2-dev libsdl2-ttf-2.0-0 libsdl2-ttf-dev libsdl2-image-2.0-0 libsdl2-image-dev
+		brew install sdl2 sdl2_image sdl2_ttf
 		exit
 	fi
 else

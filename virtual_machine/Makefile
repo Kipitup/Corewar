@@ -6,7 +6,7 @@
 #    By: amartino <amartino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/26 11:56:39 by amartino          #+#    #+#              #
-#    Updated: 2020/07/12 19:01:36 by francis          ###   ########.fr        #
+#    Updated: 2020/07/14 17:29:03 by francis          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
                      ####################################
@@ -72,6 +72,7 @@ PATH_SRC += srcs
 PATH_SRC += srcs/init
 PATH_SRC += srcs/clean
 PATH_SRC += visualizator
+PATH_SRC += visualizator/init
 
 vpath %.c $(PATH_SRC)
 
@@ -90,15 +91,16 @@ SRCS += parsing_utilities
 
 # visu
 ifeq ($(visu), 1)
-	SRCS += draw_main_zone
+	SRCS += init_main_zone
+	SRCS += active_zones
 	SRCS += font_writing
 	SRCS += init_visu
-	SRCS += player_input_writing
+	SRCS += player_input
+	SRCS += player_box
 	SRCS += visu_tools
-	SRCS += write_arena
-	SRCS += write_player_box
-	SRCS += write_info_box
-	SRCS += write_command_box
+	SRCS +=	arena
+	SRCS += info_box
+	SRCS += command_box
 endif
 
 # clean

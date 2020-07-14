@@ -1,30 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   write_command_box.c                                :+:      :+:    :+:   */
+/*   command_box.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/04 12:10:13 by francis           #+#    #+#             */
-/*   Updated: 2020/07/04 12:29:21 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/14 17:27:06 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "visu.h"
 
-void	write_command_rec(t_window *win, int x, int y)
+static void	init_pause_rec(t_window *win, t_all_rec *all_rec, int x, int y)
+{
+	SDL_Rect	run_pause;
+	int			h;
+
+	h = win->h * 0.02;
+	x = win->w * 0.85;
+	y = win->h * 0.90;
+	run_pause = init_new_rect(x, y, win->w * 0.05, h);
+	draw_rectangle(win, run_pause, set_color(20, 20, 20, 255));
+	all_rec->run_pause = run_pause;
+}
+
+void	command_box(t_window *win, t_all_rec *all_rec, int x, int y)
 {
 	SDL_Rect	command_rec;
 	SDL_Rect	up_speed_rec;
 	SDL_Rect	down_speed_rec;
+	SDL_Rect	space_pause_rec;
+	int			h;
 
-	command_rec = init_new_rect(x, y, win->w * 0.08, win->h* 0.02);
-	up_speed_rec = init_new_rect(x + 30, y + 50, win->w * 0.10, win->h* 0.02);
-	down_speed_rec = init_new_rect( x + 30, y + 100, win->w * 0.12, win->h* 0.02);
+	h = win->h * 0.02;
+	command_rec = init_new_rect(x, y, win->w * 0.08, h);
+	up_speed_rec = init_new_rect(x + 30, y + 50, win->w * 0.10, h);
+	down_speed_rec = init_new_rect(x + 30, y + 100, win->w * 0.12, h);
+	space_pause_rec = init_new_rect(x + 30, y + 150, win->w * 0.09, h);
 	draw_rectangle(win, command_rec, set_color(20, 20, 20, 255));
 	draw_rectangle(win, up_speed_rec, set_color(20, 20, 20, 255));
 	draw_rectangle(win, down_speed_rec, set_color(20, 20, 20, 255));
+	draw_rectangle(win, space_pause_rec, set_color(20, 20, 20, 255));
 	classic_writing(win, &command_rec, "COMMANDS :");
 	classic_writing(win, &up_speed_rec, "Up arrow - Speed Up");
 	classic_writing(win, &down_speed_rec, "Down arrow - Speed Down");
+	classic_writing(win, &space_pause_rec, "Space - Pause/run");
+	init_pause_rec(win, all_rec, x, y);
 }

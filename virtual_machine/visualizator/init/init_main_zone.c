@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_main_zone.c                                   :+:      :+:    :+:   */
+/*   init_main_zone.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/20 09:15:55 by francis           #+#    #+#             */
-/*   Updated: 2020/07/11 10:58:14 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/14 17:27:32 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	draw_header_rec(t_window *win)
 	classic_writing(win, &name_rec, "By Amartino, Efischer, Fkante");
 }
 
-void	draw_players_rec(t_window *win)
+void	draw_player_info_comm_rec(t_window *win, t_all_rec *all_rec)
 {
 	SDL_Rect	main_rec;
 	int			x;
@@ -42,9 +42,9 @@ void	draw_players_rec(t_window *win)
 	y = win->h * 0.11;
 	main_rec = init_new_rect(x, y, win->w * 0.24, win->h * 0.885);
 	draw_rectangle(win, main_rec, set_color(20, 20, 20, 255));
-	write_player_rec(win, x + 15, y + 25);
-	write_info_rec(win, x + 15, y + win->h * 0.38);
-	write_command_rec(win, x + 15, y + win->h * 0.60);
+	player_box(win, all_rec, x + 15, y + 25);
+	info_box(win, all_rec, x + 15, y + win->h * 0.38);
+	command_box(win, all_rec, x + 15, y + win->h * 0.60);
 }
 
 void	draw_arena(t_window *win)
@@ -53,10 +53,11 @@ void	draw_arena(t_window *win)
 
 	position1 = init_new_rect(5, 5, win->w * 0.75, win->h * 0.99);
 	draw_rectangle(win, position1, set_color(20, 20, 20, 255));
-	write_init_arena(win);
+	init_arena(win);
 }
 
-int8_t	draw_zones(t_window *win)
+
+int8_t	draw_init_zones(t_window *win, t_all_rec *all_rec)
 {
 	int8_t	ret;
 
@@ -67,7 +68,7 @@ int8_t	draw_zones(t_window *win)
 		{
 			draw_arena(win);
 			draw_header_rec(win);
-			draw_players_rec(win);
+			draw_player_info_comm_rec(win, all_rec);
 			SDL_RenderPresent(win->renderer);
 			ret = SUCCESS;
 		}

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   write_player_box.c                                 :+:      :+:    :+:   */
+/*   player_box.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/20 19:22:40 by francis           #+#    #+#             */
-/*   Updated: 2020/07/04 12:11:47 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/14 17:28:38 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "visu.h"
 
-static void	player4(t_window *win, int x, int y)
+static void	player4(t_window *win, t_all_rec *all_rec, int x, int y)
 {
 	SDL_Rect	name_rec;
 	SDL_Rect	processus_rec;
@@ -27,10 +27,10 @@ static void	player4(t_window *win, int x, int y)
 	red_writing(win, &name_rec, "Player -4 :");
 	red_writing(win, &processus_rec, "Processes:");
 	red_writing(win, &last_live_rec, "Last live:");
-	player4_input_writing(win, x, y);
+	player4_input_writing(win, all_rec, x, y);
 }
 
-static void	player3(t_window *win, int x, int y)
+static void	player3(t_window *win, t_all_rec *all_rec, int x, int y)
 {
 	SDL_Rect	name_rec;
 	SDL_Rect	processus_rec;
@@ -45,10 +45,10 @@ static void	player3(t_window *win, int x, int y)
 	green_writing(win, &name_rec, "Player -3 :");
 	green_writing(win, &processus_rec, "Processes:");
 	green_writing(win, &last_live_rec, "Last live:");
-	player3_input_writing(win, x, y);
+	player3_input_writing(win, all_rec, x, y);
 }
 
-static void	player2(t_window *win, int x, int y)
+static void	player2(t_window *win, t_all_rec *all_rec, int x, int y)
 {
 	SDL_Rect	name_rec;
 	SDL_Rect	processus_rec;
@@ -63,10 +63,10 @@ static void	player2(t_window *win, int x, int y)
 	blue_writing(win, &name_rec, "Player -2 :");
 	blue_writing(win, &processus_rec, "Processes:");
 	blue_writing(win, &last_live_rec, "Last live:");
-	player2_input_writing(win, x, y);
+	player2_input_writing(win, all_rec, x, y);
 }
 
-static void	player1(t_window *win, int x, int y)
+static void	player1(t_window *win, t_all_rec *all_rec, int x, int y)
 {
 	SDL_Rect	name_rec;
 	SDL_Rect	processus_rec;
@@ -81,16 +81,16 @@ static void	player1(t_window *win, int x, int y)
 	classic_writing(win, &name_rec, "Player -1 :");
 	classic_writing(win, &processus_rec, "Processes:");
 	classic_writing(win, &last_live_rec, "Last live:");
-	player1_input_writing(win, x, y);
+	player1_input_writing(win, all_rec, x, y);
 }
 
 /*
 **	I'll add if statement or state to switch on/on players [!]
 */
-void	write_player_rec(t_window *win, int x, int y)
+void	player_box(t_window *win, t_all_rec *all_rec, int x, int y)
 {
-	player1(win, x, y);
-	player2(win, x, y + 100);
-	player3(win, x, y + 200);
-	player4(win, x, y + 300);
+	player1(win, all_rec, x, y);
+	player2(win, all_rec, x, y + 100);
+	player3(win, all_rec, x, y + 200);
+	player4(win, all_rec, x, y + 300);
 }
