@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 12:01:37 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/14 14:13:15 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/15 18:38:59 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 # include "op.h"
 # include <stdbool.h>
 
-# define NB_TOKEN			28
+# define NB_TOKEN			26
+# define NB_STATE			3
 
 # define TOO_FEW_ARG		"Too few argument"
 # define TOO_MUCH_ARG		"Too much arguments"
@@ -26,52 +27,79 @@
 # define MALLOC_FAILURE		"Cannot allocate memory"
 # define USAGE				"Usage: ./asm mychampion.s"
 # define PARSE_ERROR		"Parse error"
+# define TOO_LONG_NAME		"Program name too long"
 
 enum	e_token
 {
-	T_NAME_CMD,
-	T_COMMENT_CMD,
-	T_LABEL_CHAR,
-	T_DIRECT_CHAR,
-	T_SEPARATOR_CHAR,
-	T_LIVE,
-	T_LD,
-	T_ST,
-	T_ADD,
-	T_SUB,
-	T_AND,
-	T_OR,
-	T_XOR,
-	T_ZJMP,
-	T_LDI,
-	T_STI,
-	T_FORK,
-	T_LLD,
-	T_LLDI,
-	T_LFORK,
-	T_AFF,
-	T_STRING,
-	T_LABEL,
-	T_NB,
-	T_REGISTER,
-	T_START,
-	T_END,
-	T_COMMENT
+	E_NAME_CMD,
+	E_COMMENT_CMD,
+	E_LABEL_CHAR,
+	E_DIRECT_CHAR,
+	E_SEPARATOR_CHAR,
+	E_LIVE,
+	E_LD,
+	E_ST,
+	E_ADD,
+	E_SUB,
+	E_AND,
+	E_OR,
+	E_XOR,
+	E_ZJMP,
+	E_LDI,
+	E_STI,
+	E_FORK,
+	E_LLD,
+	E_LLDI,
+	E_LFORK,
+	E_AFF,
+	E_STRING,
+	E_LABEL,
+	E_NB,
+	E_REGISTER,
+	E_COMMENT
+};
+
+enum	e_state
+{
+	E_GET_NAME,
+	E_GET_COMMENT,
+	E_GET_OP
 };
 
 typedef struct	s_token
 {
 	enum e_token	type;
-	char			*value;
+	const char		*value;
 }				t_token;
 
-int			usage_error(int ac);
-int			check_file_name(const char *file_name);
-t_vector	*get_file_content(const char *file_name);
-void		lexer_parser(const char *input);
-void		lexer(const char *input, t_list **token_lst);
-void		get_word(const char *input, t_token *token, size_t *pos);
-void		ft_lstaddend(t_list **alst, t_list *new);
-void		exit_error(t_list **token_lst);
+typedef struct	s_data
+{
+	char			*input;
+	t_list			*label_lst;
+	t_list			*token_lst;
+	char			*file_name;
+	int				column;
+	int				line;
+	size_t			offset;
+	ssize_t			fd;
+	enum e_state	state;
+}				t_data;
+
+void	exit_error(t_data *data, char *err_mesage);
+void	ft_arrdel(char **array);
+void	ft_lstaddend(t_list **alst, t_list *new);
+int		ft_isblank(const char c);
+char	*ft_join_free(char *s1, char *s2, int op);
+void	get_comment(t_data *data, char **grammar);
+char	*get_dquote_string(t_data *data);
+void	get_file_content(t_data *data);
+void	get_name(t_data *data, char **grammar);
+void	get_op(t_data *data, char **grammar);
+void	new_token(t_data *data, enum e_token type, const char *value);
+void	open_file(t_data *data);
+void	parser_asm(t_data *data);
+int		usage_error(int ac);
+
+void	debug_token(t_list *token_lst);
 
 #endif
