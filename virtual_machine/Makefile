@@ -6,7 +6,7 @@
 #    By: amartino <amartino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/26 11:56:39 by amartino          #+#    #+#              #
-#    Updated: 2020/07/14 17:29:03 by francis          ###   ########.fr        #
+#    Updated: 2020/07/15 17:05:25 by francis          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
                      ####################################
@@ -73,6 +73,7 @@ PATH_SRC += srcs/init
 PATH_SRC += srcs/clean
 PATH_SRC += visualizator
 PATH_SRC += visualizator/init
+PATH_SRC += visualizator/clean
 
 vpath %.c $(PATH_SRC)
 
@@ -92,6 +93,7 @@ SRCS += parsing_utilities
 # visu
 ifeq ($(visu), 1)
 	SRCS += init_main_zone
+	SRCS += destroy_visual 
 	SRCS += active_zones
 	SRCS += font_writing
 	SRCS += init_visu

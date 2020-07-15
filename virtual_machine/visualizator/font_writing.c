@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/20 18:35:00 by francis           #+#    #+#             */
-/*   Updated: 2020/07/14 16:25:19 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/15 17:32:35 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int8_t	classic_writing(t_window *win, SDL_Rect *rect, char *str)
 	SDL_RenderCopy(win->renderer, text, NULL, rect);
 	SDL_FreeSurface(textsurf);
 	textsurf = NULL;
+	SDL_DestroyTexture(text);
 	TTF_CloseFont(font);
 	return (ret);
 }
@@ -48,6 +49,7 @@ int8_t	green_writing(t_window *win, SDL_Rect *rect, char *str)
 	SDL_RenderCopy(win->renderer, text, NULL, rect);
 	SDL_FreeSurface(textsurf);
 	textsurf = NULL;
+	SDL_DestroyTexture(text);
 	TTF_CloseFont(font);
 	return (ret);
 }
@@ -67,6 +69,7 @@ int8_t	blue_writing(t_window *win, SDL_Rect *rect, char *str)
 	SDL_RenderCopy(win->renderer, text, NULL, rect);
 	SDL_FreeSurface(textsurf);
 	textsurf = NULL;
+	SDL_DestroyTexture(text);
 	TTF_CloseFont(font);
 	return (ret);
 }
@@ -86,6 +89,7 @@ int8_t	red_writing(t_window *win, SDL_Rect *rect, char *str)
 	SDL_RenderCopy(win->renderer, text, NULL, rect);
 	SDL_FreeSurface(textsurf);
 	textsurf = NULL;
+	SDL_DestroyTexture(text);
 	TTF_CloseFont(font);
 	return (ret);
 }

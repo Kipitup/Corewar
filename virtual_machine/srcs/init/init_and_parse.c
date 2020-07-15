@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 11:18:57 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/15 10:05:29 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/15 12:00:51 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,7 @@ t_vm				*init(size_t ac, char **av)
 		}
 		if (vm->option & OPT_VISU)
 			setup_window(vm);
-		ft_printf("opt %08b\n",  2, vm->option);
+		ft_printf("opt %08b\n", 2, vm->option);
 		ft_printf("dump nb %zu\n", vm->opt_dump);
 		if (ret == FAILURE)
 			clean_vm(&vm);

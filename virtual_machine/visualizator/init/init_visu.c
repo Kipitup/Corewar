@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 12:03:48 by francis           #+#    #+#             */
-/*   Updated: 2020/07/15 11:43:41 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/15 17:38:15 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,17 +64,6 @@ static void	event_handler(t_window *win)
 			&& win->play == VISU_START)
 		win->play = VISU_STOP;
 	//	SPEED UP AND DOWN HERE IF NEEDED
-}
-
-void		destroy_visual(t_window *win)
-{
-	if (win != NULL)
-	{
-		SDL_RenderClear(win->renderer);
-		SDL_DestroyRenderer(win->renderer);
-		SDL_DestroyWindow(win->window);
-	}
-	SDL_Quit();
 }
 
 int			setup_window(t_vm *vm)
