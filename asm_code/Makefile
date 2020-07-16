@@ -6,7 +6,7 @@
 #    By: amartino <amartino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/26 11:56:39 by amartino          #+#    #+#              #
-#    Updated: 2020/07/15 18:10:54 by efischer         ###   ########.fr        #
+#    Updated: 2020/07/16 13:43:42 by efischer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
                      ####################################
@@ -74,17 +74,23 @@ vpath %.c $(PATH_SRC)
                      #                   				#
                      ####################################
 SRCS += main
+SRCS += del
 SRCS += exit_error
+SRCS += get_args
 SRCS += get_comment
 SRCS += get_dquote_string
 SRCS += get_file_content
+SRCS += get_instruction
 SRCS += get_name
 SRCS += get_op
+SRCS += get_label
 SRCS += open_file
 SRCS += parser
+SRCS += ft_split_white_spaces
 SRCS += usage_error 
 SRCS += utils
 
+SRCS += debug_label
 SRCS += debug_token
                      ####################################
                      #                   				#

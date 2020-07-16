@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 12:01:37 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/15 18:38:59 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/16 13:43:27 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 # include "op.h"
 # include <stdbool.h>
 
-# define NB_TOKEN			26
+# define NB_OP				16
+# define NB_TOKEN			27
 # define NB_STATE			3
 
 # define TOO_FEW_ARG		"Too few argument"
@@ -31,11 +32,6 @@
 
 enum	e_token
 {
-	E_NAME_CMD,
-	E_COMMENT_CMD,
-	E_LABEL_CHAR,
-	E_DIRECT_CHAR,
-	E_SEPARATOR_CHAR,
 	E_LIVE,
 	E_LD,
 	E_ST,
@@ -52,9 +48,15 @@ enum	e_token
 	E_LLDI,
 	E_LFORK,
 	E_AFF,
+	E_NAME_CMD,
+	E_COMMENT_CMD,
+	E_LABEL_CHAR,
+	E_DIRECT_CHAR,
+	E_SEPARATOR_CHAR,
 	E_STRING,
 	E_LABEL,
-	E_NB,
+	E_OCP,
+	E_ARG,
 	E_REGISTER,
 	E_COMMENT
 };
@@ -69,8 +71,14 @@ enum	e_state
 typedef struct	s_token
 {
 	enum e_token	type;
-	const char		*value;
+	char			*value;
 }				t_token;
+
+typedef struct	s_label
+{
+	char			*name;
+	const size_t	offset;
+}				t_label;
 
 typedef struct	s_data
 {
@@ -85,21 +93,30 @@ typedef struct	s_data
 	enum e_state	state;
 }				t_data;
 
+void	del_array(char **array);
+void	del_label_lst(void *content, size_t content_size);
+void	del_token_lst(void *content, size_t content_size);
 void	exit_error(t_data *data, char *err_mesage);
+void	exit_routine(t_data *data);
 void	ft_arrdel(char **array);
 void	ft_lstaddend(t_list **alst, t_list *new);
 int		ft_isblank(const char c);
 char	*ft_join_free(char *s1, char *s2, int op);
-void	get_comment(t_data *data, char **grammar);
+void	get_args(t_data *data);
+void	get_comment(t_data *data);
 char	*get_dquote_string(t_data *data);
 void	get_file_content(t_data *data);
-void	get_name(t_data *data, char **grammar);
-void	get_op(t_data *data, char **grammar);
-void	new_token(t_data *data, enum e_token type, const char *value);
+void	get_instruction(t_data *data);
+void	get_name(t_data *data);
+void	get_op(t_data *data);
+void	get_label(t_data *data);
+void	new_token(t_data *data, enum e_token type, char *value);
 void	open_file(t_data *data);
 void	parser_asm(t_data *data);
+char	**ft_split_white_spaces(char const *s);
 int		usage_error(int ac);
 
+void	debug_label(t_list *label_lst);
 void	debug_token(t_list *token_lst);
 
 #endif
