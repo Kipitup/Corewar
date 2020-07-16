@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/02 18:32:55 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/16 18:03:04 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/07/16 23:11:41 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,21 @@
 
 static int32_t	get_ind(t_vm *vm, t_cursor *cursor, size_t pc, size_t i)
 {
-	int16_t		value;
+	int32_t		value;
 
 	value = 0;
 	value = value | vm->arena[pc % MEM_SIZE];
 	value = value << 8;
 	value = value | vm->arena[(pc + 1) % MEM_SIZE];
 	cursor->param[i] = value;
-	ft_printf("param ind %02x\n", value);
+	ft_printf("param ind %02x (%d)\n", value, value);
 	return (IND_SIZE);
 }
 
 static int32_t	get_dir(t_vm *vm, t_cursor *cursor, size_t pc, size_t i,
 		uint8_t dir_size )
 {
-	int32_t		value;
+	int64_t		value;
 
 	value = 0;
 	value = value | vm->arena[pc % MEM_SIZE];
@@ -41,16 +41,10 @@ static int32_t	get_dir(t_vm *vm, t_cursor *cursor, size_t pc, size_t i,
 		value = value << 8;
 		value = value | vm->arena[(pc + 3) % MEM_SIZE];
 	}
-	else
-	{
-		if ((value & 0x8000) == 0x8000)
-		{
-			value = (int16_t)value;
-			ft_printf("value is %d\n", value);
-		}
-	}
-	cursor->param[i] = value;
-	ft_printf("param dir %02x\n", value);
+	else if ((value & 0x8000) == 0x8000)
+		value = (int16_t)value;
+	cursor->param[i] = (int32_t)value;
+	ft_printf("param dir %02x (%d)\n", value, value);
 	return (dir_size);
 }
 
@@ -69,7 +63,7 @@ uint8_t			get_param_with_bytecode(t_vm *vm, t_cursor *cursor, size_t pc,
 		if (bytecode_chunk == 0b01)
 		{
 			cursor->param[i] = vm->arena[pc % MEM_SIZE];
-			ft_printf("param reg %02x\n", cursor->param[i]);
+			ft_printf("param reg %02x (%d)\n", cursor->param[i], cursor->param[i]);
 			if (cursor->param[i] < 1 || cursor->param[i] > REG_NUMBER)
 				return (FALSE);
 			pc++;

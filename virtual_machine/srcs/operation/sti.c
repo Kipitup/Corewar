@@ -6,11 +6,16 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/01 14:24:37 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/16 20:03:47 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/07/16 23:33:05 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
+
+/*
+** This operation writes the value of the first parameter (T_REG) at the
+** address (addr = (ARG2 (T_REG/T_DIR/T_IND) + ARG3 (T_REG/T_DIR)) % IDX_MOD).
+*/
 
 void				op_sti(t_vm *vm, t_cursor *cursor)
 {
