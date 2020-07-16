@@ -74,7 +74,7 @@ p32li:	live	%1
 tirvd:	zjmp	%:tirvd2
 
 bite:	sti     r1,%:copie,%2
-        ldi     %:copie,%3,r2   # met le ld a l'entree
+		ldi     %:copie,%3,r2   # met le ld a l'entree
         sti     r2,%:entree,%-4
         ldi     %:copie,%-1,r2
         sti     r2,%:entree,%-8

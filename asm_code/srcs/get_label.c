@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/15 22:06:02 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/16 11:48:06 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/16 22:02:26 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,15 @@ static void	new_label(t_data *data, char *label_name)
 	ft_lstaddend(&data->label_lst, new_lst);
 }
 
-void		get_label(t_data *data)
+void		get_label(t_data *data, char **split, size_t *index)
 {
-	char	**split;
 	size_t	len;
 
-	split = ft_split_white_spaces(data->input);
-	len = ft_strlen(split[0]);
-	if (split[0][len - 1] == LABEL_CHAR)
+	len = ft_strlen(split[*index]);
+	if (split[*index][len - 1] == LABEL_CHAR)
 	{
-		new_label(data, ft_strdup(split[0]));
+		new_label(data, ft_strdup(split[*index]));
 		data->column += len;
+		(*index)++;
 	}
-	del_array(split);
 }

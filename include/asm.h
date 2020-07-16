@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 12:01:37 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/16 13:43:27 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/17 00:42:10 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,14 @@
 # define NB_TOKEN			27
 # define NB_STATE			3
 
+# define F_REG				0b0001	
+# define F_DIR				0b0010
+# define F_IND				0b0100
+# define F_REG_IND			0b0101
+# define F_REG_DIR			0b0011
+# define F_IND_DIR			0b0110
+# define F_ALL				0b0111
+
 # define TOO_FEW_ARG		"Too few argument"
 # define TOO_MUCH_ARG		"Too much arguments"
 # define INVALID_FILE_NAME	"Invalid file name"
@@ -29,6 +37,8 @@
 # define USAGE				"Usage: ./asm mychampion.s"
 # define PARSE_ERROR		"Parse error"
 # define TOO_LONG_NAME		"Program name too long"
+# define WRONG_LABEL_NAME	"Invalid label name"
+# define INVALID_ARG		"Invalid argument"
 
 enum	e_token
 {
@@ -93,6 +103,8 @@ typedef struct	s_data
 	enum e_state	state;
 }				t_data;
 
+void	check_op(t_data *data, const t_token *op_token,
+				const t_token *ocp_token, const size_t nb_args);
 void	del_array(char **array);
 void	del_label_lst(void *content, size_t content_size);
 void	del_token_lst(void *content, size_t content_size);
@@ -102,14 +114,14 @@ void	ft_arrdel(char **array);
 void	ft_lstaddend(t_list **alst, t_list *new);
 int		ft_isblank(const char c);
 char	*ft_join_free(char *s1, char *s2, int op);
-void	get_args(t_data *data);
+void	get_args(t_data *data, char **split, size_t *index);
 void	get_comment(t_data *data);
 char	*get_dquote_string(t_data *data);
 void	get_file_content(t_data *data);
 void	get_instruction(t_data *data);
 void	get_name(t_data *data);
-void	get_op(t_data *data);
-void	get_label(t_data *data);
+void	get_op(t_data *data, char **split, size_t *i);
+void	get_label(t_data *data, char **split, size_t *index);
 void	new_token(t_data *data, enum e_token type, char *value);
 void	open_file(t_data *data);
 void	parser_asm(t_data *data);

@@ -6,7 +6,7 @@
 #    By: amartino <amartino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/26 11:56:39 by amartino          #+#    #+#              #
-#    Updated: 2020/07/16 13:43:42 by efischer         ###   ########.fr        #
+#    Updated: 2020/07/16 22:39:14 by efischer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
                      ####################################
@@ -74,6 +74,7 @@ vpath %.c $(PATH_SRC)
                      #                   				#
                      ####################################
 SRCS += main
+SRCS += check_op
 SRCS += del
 SRCS += exit_error
 SRCS += get_args
