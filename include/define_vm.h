@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 11:16:29 by amartino          #+#    #+#             */
-/*   Updated: 2020/06/30 17:46:12 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/07/16 18:29:01 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@
 # define FILE_PADDING			4
 # define BITWISE_OPT_SHIFT		3
 # define NB_OF_OPE				16
+# define FIRST_PARAM			6
+# define SECOND_PARAM			4
+# define THIRD_PARAM			2
 
 # define OPT_DUMP				0b00000001
 # define OPT_DUMP32				0b00000010

@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/29 18:34:53 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/15 18:21:15 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/07/16 17:53:05 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,5 @@ void				lets_fight(t_vm *vm, t_cursor *cursor)
 			execute_operation(vm, cursor);
 		cursor = cursor->next;
 	}
-	ft_printf("------------------------------------- \n\n");
+	ft_printf("-------------------------------------\n\n");
 }

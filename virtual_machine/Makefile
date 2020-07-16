@@ -6,7 +6,7 @@
 #    By: amartino <amartino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/26 11:56:39 by amartino          #+#    #+#              #
-#    Updated: 2020/07/02 18:33:44 by amartinod        ###   ########.fr        #
+#    Updated: 2020/07/16 19:39:35 by amartinod        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
                      ####################################
@@ -113,6 +113,7 @@ SRCS += battle
 SRCS += lets_fight
 SRCS += move_to_next_op
 SRCS += get_param
+SRCS += battle_utilities
 
 # print
 SRCS += print_debug
