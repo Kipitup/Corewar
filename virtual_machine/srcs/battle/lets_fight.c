@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/29 18:34:53 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/04 13:55:47 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/07/15 18:21:15 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,10 @@ static void			execute_operation(t_vm *vm, t_cursor *cursor)
 			ret = check_bytecode_and_param(op_code, bytecode);
 		}
 		if (ret != FALSE)
+		{
+			ft_printf("ope: %s\n", g_op_tab[op_code].name);
 			ret = get_param(vm, cursor, (cursor->pc + 1) % MEM_SIZE);
-		ft_printf("ope: %s\n", g_op_tab[op_code].name);
+		}
 		if (ret != FALSE)
 			g_op_tab[op_code].op_func(vm, cursor);
 		else
@@ -45,7 +47,7 @@ void				lets_fight(t_vm *vm, t_cursor *cursor)
 {
 	while (cursor != NULL)
 	{
-		ft_printf("cursor wait cycle %zu\n", cursor->wait_cycle);
+//		ft_printf("cursor wait cycle %zu\n", cursor->wait_cycle); 
 		if (cursor->wait_cycle == 0)
 		{
 			cursor->op_code = vm->arena[cursor->pc];
@@ -58,5 +60,5 @@ void				lets_fight(t_vm *vm, t_cursor *cursor)
 			execute_operation(vm, cursor);
 		cursor = cursor->next;
 	}
-	ft_printf("le \n\n");
+	ft_printf("------------------------------------- \n\n");
 }

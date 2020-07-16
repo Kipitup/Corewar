@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/02 18:32:55 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/04 13:52:49 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/07/16 16:21:58 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,21 @@
 
 static int32_t	get_ind(t_vm *vm, t_cursor *cursor, size_t pc, size_t i)
 {
-	uint32_t		value;
+	int16_t		value;
 
 	value = 0;
 	value = value | vm->arena[pc % MEM_SIZE];
 	value = value << 8;
 	value = value | vm->arena[(pc + 1) % MEM_SIZE];
 	cursor->param[i] = value;
-	ft_printf("param ind %02x\n", cursor->param[i]);
+//	ft_printf("param ind %02x\n", value);
 	return (IND_SIZE);
 }
 
 static int32_t	get_dir(t_vm *vm, t_cursor *cursor, size_t pc, size_t i,
 		uint8_t dir_size )
 {
-	uint32_t		value;
+	int32_t		value;
 
 	value = 0;
 	value = value | vm->arena[pc % MEM_SIZE];
@@ -41,8 +41,16 @@ static int32_t	get_dir(t_vm *vm, t_cursor *cursor, size_t pc, size_t i,
 		value = value << 8;
 		value = value | vm->arena[(pc + 3) % MEM_SIZE];
 	}
+	else
+	{
+		if ((value & 0x8000) == 0x8000)
+		{
+			value = (int16_t)value;
+			ft_printf("value is %d\n", value);
+		}
+	}
 	cursor->param[i] = value;
-	ft_printf("param dir %02x\n", cursor->param[i]);
+//	ft_printf("param dir %02x\n", value);
 	return (dir_size);
 }
 
@@ -51,22 +59,24 @@ uint8_t			get_param_with_bytecode(t_vm *vm, t_cursor *cursor, size_t pc,
 {
 	size_t		i;
 	uint8_t		bit_shift;
+	uint8_t		bytecode_chunk;
 
 	i = 0;
 	bit_shift = 6;
 	while (bit_shift > 0)
 	{
-		if (bytecode & (0b01 << bit_shift))
+		bytecode_chunk = (bytecode & (0b11 << bit_shift)) >> bit_shift;
+		if (bytecode_chunk == 0b01)
 		{
 			cursor->param[i] = vm->arena[pc % MEM_SIZE];
-			ft_printf("param reg %02x\n", cursor->param[i]);
+//			ft_printf("param reg %02x\n", cursor->param[i]);
 			if (cursor->param[i] < 1 || cursor->param[i] > REG_NUMBER)
 				return (FALSE);
 			pc++;
 		}
-		else if (bytecode & (0b10 << bit_shift))
+		else if (bytecode_chunk == 0b10)
 			pc += get_dir(vm, cursor, pc, i, g_op_tab[cursor->op_code].dir_size);
-		else if (bytecode & (0b11 << bit_shift))
+		else if (bytecode_chunk == 0b11)
 			pc += get_ind(vm, cursor, pc, i);
 		bit_shift -= 2;
 		i++;
