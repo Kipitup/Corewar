@@ -6,12 +6,11 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 11:18:57 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/15 12:00:51 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/16 22:04:35 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
-#include "visu.h"
 
 static int8_t		get_player(t_vm *vm, size_t *i, char **av, size_t index)
 {
@@ -39,50 +38,59 @@ static int8_t		get_player(t_vm *vm, size_t *i, char **av, size_t index)
 **
 ** Also the position is decremented so it can be used as an index
 */
-static int8_t		opt_position_player(t_vm *vm, size_t *i, char **av)
+static int8_t		opt_position(t_vm *vm, size_t *i, size_t ac, char **av)
 {
 	ssize_t		position;
 	int8_t		ret;
 
 	(*i)++;
 	ret = FAILURE;
-	position = get_nb(av[*i]);
-	if (position > MAX_PLAYERS || position == 0)
-		ft_perror(POSITION_OUT_OF_RANGE, __FILE__, __LINE__);
-	else if ((vm->option & ((1 << position) << BITWISE_OPT_SHIFT)) != 0)
-		ft_perror(INDEX_ALREADY_USED, __FILE__, __LINE__);	
-	else if (position != FAILURE)
+	if (*i + 1 < ac)
 	{
-		vm->option |= ((1 << position) << BITWISE_OPT_SHIFT);
-		ret = SUCCESS;
-		(*i)++;
-		position--;
-		ret = get_player(vm, i, av, position);
+		position = get_nb(av[*i]);
+		if (position > MAX_PLAYERS || position == 0)
+			ft_perror(POSITION_OUT_OF_RANGE, __FILE__, __LINE__);
+		else if ((vm->option & ((1 << position) << BITWISE_OPT_SHIFT)) != 0)
+			ft_perror(INDEX_ALREADY_USED, __FILE__, __LINE__);	
+		else if (position != FAILURE)
+		{
+			vm->option |= ((1 << position) << BITWISE_OPT_SHIFT);
+			ret = SUCCESS;
+			(*i)++;
+			ret = get_player(vm, i, av, position);
+		}
 	}
+	else
+		ft_perror(NO_ARG_FOR_N, __FILE__, __LINE__);
 	return (ret);
 }
 
-static int8_t		opt_dump(t_vm *vm, size_t *i, char **av, uint8_t dump_type)
+static int8_t		opt_dump(t_vm *vm, size_t *i, size_t ac, char **av)
 {
 	ssize_t		nb;
 	int8_t		ret;
 
-	ret = SUCCESS;
+	ret = FAILURE;
+	vm->option &= ~OPT_RESET_DUMP; 
 	vm->option |= OPT_DUMP;
-	vm->option |= dump_type;
+	vm->option |= (ft_strequ(av[*i], "-dump32") == TRUE) ? OPT_DUMP32 : OPT_DUMP64;
 	(*i)++;
-	nb = get_nb(av[*i]);
-	if (nb == FAILURE)
-		ret = FAILURE;
-	else
+	if (*i < ac)
 	{
-		vm->opt_dump = nb;
-		(*i)++;
+		nb = get_nb(av[*i]);
+		if (nb != FAILURE)
+		{
+			ret = SUCCESS;
+			vm->opt_dump = nb;
+			(*i)++;
+		}
 	}
+	else
+		ft_perror(NO_ARG_FOR_DUMP, __FILE__, __LINE__);
 	return (ret);
 }
 
-static int8_t		get_option(t_vm *vm, size_t *i, char **av)
+static int8_t		get_option(t_vm *vm, size_t *i, size_t ac, char **av)
 {
 	char 		*str;
 	int8_t		ret;
@@ -95,11 +103,11 @@ static int8_t		get_option(t_vm *vm, size_t *i, char **av)
 		(*i)++;
 	}
 	else if (ft_strequ(str, "-dump32") == TRUE)
-		ret = opt_dump(vm, i ,av, OPT_DUMP32);
+		ret = opt_dump(vm, i ,ac, av);
 	else if (ft_strequ(str, "-dump64") == TRUE)
-		ret = opt_dump(vm, i, av, OPT_DUMP64);
+		ret = opt_dump(vm, i, ac, av);
 	else if (ft_strequ(str, "-n") == TRUE)
-		ret = opt_position_player(vm, i, av);
+		ret = opt_position(vm, i, ac, av);
 	else
 		ret = ft_perror_failure(INVALID_OPT, __FILE__, __LINE__);
 	return (ret);
@@ -108,7 +116,7 @@ static int8_t		get_option(t_vm *vm, size_t *i, char **av)
 /*
 ** The address of i send in the function, so it incrementation is done there.
 */
-t_vm				*init(size_t ac, char **av)
+t_vm				*init_and_parse(size_t ac, char **av)
 {
 	t_vm		*vm;
 	size_t		i;
@@ -116,20 +124,18 @@ t_vm				*init(size_t ac, char **av)
 
 	i = 1;
 	ret = SUCCESS;
-	vm = ft_memalloc(sizeof(t_vm));
+	vm = malloc_vm_and_players();
 	if (vm != NULL)
 	{
 		while (i < ac && ret == SUCCESS)
 		{
 			if (av[i][0] == '-')
-				ret = get_option(vm, &i, av);
+				ret = get_option(vm, &i, ac, av);
 			else
 				ret = get_player(vm, &i, av, NO_SPECIFIC_POSITION);
 		}
-		if (vm->option & OPT_VISU)
-			setup_window(vm);
-		ft_printf("opt %08b\n", 2, vm->option);
-		ft_printf("dump nb %zu\n", vm->opt_dump);
+		if (ret == SUCCESS)
+			ret = is_player_well_assigned(vm);
 		if (ret == FAILURE)
 			clean_vm(&vm);
 	}

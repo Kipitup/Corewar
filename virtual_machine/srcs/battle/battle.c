@@ -1,0 +1,111 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   battle.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/06/29 14:38:45 by amartinod         #+#    #+#             */
+/*   Updated: 2020/07/16 23:49:33 by francis          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "vm.h"
+#include "visu.h"
+
+static void			remove_cursor(t_vm *vm)
+{
+	t_cursor	*cursor;
+	t_cursor	*tmp;
+
+	if (vm->cursor != NULL && vm->cursor->last_live > (size_t)vm->cycle_to_die)
+	{
+		tmp = vm->cursor->next;
+		free(vm->cursor);
+		vm->cursor = tmp;
+		remove_cursor(vm);
+	}
+	cursor = vm->cursor;
+	while (cursor != NULL && cursor->next != NULL)
+	{
+		if (cursor->next->last_live > (size_t)vm->cycle_to_die)
+		{
+			tmp = cursor->next->next;
+			free(cursor->next);
+			cursor->next = tmp;
+		}
+		else
+			cursor = cursor->next;
+	}
+}
+
+static uint8_t		remove_dead_cursor(t_vm *vm)
+{
+	t_cursor	*tmp;
+	uint8_t		alive;
+
+	alive = 0;
+	remove_cursor(vm);
+	tmp = vm->cursor;
+	while (tmp != NULL)
+	{
+		alive++;
+		tmp = tmp->next;
+	}
+	return (alive);
+}
+
+static uint8_t		check(t_vm *vm)
+{
+	uint8_t		alive;
+
+	if (vm->live_counter == NBR_LIVE)
+	{
+		vm->live_counter = 0;
+		vm->cycle_to_die -= CYCLE_DELTA;
+	}
+	else
+		vm->check_counter++;
+	if (vm->check_counter == MAX_CHECKS)
+	{
+		vm->check_counter = 0;
+		vm->cycle_to_die -= CYCLE_DELTA;
+	}
+	if (vm->cycle_to_die <= 0)
+		alive = 0;
+	else
+		alive = remove_dead_cursor(vm);
+	return (alive);
+}
+
+void				battle(t_vm *vm)
+{
+	t_visu		visu;
+	t_window	win;
+	t_all_rec	rec;
+	long		cycle;
+
+	visu.win = &win;
+	visu.all_rec = &rec;
+	cycle = 0;
+	if (vm->option & OPT_VISU)
+		setup_window(vm, &visu);
+	while (vm->nb_of_player_alive > 0)
+	{
+		run_visu(vm, visu.win, visu.all_rec);
+		lets_fight(vm, vm->cursor);
+		cycle++;
+		vm->cycle_counter++;
+		if (cycle == vm->cycle_to_die)
+		{
+			cycle = 0;
+			vm->nb_of_player_alive = check(vm);
+			ft_dprintf(STD_ERR, "cycle_to_die %ld\n", vm->cycle_to_die);
+		}
+		if (vm->option & OPT_DUMP && vm->opt_dump == vm->cycle_counter)
+		{
+			dump_option(vm);
+			break;
+		}
+	}
+}

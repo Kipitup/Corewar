@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 12:03:48 by francis           #+#    #+#             */
-/*   Updated: 2020/07/16 20:43:39 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/16 23:54:24 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,56 +43,90 @@ int8_t		create_window(t_window *win)
 			ret = SUCCESS;
 		}
 	}
-	else
-		ft_printf("error initializing SDL: %s\n", SDL_GetError());
 	return (ret);
 }
 
-static void	event_handler(t_window *win)
+void	event_handler(t_window *win)
 {
-	SDL_Event	event;
+	SDL_Event	*event;
 
-	event = win->event;
-	if (event.type == SDL_QUIT)
+	event = &win->event;
+	if (event->type == SDL_QUIT)
 		win->running = OFF;
-	if (event.type == SDL_KEYUP && event.key.keysym.sym == SDLK_ESCAPE)
+	if (event->type == SDL_KEYUP && event->key.keysym.sym == SDLK_ESCAPE)
 		win->running = OFF;
-	if (event.type == SDL_KEYUP && event.key.keysym.sym == SDLK_SPACE
+	if (event->type == SDL_KEYUP && event->key.keysym.sym == SDLK_SPACE
 			&& win->play == VISU_STOP)
 		win->play = VISU_START;
-	else if (event.type == SDL_KEYUP && event.key.keysym.sym == SDLK_SPACE
+	else if (event->type == SDL_KEYUP && event->key.keysym.sym == SDLK_SPACE
 			&& win->play == VISU_START)
 		win->play = VISU_STOP;
 	//	SPEED UP AND DOWN HERE IF NEEDED
 }
 
-int			setup_window(t_vm *vm)
+void	setup_window(t_vm *vm, t_visu *visu)
 {
-	t_window	win;
-	t_all_rec	all_rec;
-
 	(void)vm;
-	if (create_window(&win) == SUCCESS)
+	if (create_window(visu->win) == SUCCESS)
 	{
-		if (draw_init_zones(&win, &all_rec) == FAILURE)
-			ft_printf("error initializing SDL: %s\n", SDL_GetError());
-		while (win.running == ON)
+		if (SDL_SetRenderDrawColor(visu->win->renderer, 90, 90, 90, 0) < 0)
 		{
-			if (SDL_PollEvent(&win.event) != 0)
-				event_handler(&win);
-			active_zones(&win, &all_rec);
-			SDL_Delay(100);
-			SDL_RenderPresent(win.renderer);
+			ft_printf("Error SDL: %s\n", SDL_GetError());
+			destroy_visual(visu->win);
 		}
+		else if (draw_init_zones(visu->win, visu->all_rec) == FAILURE)
+			ft_printf("Error drawing: %s\n", SDL_GetError());
 	}
 	else
 	{
-		ft_printf("error creating window: %s\n", SDL_GetError());
-		destroy_visual(&win);
-		return (FAILURE);
+		ft_printf("Error creating window: %s\n", SDL_GetError());
+		destroy_visual(visu->win);
 	}
-	if (win.running == OFF)
-		destroy_visual(&win);
-	TTF_Quit();
+}
+
+int		run_visu(t_vm *vm, t_window *win, t_all_rec *all_rec)
+{
+	(void)vm;
+	if (win->running == ON)
+	{
+		if (SDL_PollEvent(&win->event) != 0)
+			event_handler(win);
+		active_zones(win, all_rec);
+		SDL_RenderPresent(win->renderer);
+	}
+   	if (win->running == OFF)
+   		destroy_visual(win);
 	return (SUCCESS);
 }
+
+/*
+   int		setup_window(t_vm *vm, t_visu *visu)
+   {
+   t_window	win;
+   t_all_rec	all_rec;
+
+   (void)vm;
+   if (create_window(&win) == SUCCESS)
+   {
+   if (draw_init_zones(&win, &all_rec) == FAILURE)
+   ft_printf("error initializing SDL: %s\n", SDL_GetError());
+   while (win.running == ON)
+   {
+   if (SDL_PollEvent(&win.event) != 0)
+   event_handler(&win);
+   active_zones(&win, &all_rec);
+   SDL_Delay(100);
+   SDL_RenderPresent(win.renderer);
+   }
+   }
+   else
+   {
+   ft_printf("error creating window: %s\n", SDL_GetError());
+   destroy_visual(&win);
+   return (FAILURE);
+   }
+   if (win.running == OFF)
+   destroy_visual(&win);
+   TTF_Quit();
+   return (SUCCESS);
+   }*/

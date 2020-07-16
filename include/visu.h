@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/20 09:28:58 by francis           #+#    #+#             */
-/*   Updated: 2020/07/15 17:06:59 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/16 23:49:51 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,17 @@ typedef struct	s_rectangle
 	SDL_Rect	player4_live;
 }				t_all_rec;
 
+typedef struct	s_visu
+{
+	t_window	*win;
+	t_all_rec	*all_rec;
+}				t_visu;
+
 /*
 ** ******************************** INIT ***************************************
 */
-int			setup_window(t_vm *vm);
+void		setup_window(t_vm *vm, t_visu *visu);
+int			run_visu(t_vm *vm, t_window *win, t_all_rec *rec);
 
 /*
 ** ******************************** CLEAN **************************************
@@ -73,6 +80,7 @@ SDL_Rect	init_new_rect(int x, int y, int width, int height);
 SDL_Point	set_point(int x, int y);
 SDL_Color	set_color(int red, int green, int blue, int alpha);
 int8_t		draw_rectangle(t_window *win, SDL_Rect rect, SDL_Color color);
+void		event_handler(t_window *win);
 
 /*
 ** ****************************** WRITING **************************************

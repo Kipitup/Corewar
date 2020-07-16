@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/20 09:15:55 by francis           #+#    #+#             */
-/*   Updated: 2020/07/15 11:46:54 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/16 23:23:48 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,16 +62,13 @@ int8_t	draw_init_zones(t_window *win, t_all_rec *all_rec)
 	int8_t	ret;
 
 	ret = FAILURE;
-	if (SDL_SetRenderDrawColor(win->renderer, 90, 90, 90, 0) >= 0)
+	if (SDL_RenderClear(win->renderer) >= 0)
 	{
-		if (SDL_RenderClear(win->renderer) >= 0)
-		{
-			draw_arena(win);
-			draw_header_rec(win);
-			draw_player_info_comm_rec(win, all_rec);
-			SDL_RenderPresent(win->renderer);
-			ret = SUCCESS;
-		}
+		draw_arena(win);
+		draw_header_rec(win);
+		draw_player_info_comm_rec(win, all_rec);
+		SDL_RenderPresent(win->renderer);
+		ret = SUCCESS;
 	}
 	return (ret);
 }

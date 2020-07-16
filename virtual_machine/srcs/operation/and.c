@@ -1,36 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   and.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/23 11:05:47 by amartinod         #+#    #+#             */
-/*   Updated: 2020/06/24 10:49:15 by amartinod        ###   ########.fr       */
+/*   Created: 2020/07/01 14:23:00 by amartinod         #+#    #+#             */
+/*   Updated: 2020/07/16 20:04:29 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-int		main(int ac, char **av)
+void		op_and(t_vm *vm, t_cursor *cursor)
 {
-	t_vm	*vm;
+	int32_t		arg_1;
+	int32_t		arg_2;
+	int32_t		arg_3;
+	uint8_t		type_of_param;
 
-	if (ac > 1)
-	{
-		vm = init_and_parse((size_t)ac, av);
-		if (vm != NULL)
-			vm = set_up_arena(vm);
-		if (vm != NULL)
-		{
-			annonce_player(vm->all_players);
-			battle(vm);
-			if (vm->nb_of_player_alive == 0)
-				and_the_winner_is(vm);
-		}
-		clean_vm(&vm);
-	}
-	else
-		ft_printf("Usage: \n");
-	return (EXIT_SUCCESS);
+	type_of_param = param_type(vm, cursor, FIRST_PARAM);
+	arg_1 = get_param_when_3_possible_type(vm, cursor, 0, type_of_param);
+	type_of_param = param_type(vm, cursor, SECOND_PARAM);
+	arg_2 = get_param_when_3_possible_type(vm, cursor, 1, type_of_param);
+	(void)arg_3;
 }

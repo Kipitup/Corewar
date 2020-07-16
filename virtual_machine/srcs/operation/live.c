@@ -1,36 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   live.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/23 11:05:47 by amartinod         #+#    #+#             */
-/*   Updated: 2020/06/24 10:49:15 by amartinod        ###   ########.fr       */
+/*   Created: 2020/07/01 14:18:54 by amartinod         #+#    #+#             */
+/*   Updated: 2020/07/16 11:47:15 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-int		main(int ac, char **av)
+void		op_live(t_vm *vm, t_cursor *cursor)
 {
-	t_vm	*vm;
-
-	if (ac > 1)
-	{
-		vm = init_and_parse((size_t)ac, av);
-		if (vm != NULL)
-			vm = set_up_arena(vm);
-		if (vm != NULL)
-		{
-			annonce_player(vm->all_players);
-			battle(vm);
-			if (vm->nb_of_player_alive == 0)
-				and_the_winner_is(vm);
-		}
-		clean_vm(&vm);
-	}
-	else
-		ft_printf("Usage: \n");
-	return (EXIT_SUCCESS);
+	ft_printf("live ope\n");
+//	ft_printf("BADABOUM bitwise ope & %08b\n", 2, (0b00 & 0b00));
+	(void)vm;
+	(void)cursor;
 }

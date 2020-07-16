@@ -6,7 +6,7 @@
 #    By: amartino <amartino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/26 11:56:39 by amartino          #+#    #+#              #
-#    Updated: 2020/07/15 17:05:25 by francis          ###   ########.fr        #
+#    Updated: 2020/07/16 21:56:02 by francis          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
                      ####################################
@@ -18,7 +18,7 @@ NAME = corewar
 LIB_DIR = ../libft
 LIB = libft.a
 CC = clang
-CFLAGS += -Wall -Wextra 
+CFLAGS += -Wall -Wextra
 INCLUDES += -I../include
 INCLUDES += -I../libft/includes
 INCLUDES += -I../libft/ft_printf/includes
@@ -70,6 +70,9 @@ LIB_PATH = $(LIB_DIR)/$(LIB)
 # SRCS
 PATH_SRC += srcs
 PATH_SRC += srcs/init
+PATH_SRC += srcs/operation
+PATH_SRC += srcs/battle
+PATH_SRC += srcs/print
 PATH_SRC += srcs/clean
 PATH_SRC += visualizator
 PATH_SRC += visualizator/init
@@ -89,6 +92,40 @@ SRCS += main
 SRCS += init_and_parse
 SRCS += parse_player_file
 SRCS += parsing_utilities
+SRCS += set_up_arena
+
+# operation
+SRCS += check_bytecode_and_param
+SRCS += operation
+SRCS += op
+SRCS += live
+SRCS += ld
+SRCS += st
+SRCS += add
+SRCS += sub
+SRCS += and
+SRCS += or
+SRCS += xor
+SRCS += zjmp
+SRCS += ldi
+SRCS += sti
+SRCS += fork
+SRCS += lld
+SRCS += lldi
+SRCS += lfork
+SRCS += aff
+
+# battle
+SRCS += battle
+SRCS += lets_fight
+SRCS += move_to_next_op
+SRCS += get_param
+SRCS += battle_utilities
+
+# print
+SRCS += print_debug
+SRCS += option_dump
+SRCS += print_output
 
 # visu
 ifeq ($(visu), 1)
