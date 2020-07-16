@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 12:03:48 by francis           #+#    #+#             */
-/*   Updated: 2020/07/15 17:38:15 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/16 20:43:39 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int			setup_window(t_vm *vm)
 			if (SDL_PollEvent(&win.event) != 0)
 				event_handler(&win);
 			active_zones(&win, &all_rec);
-			SDL_Delay(10);
+			SDL_Delay(100);
 			SDL_RenderPresent(win.renderer);
 		}
 	}
