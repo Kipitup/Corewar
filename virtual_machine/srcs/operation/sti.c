@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/01 14:24:37 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/16 19:40:39 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/07/16 20:03:47 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,7 @@ void				op_sti(t_vm *vm, t_cursor *cursor)
 
 	arg_1 = cursor->param[0];
 	type_of_param = param_type(vm, cursor, SECOND_PARAM);
-	if (type_of_param == T_REG)
-		arg_2 = get_register(cursor, cursor->param[1]);
-	else if (type_of_param == T_IND)
-		arg_2 = get_indirect(vm, cursor, 1);
-	else
-		arg_2 = cursor->param[1];
+	arg_2 = get_param_when_3_possible_type(vm, cursor, 1, type_of_param);
 	type_of_param = param_type(vm, cursor, THIRD_PARAM);
 	if (type_of_param == T_REG)
 		arg_3 = get_register(cursor, cursor->param[2]);
