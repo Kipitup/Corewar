@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/15 15:37:16 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/17 08:03:09 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/17 10:46:13 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	get_op(t_data *data, char **split, size_t *index)
 		if (ft_strequ(split[*index], grammar[i]) == TRUE)
 		{
 			data->column += ft_strlen(split[*index]) + 1;
-			new_token(data, i, ft_itoa(i + 1));
+			new_token(data, i, ft_itoa(i + 1), 1);
 			break ;
 		}
 		i++;

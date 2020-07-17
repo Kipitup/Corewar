@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/15 16:43:54 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/16 13:42:58 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/17 11:15:40 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,15 @@ void	debug_token(t_list *token_lst)
 										"E_NAME_CMD", "E_COMMENT_CMD",
 										"E_LABEL_CHAR", "E_DIRECT_CHAR",
 										"E_SEPARATOR_CHAR", "E_STRING",
-										"E_LABEL", "E_OCP", "E_ARG",
-										"E_REGISTER", "E_COMMENT"};
+										"E_OCP", "E_REG", "E_DIR", "E_IND",
+										"E_LABEL", "E_COMMENT"};
 	t_token	*token;
 
 	ft_putendl("\nDebug token lst\n");
 	while (token_lst != NULL)
 	{
 		token = token_lst->content;
-		ft_printf("[%s]->%s\n", token_type[token->type], token->value);
+		ft_printf("[ %s ] -> %s ( %d )\n", token_type[token->type], token->value, token->size);
 		token_lst = token_lst->next;
 	}
 }

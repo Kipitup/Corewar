@@ -6,7 +6,7 @@
 #    By: amartino <amartino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/26 11:56:39 by amartino          #+#    #+#              #
-#    Updated: 2020/07/16 22:39:14 by efischer         ###   ########.fr        #
+#    Updated: 2020/07/17 11:11:49 by efischer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
                      ####################################
@@ -77,6 +77,7 @@ SRCS += main
 SRCS += check_op
 SRCS += del
 SRCS += exit_error
+SRCS += fill_cor
 SRCS += get_args
 SRCS += get_comment
 SRCS += get_dquote_string
@@ -87,6 +88,7 @@ SRCS += get_op
 SRCS += get_label
 SRCS += open_file
 SRCS += parser
+SRCS += replace_label_offset
 SRCS += ft_split_white_spaces
 SRCS += usage_error 
 SRCS += utils

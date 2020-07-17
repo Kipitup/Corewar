@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 12:01:37 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/17 09:20:43 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/17 11:12:19 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <stdbool.h>
 
 # define NB_OP				16
-# define NB_TOKEN			27
+# define NB_TOKEN			28
 # define NB_STATE			3
 
 # define TOO_FEW_ARG		"Too few argument"
@@ -31,6 +31,7 @@
 # define TOO_LONG_NAME		"Program name too long"
 # define WRONG_LABEL_NAME	"Invalid label name"
 # define INVALID_ARG		"Invalid argument"
+# define UNDEFINED_LABEL	"Undefined label"
 
 enum	e_token
 {
@@ -56,10 +57,11 @@ enum	e_token
 	E_DIRECT_CHAR,
 	E_SEPARATOR_CHAR,
 	E_STRING,
-	E_LABEL,
 	E_OCP,
-	E_ARG,
-	E_REGISTER,
+	E_REG,
+	E_DIR,
+	E_IND,
+	E_LABEL,
 	E_COMMENT
 };
 
@@ -74,6 +76,7 @@ typedef struct	s_token
 {
 	enum e_token	type;
 	char			*value;
+	size_t			size;
 }				t_token;
 
 typedef struct	s_label
@@ -88,10 +91,12 @@ typedef struct	s_data
 	t_list			*label_lst;
 	t_list			*token_lst;
 	char			*file_name;
+	char			*cor_name;
 	int				column;
 	int				line;
 	size_t			offset;
-	ssize_t			fd;
+	ssize_t			fd_s;
+	ssize_t			fd_cor;
 	enum e_state	state;
 }				t_data;
 
@@ -102,6 +107,7 @@ void	del_label_lst(void *content, size_t content_size);
 void	del_token_lst(void *content, size_t content_size);
 void	exit_error(t_data *data, char *err_mesage);
 void	exit_routine(t_data *data);
+void	fill_cor(t_data *data);
 void	ft_arrdel(char **array);
 void	ft_lstaddend(t_list **alst, t_list *new);
 int		ft_isblank(const char c);
@@ -114,9 +120,11 @@ void	get_instruction(t_data *data);
 void	get_name(t_data *data);
 void	get_op(t_data *data, char **split, size_t *i);
 void	get_label(t_data *data, char **split, size_t *index);
-void	new_token(t_data *data, enum e_token type, char *value);
+void	new_token(t_data *data, enum e_token type, char *value, size_t size);
+void	open_cor(t_data *data);
 void	open_file(t_data *data);
 void	parser_asm(t_data *data);
+void	replace_label_offset(t_data *data);
 char	**ft_split_white_spaces(char const *s);
 int		usage_error(int ac);
 

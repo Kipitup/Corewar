@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 19:08:12 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/16 11:41:42 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/17 09:50:58 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,11 @@
 
 void	exit_routine(t_data *data)
 {
+	close(data->fd_s);
+	close(data->fd_cor);
 	ft_lstdel(&data->token_lst, del_token_lst);
 	ft_lstdel(&data->label_lst, del_label_lst);
+	ft_strdel(&data->cor_name);
 }
 
 void	exit_error(t_data *data, char *err_message)

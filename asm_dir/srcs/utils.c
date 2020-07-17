@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 18:55:53 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/16 11:42:33 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/17 10:44:11 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		ft_isblank(const char c)
 	return (c == ' ' || c == '\t');
 }
 
-void	new_token(t_data *data, enum e_token type, char *value)
+void	new_token(t_data *data, enum e_token type, char *value, size_t size)
 {
 	t_token token;
 	t_list	*lst_new;
@@ -25,6 +25,7 @@ void	new_token(t_data *data, enum e_token type, char *value)
 	ft_bzero(&token, sizeof(t_token));
 	token.type = type;
 	token.value = value;
+	token.size = size;
 	lst_new = ft_lstnew(&token, sizeof(t_token));
 	if (lst_new == NULL)
 		exit_error(data, MALLOC_FAILURE);

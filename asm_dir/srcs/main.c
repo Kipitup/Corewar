@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 12:00:11 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/16 11:43:33 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/17 09:50:58 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int		main(int ac, char **av)
 		data.file_name = av[1];
 		open_file(&data);
 		get_file_content(&data);
-		close(data.fd);
 		exit_routine(&data);
 	}
 	else

@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/15 22:06:02 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/17 08:42:10 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/17 11:22:37 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void		get_label(t_data *data, char **split, size_t *index)
 	len = ft_strlen(split[*index]);
 	if (split[*index][len - 1] == LABEL_CHAR)
 	{
-		new_label(data, ft_strdup(split[*index]));
+		new_label(data, ft_strndup(split[*index], len - 1));
 		data->column += len;
 		(*index)++;
 	}
