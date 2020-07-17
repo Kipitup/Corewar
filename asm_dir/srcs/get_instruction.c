@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/16 10:50:22 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/17 15:00:18 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/07/17 16:29:58 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,9 @@ void	get_instruction(t_data *data)
 	{
 		get_op(data, split, &i);
 		merge = merge_tab(split, i);
-		if (merge != NULL)
-			get_args(data, merge);
+		if (merge == NULL)
+			exit_error(data, NO_ARG);
+		get_args(data, merge);
 		i++;
 		ft_strdel(&merge);
 	}

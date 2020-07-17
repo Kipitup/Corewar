@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 12:01:37 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/17 16:09:14 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/17 16:25:41 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 # define INVALID_ARG		"Invalid argument"
 # define UNDEFINED_LABEL	"Undefined label"
 # define NO_INSTRUCTION		"No instruction"
+# define NO_ARG				"Instruction without any argument"
 
 # define REGISTER_SIZE		1
 # define SMALL_DIRECT_SIZE	2
