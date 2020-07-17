@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 12:43:06 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/17 15:00:54 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/07/17 15:32:00 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void	get_file_content(t_data *data)
 			parser_asm(data);
 		ft_strdel(&data->input);
 	}
+	if (data->offset == 0)
+		exit_error(data, NO_INSTRUCTION);
 //	debug_label(data->label_lst);
 	open_cor(data);
 	fill_cor(data);

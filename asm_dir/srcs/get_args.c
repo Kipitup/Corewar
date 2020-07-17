@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/16 12:42:49 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/17 15:12:11 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/07/17 15:35:51 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,6 +154,9 @@ void			get_args(t_data *data, char *merge)
 
 	i = 0;
 	ocp = 0;
+	merge = trim_side(merge);
+	if (merge == NULL || *merge == '\0' || merge[ft_strlen(merge) - 1] == ',')
+		exit_error(data, PARSE_ERROR);
 	op_token = get_op_token(data);
 	add_arg_type_token(data, op_token->type);
 	ocp_token = get_ocp_token(data);

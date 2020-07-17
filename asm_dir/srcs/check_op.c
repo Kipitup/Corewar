@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/16 22:19:42 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/17 15:16:45 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/07/17 15:38:01 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ static void	check_nb_args(t_data *data, const enum e_token type,
 									1};
 
 	if (args[type] > nb_args)
-		exit_error(data, TOO_MUCH_ARG);
-	if (args[type] < nb_args)
 		exit_error(data, TOO_FEW_ARG);
+	if (args[type] < nb_args)
+		exit_error(data, TOO_MUCH_ARG);
 }
 
 static void	check_type_args(t_data *data, const enum e_token type,
