@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 12:52:38 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/17 10:02:16 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/17 17:09:30 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ typedef struct		s_vm
 {
 	t_player		**all_players;
 	uint8_t			arena[MEM_SIZE];
+	uint8_t			arena_owner[MEM_SIZE];
 	t_cursor		*cursor;
 	long			cycle_to_die;
 	size_t			cycle_counter;

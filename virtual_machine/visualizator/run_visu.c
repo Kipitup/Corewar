@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/17 09:54:14 by francis           #+#    #+#             */
-/*   Updated: 2020/07/17 14:57:36 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/17 18:12:59 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,10 @@ void	event_handler(t_window *win)
 	else if (event->type == SDL_KEYUP && event->key.keysym.sym == SDLK_SPACE
 			&& win->play == VISU_START)
 		win->play = VISU_STOP;
-	//	SPEED UP AND DOWN HERE IF NEEDED
+	if ((event->type == SDL_KEYUP && event->key.keysym.sym == SDLK_UP))
+		win->cycle_frame *= 2;
+	if ((event->type == SDL_KEYUP && event->key.keysym.sym == SDLK_DOWN))
+		win->cycle_frame = win->cycle_frame == 1 ? 1 : win->cycle_frame / 2;
 }
 
 int		run_visu(t_vm *vm, t_window *win)
@@ -37,20 +40,12 @@ int		run_visu(t_vm *vm, t_window *win)
 
 	if (win->running == ON)
 	{
-		if (SDL_RenderClear(win->renderer) >= 0)
-		{
-			draw_init_zones(vm, win, &all_rec); 
-			if (SDL_PollEvent(&win->event) != 0)
-				event_handler(win);
-			active_zones(vm, win, &all_rec);
-			SDL_RenderPresent(win->renderer);
-		}
-		else
-		{
-			ft_printf("Error SDL: %s\n", SDL_GetError());
-			destroy_visual(win);
-			return (FAILURE);
-		}
+		SDL_RenderClear(win->renderer);
+		draw_init_zones(vm, win, &all_rec); 
+		if (SDL_PollEvent(&win->event) != 0)
+			event_handler(win);
+		active_zones(vm, win, &all_rec);
+		SDL_RenderPresent(win->renderer);
 	}
 	if (win->running == OFF)
 		destroy_visual(win);

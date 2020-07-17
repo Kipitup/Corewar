@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 12:03:48 by francis           #+#    #+#             */
-/*   Updated: 2020/07/17 15:00:07 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/17 18:13:50 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,14 @@
  **	Avoid using directly the surface so SDL will not loose the pointer to it,
  **	As the renderer works on the surface.
  */
+void		init_window_variable(t_window *win)
+{
+		win->running = ON;
+		win->play = VISU_START;
+		win->font = TTF_OpenFont(FONT_PATH, 70);
+		win->cycle_frame = 32;
+}
+
 int8_t		create_window(t_window *win)
 {
 	SDL_DisplayMode	display_info;
@@ -37,11 +45,8 @@ int8_t		create_window(t_window *win)
 		if (SDL_SetRenderDrawBlendMode(win->renderer, SDL_BLENDMODE_BLEND) < 0)
 			ret = RENDER_FAILURE;
 		if (win->window != NULL && win->renderer != NULL && ret == FAILURE)
-		{
-			win->running = ON;
-			win->play = VISU_STOP;
-			ret = SUCCESS;
-		}
+			init_window_variable(win);
+		ret = SUCCESS;
 	}
 	return (ret);
 }

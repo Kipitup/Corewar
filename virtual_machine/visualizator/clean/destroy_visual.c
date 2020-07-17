@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/15 17:04:19 by francis           #+#    #+#             */
-/*   Updated: 2020/07/16 22:43:44 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/17 16:33:47 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void		destroy_visual(t_window *win)
 		SDL_RenderClear(win->renderer);
 		SDL_DestroyRenderer(win->renderer);
 		SDL_DestroyWindow(win->window);
+		TTF_CloseFont(win->font);
+		win->font = NULL;
 	}
 	TTF_Quit();
 	SDL_Quit();

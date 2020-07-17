@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/29 14:38:45 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/17 14:59:32 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/17 18:13:31 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,8 @@ void				battle(t_vm *vm)
 		setup_window(vm, &win);
 	while (vm->nb_of_player_alive > 0)
 	{
-		run_visu(vm, &win);
+		if (vm->option & OPT_VISU && vm->cycle_counter % win.cycle_frame == 0)
+			run_visu(vm, &win);
 		lets_fight(vm, vm->cursor);
 		cycle++;
 		vm->cycle_counter++;

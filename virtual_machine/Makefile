@@ -6,7 +6,7 @@
 #    By: amartino <amartino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/26 11:56:39 by amartino          #+#    #+#              #
-#    Updated: 2020/07/17 09:55:37 by francis          ###   ########.fr        #
+#    Updated: 2020/07/17 16:02:31 by francis          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
                      ####################################
@@ -76,6 +76,7 @@ PATH_SRC += srcs/print
 PATH_SRC += srcs/clean
 PATH_SRC += visualizator
 PATH_SRC += visualizator/init
+PATH_SRC += visualizator/font
 PATH_SRC += visualizator/clean
 
 vpath %.c $(PATH_SRC)

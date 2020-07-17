@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/20 19:22:40 by francis           #+#    #+#             */
-/*   Updated: 2020/07/17 14:54:10 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/17 15:29:28 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,6 @@ static void	player4(t_window *win, t_all_rec *all_rec, int x, int y)
 	name_rec = init_new_rect(x, y, win->w * 0.06, win->h * 0.02);
 	process_rec = init_new_rect(x + 10, y + 30, win->w * 0.04, win->h * 0.015);
 	live_rec = init_new_rect(x + 10, y + 60, win->w * 0.04, win->h * 0.015);
-	draw_rectangle(win, name_rec, set_color(20, 20, 20, 255));
-	draw_rectangle(win, process_rec, set_color(20, 20, 20, 255));
-	draw_rectangle(win, live_rec, set_color(20, 20, 20, 255));
 	red_writing(win, &name_rec, "Player -4 :");
 	red_writing(win, &process_rec, "Processes:");
 	red_writing(win, &live_rec, "Last live:");
@@ -39,9 +36,6 @@ static void	player3(t_window *win, t_all_rec *all_rec, int x, int y)
 	name_rec = init_new_rect(x, y, win->w * 0.06, win->h * 0.02);
 	process_rec = init_new_rect(x + 10, y + 30, win->w * 0.04, win->h * 0.015);
 	live_rec = init_new_rect(x + 10, y + 60, win->w * 0.04, win->h * 0.015);
-	draw_rectangle(win, name_rec, set_color(20, 20, 20, 255));
-	draw_rectangle(win, process_rec, set_color(20, 20, 20, 255));
-	draw_rectangle(win, live_rec, set_color(20, 20, 20, 255));
 	green_writing(win, &name_rec, "Player -3 :");
 	green_writing(win, &process_rec, "Processes:");
 	green_writing(win, &live_rec, "Last live:");
@@ -57,9 +51,6 @@ static void	player2(t_window *win, t_all_rec *all_rec, int x, int y)
 	name_rec = init_new_rect(x, y, win->w * 0.06, win->h * 0.02);
 	process_rec = init_new_rect(x + 10, y + 30, win->w * 0.04, win->h * 0.015);
 	live_rec = init_new_rect(x + 10, y + 60, win->w * 0.04, win->h * 0.015);
-	draw_rectangle(win, name_rec, set_color(20, 20, 20, 255));
-	draw_rectangle(win, process_rec, set_color(20, 20, 20, 255));
-	draw_rectangle(win, live_rec, set_color(20, 20, 20, 255));
 	blue_writing(win, &name_rec, "Player -2 :");
 	blue_writing(win, &process_rec, "Processes:");
 	blue_writing(win, &live_rec, "Last live:");
@@ -75,9 +66,6 @@ static void	player1(t_window *win, t_all_rec *all_rec, int x, int y)
 	name_rec = init_new_rect(x, y, win->w * 0.06, win->h * 0.02);
 	process_rec = init_new_rect(x + 10, y + 30, win->w * 0.04, win->h * 0.015);
 	live_rec = init_new_rect(x + 10, y + 60, win->w * 0.04, win->h * 0.015);
-	draw_rectangle(win, name_rec, set_color(20, 20, 20, 255));
-	draw_rectangle(win, process_rec, set_color(20, 20, 20, 255));
-	draw_rectangle(win, live_rec, set_color(20, 20, 20, 255));
 	purple_writing(win, &name_rec, "Player -1 :");
 	purple_writing(win, &process_rec, "Processes:");
 	purple_writing(win, &live_rec, "Last live:");

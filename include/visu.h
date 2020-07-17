@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/20 09:28:58 by francis           #+#    #+#             */
-/*   Updated: 2020/07/17 14:59:46 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/17 18:09:33 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,11 @@
 # define VISU_H
 
 # include "vm.h"
-# include <stdio.h>
+# include "define_visu.h"
 # include <SDL2/SDL.h>
 # include <SDL2/SDL_timer.h>
 # include <SDL2/SDL_image.h>
 # include <SDL2/SDL_ttf.h>
-# define	ON				1
-# define	OFF				0
-# define	VISU_START		1	
-# define	VISU_STOP		0	
-# define	SUCCESS			0
-# define	FAILURE			-1
-# define	RENDER_FAILURE	-2
-# define	FONT_PATH "../virtual_machine/visualizator/font/Font-Regular.ttf"
 
 typedef struct	s_window
 {
@@ -37,15 +29,15 @@ typedef struct	s_window
 	SDL_Window		*window;
 	SDL_Renderer	*renderer;
 	SDL_Event		event;
+	TTF_Font		*font;
+	size_t			cycle_frame;
 }				t_window;
 
 typedef struct	s_rectangle
 {
 	SDL_Rect	run_pause;	
 	SDL_Rect	to_die;	
-//	SDL_Rect	delta;
-//	SDL_Rect	nb_live;
-//	SDL_Rect	check;
+	SDL_Rect	cycle_frame;	
 	SDL_Rect	name1;
 	SDL_Rect	player1_process;
 	SDL_Rect	player1_live;
@@ -66,7 +58,7 @@ typedef struct	s_visu
 	t_all_rec	*all_rec;
 }				t_visu;
 
-int8_t		(*color_func)(t_window *win, SDL_Rect *rect, char *str);
+typedef void	(*t_color_func)(t_window *win, SDL_Rect *rect, char *str);
 
 /*
 ** ******************************* INIT ****************************************
@@ -92,17 +84,16 @@ void		destroy_visual(t_window *win);
 SDL_Rect	init_new_rect(int x, int y, int width, int height);
 SDL_Point	set_point(int x, int y);
 SDL_Color	set_color(int red, int green, int blue, int alpha);
-int8_t		draw_rectangle(t_window *win, SDL_Rect rect, SDL_Color color);
 void		event_handler(t_window *win);
 
 /*
 ** ****************************** WRITING **************************************
 */
-int8_t		classic_writing(t_window *win, SDL_Rect *rect, char *str);
-int8_t		green_writing(t_window *win, SDL_Rect *rect, char *str);
-int8_t		blue_writing(t_window *win, SDL_Rect *rect, char *str);
-int8_t		red_writing(t_window *win, SDL_Rect *rect, char *str);
-int8_t		purple_writing(t_window *win, SDL_Rect *rect, char *str);
+void		classic_writing(t_window *win, SDL_Rect *rect, char *str);
+void		green_writing(t_window *win, SDL_Rect *rect, char *str);
+void		blue_writing(t_window *win, SDL_Rect *rect, char *str);
+void		red_writing(t_window *win, SDL_Rect *rect, char *str);
+void		purple_writing(t_window *win, SDL_Rect *rect, char *str);
 
 /*
 ** ****************************** DRAWING **************************************

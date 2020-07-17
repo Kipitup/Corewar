@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/04 09:19:26 by francis           #+#    #+#             */
-/*   Updated: 2020/07/17 15:26:18 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/17 17:26:56 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ void	init_arena(t_window *win)
 	while (count < MEM_SIZE)
 	{
 		rec = init_new_rect(point.x, point.y, win->w * 0.009, win->h * 0.015);
-		draw_rectangle(win, rec, set_color(20, 20, 20, 255));
 		classic_writing(win, &rec, "00");
 		point.x = point.x + win->w * 0.012;
 		if ((count + 1) % 64 == 0 && count != 0)
@@ -62,19 +61,20 @@ void	init_arena(t_window *win)
 
 void	active_arena(t_vm *vm, t_window *win)
 {
-	SDL_Point	point;
-	SDL_Rect	rec;
-	char		mem[3];
-	int			count;
+	SDL_Point			point;
+	SDL_Rect			rec;
+	static t_color_func	color[NB_COLOR] = {classic_writing, purple_writing,
+		blue_writing, green_writing, red_writing};
+	int					count;
+	char				mem[3];
 
 	point = set_point(8, 8);
 	count = 0;
 	while (count < MEM_SIZE)
 	{
 		rec = init_new_rect(point.x, point.y, win->w * 0.009, win->h * 0.015);
-		draw_rectangle(win, rec, set_color(20, 20, 20, 255));
 		uint8_t_to_hexa(mem, vm->arena[count]);
-		classic_writing(win, &rec, mem); 
+		color[vm->arena_owner[count]](win, &rec, mem); 
 		point.x = point.x + win->w * 0.012;
 		if ((count + 1) % 64 == 0 && count != 0)
 		{

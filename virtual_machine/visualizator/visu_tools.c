@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/20 11:28:03 by francis           #+#    #+#             */
-/*   Updated: 2020/07/17 15:26:23 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/17 15:30:27 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,4 @@ SDL_Point	set_point(int x, int y)
 	point.x = x;
 	point.y = y;
 	return (point);
-}
-
-int8_t	draw_rectangle(t_window *win, SDL_Rect rect, SDL_Color color)
-{
-	if (SDL_SetRenderDrawColor(win->renderer, color.r, color.g,
-			color.b, color.a) < 0)
-		return (FAILURE);
-	if ((SDL_RenderFillRect(win->renderer, &rect) < 0))
-		return (FAILURE);
-	return (SUCCESS);
 }

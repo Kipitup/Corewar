@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/26 12:09:56 by amartinod         #+#    #+#             */
-/*   Updated: 2020/06/30 18:00:50 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/07/17 17:48:14 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ static void			set_player_and_cursor_in_arena(t_vm *vm)
 		pc = space * i;
 		player = vm->all_players[i];
 		ft_memcpy(&(vm->arena[pc]), player->exec, player->size);
+		ft_memset(&(vm->arena_owner[pc]), player->id, player->size);
 		i++;
 	}
 	tmp = vm->cursor;
