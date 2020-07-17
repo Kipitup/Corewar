@@ -6,39 +6,20 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/15 11:42:51 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/17 09:52:06 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/17 15:27:33 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-static size_t	ignore_parent_dir(const char *file_name)
-{
-	size_t	i;
-
-	i = 0;
-	while (file_name[i] != '\0'
-		&& (file_name[i] == '.' || file_name[i] == '/'))
-	{
-		i++;
-	}
-	return (i);
-}
-
 static void		check_file_name(t_data *data)
 {
-	char	**split;
-	size_t	index;
+	const char *file_name = data->file_name;
+	size_t		len;
 
-	index = ignore_parent_dir(data->file_name);
-	split = ft_strsplit(data->file_name + index, '.');
-	if (split[0] == NULL || ft_strequ(split[1], "s") == FALSE
-		|| split[2] != NULL)
-	{
-		ft_arrdel(split);
+	if (file_name == NULL || (len = ft_strlen(file_name)) < 3
+		|| ft_strnequ(file_name + len - 2, ".s", 2) == false)
 		exit_error(data, INVALID_FILE_NAME);
-	}
-	ft_arrdel(split);
 }
 
 void			open_file(t_data *data)
@@ -51,20 +32,14 @@ void			open_file(t_data *data)
 
 static void		get_cor_name(t_data *data)
 {
-	char	**split;
-	size_t	index;
 	size_t	len;
-	char	*tmp;
 
-	index = ignore_parent_dir(data->file_name);
-	split = ft_strsplit(data->file_name + index, '.');
-	if (split == NULL)
+	len = ft_strlen(data->file_name);
+	data->cor_name = ft_strnew(len + 2);
+	if (data->cor_name == NULL)
 		exit_error(data, MALLOC_FAILURE);
-	len = ft_strlen(split[0]);
-	tmp = ft_strndup(data->file_name, index + len);
-	data->cor_name = ft_strjoin(tmp, ".cor");
-	ft_strdel(&tmp);
-	del_array(split);
+	ft_strncpy(data->cor_name, data->file_name, len - 2);
+	ft_strncpy(data->cor_name + len - 2, ".cor", 4);
 }
 
 void			open_cor(t_data *data)
