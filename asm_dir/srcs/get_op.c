@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/15 15:37:16 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/17 10:46:13 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/17 17:56:39 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	get_op(t_data *data, char **split, size_t *index)
 									"or", "xor", "zjmp", "ldi", "sti", "fork",
 									"lld", "lldi", "lfork", "aff"};
 	size_t		i;
-	
+
 	i = 0;
 	while (i < NB_OP)
 	{

@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/15 11:42:51 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/17 15:27:33 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/07/17 17:58:47 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void		check_file_name(t_data *data)
 {
-	const char *file_name = data->file_name;
+	const char	*file_name = data->file_name;
 	size_t		len;
 
 	if (file_name == NULL || (len = ft_strlen(file_name)) < 3

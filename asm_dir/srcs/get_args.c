@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/16 12:42:49 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/17 17:39:02 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/17 19:04:50 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,133 +24,15 @@ static t_token	*get_op_token(t_data *data)
 	return (token);
 }
 
-static t_token	*get_ocp_token(t_data *data)
+static void		get_op_args(t_data *data, char *merge, t_token *op_token)
 {
-	t_list	*token_lst;
-	t_token	*token;
-
-	token_lst = data->token_lst;
-	while (token_lst->next != NULL)
-		token_lst = token_lst->next;
-	token = token_lst->content;
-	if (token->type == E_OCP)
-		return (token);
-	return (NULL);
-}
-
-static void		add_arg_type_token(t_data *data, size_t i)
-{
-	static char	ocp[NB_OP] = {0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1};
-
-	if (ocp[i] == 1)
-		new_token(data, E_OCP, NULL, 1);
-}
-
-static int		dir_size(const enum e_token type)
-{
-	static char	size[NB_OP] = {LONG_DIRECT_SIZE, LONG_DIRECT_SIZE,
-			LONG_DIRECT_SIZE, LONG_DIRECT_SIZE, LONG_DIRECT_SIZE,
-			LONG_DIRECT_SIZE, LONG_DIRECT_SIZE, LONG_DIRECT_SIZE,
-			SMALL_DIRECT_SIZE, SMALL_DIRECT_SIZE, SMALL_DIRECT_SIZE,
-			SMALL_DIRECT_SIZE, LONG_DIRECT_SIZE, SMALL_DIRECT_SIZE,
-			SMALL_DIRECT_SIZE, LONG_DIRECT_SIZE};
-
-	return (size[type]);
-}
-
-bool			is_number(char *s)
-{
-	if (*s == '-')
-		s++;
-	if (*s == '\0')
-		return (false);
-	while (*s != '\0')
-	{
-		if (ft_isdigit(*s) == false)
-			return (false);
-		s++;
-	}
-	return (true);
-}
-
-static bool		check_reg_number(const int reg_nb)
-{
-	return (reg_nb > 0 && reg_nb < REG_NUMBER);
-}
-
-static uint64_t	get_next_arg(t_data *data, char *arg, const enum e_token type)
-{
-	uint64_t	ocp;
-	size_t		i;
-	size_t		size;
-
-	arg = trim_side(arg);
-	i = 0;
-	if (arg[0] == DIRECT_CHAR)
-	{
-		size = dir_size(type);
-		if (arg[1] == LABEL_CHAR)
-		{
-			if (check_label_char(arg + 2) == false)
-				exit_error(data, WRONG_LABEL_NAME);
-			new_token(data, E_LABEL, ft_strdup(arg + 2), size);
-		}
-		else
-		{
-			if (is_number(arg + 1) == false)
-				exit_error(data, PARSE_ERROR);
-			new_token(data, E_DIR, ft_strdup(arg + 1), size);
-		}
-		ocp = DIR_CODE;
-		data->offset += size;
-	}
-	else if (arg[0] == 'r')
-	{
-		if (is_number(arg + 1) == false)
-			exit_error(data, PARSE_ERROR);
-		if (check_reg_number(ft_atoi(arg + 1)) == false)
-			exit_error(data, WRONG_REG_NB);
-		new_token(data, E_REG, ft_strdup(arg + 1), REGISTER_SIZE);
-		ocp = REG_CODE;
-		data->offset += REGISTER_SIZE;
-	}
-	else
-	{
-		if (arg[0] == LABEL_CHAR)
-		{
-			if (check_label_char(arg + 1) == false)
-				exit_error(data, WRONG_LABEL_NAME);
-			new_token(data, E_LABEL, ft_strdup(arg + 1), INDIRECT_SIZE);
-		}
-		else
-		{
-			if (is_number(arg) == false)
-				exit_error(data, PARSE_ERROR);
-			new_token(data, E_IND, ft_strdup(arg), INDIRECT_SIZE);
-		}
-		ocp = IND_CODE;
-		data->offset += INDIRECT_SIZE;
-	}
-	return (ocp);
-}
-
-void			get_args(t_data *data, char *merge)
-{
-	t_token 	*op_token;
-	t_token		*ocp_token;
 	char		**split_arg;
-	uint64_t	ocp;	
-	uint64_t	new_ocp;	
+	uint64_t	new_ocp;
+	uint64_t	ocp;
 	size_t		i;
 
 	i = 0;
 	ocp = 0;
-	merge = trim_side(merge);
-	if (merge == NULL || *merge == '\0' || merge[ft_strlen(merge) - 1] == ',')
-		exit_error(data, PARSE_ERROR);
-	op_token = get_op_token(data);
-	add_arg_type_token(data, op_token->type);
-	ocp_token = get_ocp_token(data);
 	split_arg = ft_strsplit(merge, SEPARATOR_CHAR);
 	while (split_arg[i] != NULL && i < MAX_ARGS_NUMBER)
 	{
@@ -161,12 +43,16 @@ void			get_args(t_data *data, char *merge)
 	del_array(split_arg);
 	if (i == MAX_ARGS_NUMBER)
 		exit_error(data, TOO_MUCH_ARG);
-	if (ocp_token != NULL)
-	{
-		ocp_token->value = ft_itoa(ocp);
-		check_op(data, op_token, ocp_token, i);
-		data->offset++;
-	}
-	else
-		check_no_ocp_op(data, op_token->type, ocp);
+	check_op_args(data, op_token, ocp, i);
+}
+
+void			get_args(t_data *data, char *merge)
+{
+	t_token		*op_token;
+
+	merge = trim_side(merge);
+	if (merge == NULL || *merge == '\0' || merge[ft_strlen(merge) - 1] == ',')
+		exit_error(data, PARSE_ERROR);
+	op_token = get_op_token(data);
+	get_op_args(data, merge, op_token);
 }

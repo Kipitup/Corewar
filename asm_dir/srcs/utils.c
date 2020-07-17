@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 18:55:53 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/17 13:33:28 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/07/17 17:48:36 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ int		ft_isblank(const char c)
 
 void	new_token(t_data *data, enum e_token type, char *value, size_t size)
 {
-	t_token token;
-	t_list	*lst_new;
 	static size_t	op_offset;
+	t_token			token;
+	t_list			*lst_new;
 
-	ft_bzero(&token, sizeof (t_token));
+	ft_bzero(&token, sizeof(t_token));
 	if (type < 16)
 		op_offset = data->offset;
 	token.type = type;

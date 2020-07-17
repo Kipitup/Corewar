@@ -6,17 +6,15 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/15 17:58:10 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/17 14:49:00 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/07/17 17:54:39 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-//if enough time, manage multiple lines strings//
-
 bool	is_end_line(char c)
 {
-	return (c == '\0' || c == COMMENT_CHAR || c ==';');
+	return (c == '\0' || c == COMMENT_CHAR || c == ';');
 }
 
 char	*get_dquote_string(t_data *data)

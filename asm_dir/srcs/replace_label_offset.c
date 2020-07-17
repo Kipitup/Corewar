@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/17 11:01:27 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/17 13:35:11 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/07/17 17:47:18 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static char	*label_offset(t_data *data, char *label_name, size_t cur_offset)
 {
 	t_list	*label_lst;
 	t_label	*label;
-	
+
 	label_lst = data->label_lst;
 	while (label_lst != NULL)
 	{

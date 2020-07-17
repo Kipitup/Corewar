@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 12:01:37 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/17 17:38:32 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/17 19:01:58 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@
 # define LONG_DIRECT_SIZE	4
 # define INDIRECT_SIZE		2
 
-enum	e_token
+enum			e_token
 {
 	E_LIVE,
 	E_LD,
@@ -73,7 +73,7 @@ enum	e_token
 	E_COMMENT
 };
 
-enum	e_state
+enum			e_state
 {
 	E_GET_NAME,
 	E_GET_COMMENT,
@@ -109,39 +109,47 @@ typedef struct	s_data
 	enum e_state	state;
 }				t_data;
 
-void	check_no_ocp_op(t_data *data, const enum e_token type,
-			const uint64_t ocp);
-void	check_op(t_data *data, const t_token *op_token,
-				const t_token *ocp_token, const size_t nb_args);
-bool	check_label_char(const char *arg);
-void	del_array(char **array);
-void	del_label_lst(void *content, size_t content_size);
-void	del_token_lst(void *content, size_t content_size);
-void	exit_error(t_data *data, char *err_mesage);
-void	exit_routine(t_data *data);
-void	fill_cor(t_data *data);
-void	ft_arrdel(char **array);
-void	ft_lstaddend(t_list **alst, t_list *new);
-int		ft_isblank(const char c);
-char	*ft_join_free(char *s1, char *s2, int op);
-void	get_args(t_data *data, char *merge);
-void	get_comment(t_data *data);
-char	*get_dquote_string(t_data *data);
-void	get_file_content(t_data *data);
-void	get_instruction(t_data *data);
-void	get_name(t_data *data);
-void	get_op(t_data *data, char **split, size_t *i);
-bool	get_label(t_data *data, char **split, size_t *index);
-void	new_token(t_data *data, enum e_token type, char *value, size_t size);
-void	open_cor(t_data *data);
-void	open_file(t_data *data);
-void	parser_asm(t_data *data);
-void	replace_label_offset(t_data *data);
-char	**ft_split_white_spaces(char const *s);
-int		usage_error(int ac);
-char	*trim_side(char *s);
+void			check_no_ocp_op(t_data *data, const enum e_token type,
+						const uint64_t ocp);
+void			check_op(t_data *data, const t_token *op_token,
+						const t_token *ocp_token, const size_t nb_args);
+void			check_op_args(t_data *data, t_token *op_token, uint64_t ocp,
+						size_t nb_args);
+bool			check_label_char(const char *arg);
+void			del_array(char **array);
+void			del_label_lst(void *content, size_t content_size);
+void			del_token_lst(void *content, size_t content_size);
+void			exit_error(t_data *data, char *err_mesage);
+void			exit_routine(t_data *data);
+void			fill_cor(t_data *data);
+void			ft_arrdel(char **array);
+void			ft_lstaddend(t_list **alst, t_list *new);
+int				ft_isblank(const char c);
+char			*ft_join_free(char *s1, char *s2, int op);
+char			**ft_split_white_spaces(char const *s);
+void			get_args(t_data *data, char *merge);
+void			get_comment(t_data *data);
+uint64_t		get_dir_arg(t_data *data, char *arg, const enum e_token type);
+char			*get_dquote_string(t_data *data);
+void			get_file_content(t_data *data);
+uint64_t		get_ind_arg(t_data *data, char *arg);
+void			get_instruction(t_data *data);
+bool			get_label(t_data *data, char **split, size_t *index);
+void			get_name(t_data *data);
+uint64_t		get_next_arg(t_data *data, char *arg, const enum e_token type);
+void			get_op(t_data *data, char **split, size_t *i);
+uint64_t		get_reg_arg(t_data *data, char *arg);
+bool			is_number(char *s);
+void			new_token(t_data *data, enum e_token type, char *value,
+						size_t size);
+void			open_cor(t_data *data);
+void			open_file(t_data *data);
+void			parser_asm(t_data *data);
+void			replace_label_offset(t_data *data);
+char			*trim_side(char *s);
+int				usage_error(int ac);
 
-void	debug_label(t_list *label_lst);
-void	debug_token(t_list *token_lst);
+void			debug_label(t_list *label_lst);
+void			debug_token(t_list *token_lst);
 
 #endif

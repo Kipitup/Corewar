@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/16 10:50:22 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/17 16:29:58 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/17 17:53:50 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,30 +34,24 @@ char	*trim_side(char *s)
 
 char	*merge_tab(char **tab, size_t i)
 {
-	char	*tmp;
 	char	*merge;
+	char	*tmp;
 
 	if (tab[i] == NULL)
 		return (NULL);
 	merge = ft_strdup(tab[i++]);
 	while (tab[i] != NULL && tab[i][0] != COMMENT_CHAR && tab[i][0] != ';')
 	{
-		tmp = merge;
-		merge = ft_strjoin(merge, tab[i]);
-		free(tmp);
+		merge = ft_join_free(merge, tab[i], 1);
 		if ((tmp = ft_strchr(merge, COMMENT_CHAR))
 			|| (tmp = ft_strchr(merge, ';')))
 		{
 			*tmp = '\0';
 			break ;
-		}	
+		}
 		i++;
 		if (tab[i] != NULL)
-		{
-			tmp = merge;
-			merge = ft_strjoin(merge, " ");
-			free(tmp);
-		}
+			merge = ft_join_free(merge, " ", 1);
 	}
 	return (merge);
 }
