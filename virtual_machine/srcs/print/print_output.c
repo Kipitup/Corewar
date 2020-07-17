@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/29 10:32:07 by amartinod         #+#    #+#             */
-/*   Updated: 2020/06/30 14:51:15 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/07/17 16:43:20 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ void		annonce_player(t_player **all_players)
 	t_player	*p;
 
 	i = 0;
-	ft_printf("Introducing contestants...\n");
+	ft_printf("Introducing contestants...");
 	while (i < MAX_PLAYERS && all_players[i] != NULL)
 	{
 		p = all_players[i];
-		ft_printf("* Player %zu, weighing %3zu bytes, \"%s\" (\"%s\")\n", p->id,
+		ft_printf("\n* Player %zu, weighing %zu bytes, \"%s\" (\"%s\") !", p->id,
 				p->size, p->name->str, p->comment->str);
 		i++;
 	}

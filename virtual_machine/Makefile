@@ -6,7 +6,7 @@
 #    By: amartino <amartino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/26 11:56:39 by amartino          #+#    #+#              #
-#    Updated: 2020/07/17 16:02:31 by francis          ###   ########.fr        #
+#    Updated: 2020/07/17 22:45:55 by francis          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
                      ####################################
@@ -18,7 +18,7 @@ NAME = corewar
 LIB_DIR = ../libft
 LIB = libft.a
 CC = clang
-CFLAGS += -Wall -Wextra
+CFLAGS += -Wall -Wextra #-Werror
 INCLUDES += -I../include
 INCLUDES += -I../libft/includes
 INCLUDES += -I../libft/ft_printf/includes
@@ -102,11 +102,8 @@ SRCS += op
 SRCS += live
 SRCS += ld
 SRCS += st
-SRCS += add
-SRCS += sub
-SRCS += and
-SRCS += or
-SRCS += xor
+SRCS += add_sub
+SRCS += and_xor_or
 SRCS += zjmp
 SRCS += ldi
 SRCS += sti

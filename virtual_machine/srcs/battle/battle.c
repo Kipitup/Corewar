@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/29 14:38:45 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/17 18:13:31 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/17 22:57:54 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,21 +88,21 @@ void				battle(t_vm *vm)
 		setup_window(vm, &win);
 	while (vm->nb_of_player_alive > 0)
 	{
+		if (vm->option & OPT_DUMP && vm->opt_dump == vm->cycle_counter)
+		{
+			dump_option(vm);
+			break;
+		}
+		lets_fight(vm, vm->cursor);
 		if (vm->option & OPT_VISU && vm->cycle_counter % win.cycle_frame == 0)
 			run_visu(vm, &win);
-		lets_fight(vm, vm->cursor);
 		cycle++;
 		vm->cycle_counter++;
 		if (cycle == vm->cycle_to_die)
 		{
 			cycle = 0;
+			ft_dprintf(STD_ERR, "\n{c_red}cycle_to_die %ld{c_end}\n", vm->cycle_to_die);
 			vm->nb_of_player_alive = check(vm);
-			ft_dprintf(STD_ERR, "cycle_to_die %ld\n", vm->cycle_to_die);
-		}
-		if (vm->option & OPT_DUMP && vm->opt_dump == vm->cycle_counter)
-		{
-			dump_option(vm);
-			break;
 		}
 	}
 }

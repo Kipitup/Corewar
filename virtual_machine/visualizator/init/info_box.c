@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/20 20:12:40 by francis           #+#    #+#             */
-/*   Updated: 2020/07/17 18:15:51 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/17 23:06:49 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void		info_box(t_window *win, t_all_rec *all_rec, int x, int y)
 	nb_live_rec = init_new_rect(x, y + 100, win->w * 0.08, win->h * 0.02);
 	check_rec = init_new_rect(x, y + 150, win->w * 0.08, win->h * 0.02);
 	cycle_rec = init_new_rect(x, y + 200, win->w * 0.08, win->h * 0.02);
-	classic_writing(win, &to_die_rec, "CYCLE_TO_DIE:");
+	classic_writing(win, &to_die_rec, "CYCLE_COUNTER:");
 	classic_writing(win, &delta_rec, "CYCLE_DELTA:");
 	classic_writing(win, &nb_live_rec, "NBR_LIVES:");
 	classic_writing(win, &check_rec, "MAX_CHECKS:");

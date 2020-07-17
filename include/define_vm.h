@@ -6,12 +6,14 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 11:16:29 by amartino          #+#    #+#             */
-/*   Updated: 2020/06/24 16:18:07 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/07/17 20:20:42 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DEFINE_VM_H
 # define DEFINE_VM_H
+
+# define COLOR_MODE				1
 
 # define NO_SPECIFIC_POSITION	0
 # define MINIMUM_LEN			4
@@ -23,6 +25,9 @@
 # define FIRST_PARAM			6
 # define SECOND_PARAM			4
 # define THIRD_PARAM			2
+# define ARG_1					0
+# define ARG_2					1
+# define ARG_3					2
 
 # define OPT_DUMP				0b00000001
 # define OPT_DUMP32				0b00000010

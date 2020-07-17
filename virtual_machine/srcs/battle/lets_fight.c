@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/29 18:34:53 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/16 17:53:05 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/07/17 16:34:56 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,13 @@ static void			execute_operation(t_vm *vm, t_cursor *cursor)
 		}
 		if (ret != FALSE)
 		{
-			ft_printf("ope: %s\n", g_op_tab[op_code].name);
+			ft_dprintf(STD_ERR, "\n{c_yellow}ope: %s{c_end}\n", g_op_tab[op_code].name);
 			ret = get_param(vm, cursor, (cursor->pc + 1) % MEM_SIZE);
 		}
 		if (ret != FALSE)
 			g_op_tab[op_code].op_func(vm, cursor);
 		else
-			ft_perror("Not a good param", __FILE__, __LINE__);
+			ft_perror("Not a good param, go to next byte", __FILE__, __LINE__);
 		if (op_code != OPE_ZJMP || cursor->carry == FALSE)
 			move_to_next_op(vm, cursor, op_code);
 	}
@@ -47,7 +47,6 @@ void				lets_fight(t_vm *vm, t_cursor *cursor)
 {
 	while (cursor != NULL)
 	{
-//		ft_printf("cursor wait cycle %zu\n", cursor->wait_cycle); 
 		if (cursor->wait_cycle == 0)
 		{
 			cursor->op_code = vm->arena[cursor->pc];
@@ -60,5 +59,5 @@ void				lets_fight(t_vm *vm, t_cursor *cursor)
 			execute_operation(vm, cursor);
 		cursor = cursor->next;
 	}
-	ft_printf("-------------------------------------\n\n");
+	ft_dprintf(STD_ERR, "|  ");
 }

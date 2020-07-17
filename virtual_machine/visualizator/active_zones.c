@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 16:16:21 by francis           #+#    #+#             */
-/*   Updated: 2020/07/17 18:12:35 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/17 23:07:17 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void	player_rec(t_vm *vm, t_window *win, t_all_rec *all_rec)
 
 static void	info_rec(t_vm *vm, t_window *win, t_all_rec *all_rec)
 {
-	classic_writing(win, &all_rec->to_die, ft_itoa(vm->cycle_to_die));
+	classic_writing(win, &all_rec->to_die, ft_itoa(vm->cycle_counter));
 	classic_writing(win, &all_rec->cycle_frame, ft_itoa(win->cycle_frame));
 }
 
