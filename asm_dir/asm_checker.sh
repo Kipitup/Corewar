@@ -1,7 +1,7 @@
 #!/bin/bash
 
-ZAZ_ASM=../DOC/asm
-MY_ASM=../asm
+ZAZ_ASM=./asm_linux
+MY_ASM=./asm
 
 if [ -z $1 ]
 then
@@ -9,7 +9,7 @@ then
 	echo "Usage: ./asm_checker.sh [champ.s]"
 	exit 0
 fi
-make -j8 d=1
+make -j8 debug+=1
 ARG=$1
 file=`echo "${ARG%%.s}"`
 
@@ -21,5 +21,5 @@ then
 	diff $file.cor $file.cor_asm
 	ARG=$?
 fi
-rm -f $file.cor $file.cor_asm # Mute this line if you want keep .cor file
+#rm -f $file.cor $file.cor_asm # Mute this line if you want keep .cor file
 exit $ARG
