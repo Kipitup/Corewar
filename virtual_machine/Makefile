@@ -6,7 +6,7 @@
 #    By: amartino <amartino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/26 11:56:39 by amartino          #+#    #+#              #
-#    Updated: 2020/07/16 22:33:37 by amartinod        ###   ########.fr        #
+#    Updated: 2020/07/17 11:37:06 by amartinod        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
                      ####################################
@@ -94,8 +94,7 @@ SRCS += op
 SRCS += live
 SRCS += ld
 SRCS += st
-SRCS += add
-SRCS += sub
+SRCS += add_sub
 SRCS += and_xor_or
 SRCS += zjmp
 SRCS += ldi

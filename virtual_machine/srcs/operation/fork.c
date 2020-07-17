@@ -6,14 +6,31 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/01 14:24:57 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/01 14:25:09 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/07/17 13:44:11 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
+/*
+**	Creates a copy of the process and place the PC of the new process is :
+**	PC = (ARG1 (T_DIR) % IDX_MOD) + POS_OF_OLD_PROCESS.
+*/
+
 void		op_fork(t_vm *vm, t_cursor *cursor)
 {
-	(void)vm;
-	(void)cursor;
+	t_cursor	*new_cursor;
+	int32_t		arg_1;
+	int32_t		address;
+
+	arg_1 = cursor->param[0];
+	address = arg_1 % IDX_MOD;
+	new_cursor = fork_cursor(cursor, address);
+	if (new_cursor != NULL)
+	{
+		print_cursor(vm->cursor);
+		new_cursor->next = vm->cursor;
+		vm->cursor = new_cursor;
+		print_cursor(vm->cursor);
+	}
 }

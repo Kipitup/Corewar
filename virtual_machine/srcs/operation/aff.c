@@ -6,14 +6,24 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/01 14:26:10 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/01 14:26:24 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/07/17 13:40:44 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
+/*
+** This operation takes the value from the registry passed as argument (T_REG),
+** casts it to the type char and prints it to the standard output.
+*/
+
 void		op_aff(t_vm *vm, t_cursor *cursor)
 {
+	int32_t		arg_1;
+	char		c;
+
 	(void)vm;
-	(void)cursor;
+	arg_1 = get_register(cursor, cursor->param[0]);
+	c = (char)arg_1;
+	ft_printf("%c", (c % 255));
 }
