@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/16 12:42:49 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/17 15:35:51 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/07/17 16:02:45 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,4 +176,6 @@ void			get_args(t_data *data, char *merge)
 		check_op(data, op_token, ocp_token, i);
 		data->offset++;
 	}
+	else
+		check_no_ocp_op(data, op_token->type, ocp);
 }

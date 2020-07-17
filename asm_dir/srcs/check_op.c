@@ -6,11 +6,28 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/16 22:19:42 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/17 15:38:01 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/07/17 16:20:36 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
+
+void	check_no_ocp_op(t_data *data, const enum e_token type,
+			const uint64_t ocp)
+{
+	if (ocp > 0b10000000 && ocp != 0b11000000)
+		exit_error(data, TOO_MUCH_ARG);
+	if (type == E_AFF)
+	{
+		if (ocp != 0b01000000)
+			exit_error(data, INVALID_ARG);
+	}
+	else
+	{
+		if (ocp != 0b10000000)
+			exit_error(data, INVALID_ARG);
+	}
+}
 
 static void	check_nb_args(t_data *data, const enum e_token type,
 				const size_t nb_args)

@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 12:01:37 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/17 14:33:47 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/07/17 16:09:14 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 # define WRONG_LABEL_NAME	"Invalid label name"
 # define INVALID_ARG		"Invalid argument"
 # define UNDEFINED_LABEL	"Undefined label"
+# define NO_INSTRUCTION		"No instruction"
 
 # define REGISTER_SIZE		1
 # define SMALL_DIRECT_SIZE	2
@@ -106,6 +107,8 @@ typedef struct	s_data
 	enum e_state	state;
 }				t_data;
 
+void	check_no_ocp_op(t_data *data, const enum e_token type,
+			const uint64_t ocp);
 void	check_op(t_data *data, const t_token *op_token,
 				const t_token *ocp_token, const size_t nb_args);
 void	del_array(char **array);
