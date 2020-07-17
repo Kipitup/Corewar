@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/16 12:42:49 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/17 16:40:00 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/17 17:39:02 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,11 @@ bool			is_number(char *s)
 	return (true);
 }
 
+static bool		check_reg_number(const int reg_nb)
+{
+	return (reg_nb > 0 && reg_nb < REG_NUMBER);
+}
+
 static uint64_t	get_next_arg(t_data *data, char *arg, const enum e_token type)
 {
 	uint64_t	ocp;
@@ -101,10 +106,10 @@ static uint64_t	get_next_arg(t_data *data, char *arg, const enum e_token type)
 	}
 	else if (arg[0] == 'r')
 	{
-		while (ft_isdigit(arg[i + 1]) == TRUE)
-			i++;
-		if (arg[i + 1] != '\0')
+		if (is_number(arg + 1) == false)
 			exit_error(data, PARSE_ERROR);
+		if (check_reg_number(ft_atoi(arg + 1)) == false)
+			exit_error(data, WRONG_REG_NB);
 		new_token(data, E_REG, ft_strdup(arg + 1), REGISTER_SIZE);
 		ocp = REG_CODE;
 		data->offset += REGISTER_SIZE;
