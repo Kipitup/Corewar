@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/20 09:15:55 by francis           #+#    #+#             */
-/*   Updated: 2020/07/16 23:23:48 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/17 14:55:31 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	draw_header_rec(t_window *win)
 	classic_writing(win, &name_rec, "By Amartino, Efischer, Fkante");
 }
 
-void	draw_player_info_comm_rec(t_window *win, t_all_rec *all_rec)
+void	draw_player_info_comm_rec(t_vm *vm, t_window *win, t_all_rec *all_rec)
 {
 	SDL_Rect	main_rec;
 	int			x;
@@ -42,7 +42,7 @@ void	draw_player_info_comm_rec(t_window *win, t_all_rec *all_rec)
 	y = win->h * 0.11;
 	main_rec = init_new_rect(x, y, win->w * 0.24, win->h * 0.885);
 	draw_rectangle(win, main_rec, set_color(20, 20, 20, 255));
-	player_box(win, all_rec, x + 15, y + 25);
+	player_box(vm, win, all_rec, x + 15, y + 25);
 	info_box(win, all_rec, x + 15, y + 450);
 	command_box(win, all_rec, x + 15, y + win->h * 0.75);
 }
@@ -57,18 +57,8 @@ void	draw_arena(t_window *win)
 }
 
 
-int8_t	draw_init_zones(t_window *win, t_all_rec *all_rec)
+void	draw_init_zones(t_vm *vm, t_window *win, t_all_rec *all_rec)
 {
-	int8_t	ret;
-
-	ret = FAILURE;
-	if (SDL_RenderClear(win->renderer) >= 0)
-	{
-		draw_arena(win);
-		draw_header_rec(win);
-		draw_player_info_comm_rec(win, all_rec);
-		SDL_RenderPresent(win->renderer);
-		ret = SUCCESS;
-	}
-	return (ret);
+	draw_header_rec(win);
+	draw_player_info_comm_rec(vm, win, all_rec);
 }

@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 12:52:38 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/16 20:02:19 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/07/17 10:02:16 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ typedef struct		s_cursor
 	uint8_t			id;
 	char			padding[5];
 	struct s_cursor	*next;
-}				t_cursor;
+}					t_cursor;
 
 typedef struct		s_op_tab t_op_tab;
 

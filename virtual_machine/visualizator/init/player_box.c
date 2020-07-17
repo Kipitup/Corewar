@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/20 19:22:40 by francis           #+#    #+#             */
-/*   Updated: 2020/07/14 17:28:38 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/17 14:54:10 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,82 +15,98 @@
 static void	player4(t_window *win, t_all_rec *all_rec, int x, int y)
 {
 	SDL_Rect	name_rec;
-	SDL_Rect	processus_rec;
-	SDL_Rect	last_live_rec;
+	SDL_Rect	process_rec;
+	SDL_Rect	live_rec;
 
 	name_rec = init_new_rect(x, y, win->w * 0.06, win->h * 0.02);
-	processus_rec = init_new_rect(x + 10, y + 30, win->w * 0.04, win->h * 0.015);
-	last_live_rec = init_new_rect(x + 10, y + 60, win->w * 0.04, win->h * 0.015);
+	process_rec = init_new_rect(x + 10, y + 30, win->w * 0.04, win->h * 0.015);
+	live_rec = init_new_rect(x + 10, y + 60, win->w * 0.04, win->h * 0.015);
 	draw_rectangle(win, name_rec, set_color(20, 20, 20, 255));
-	draw_rectangle(win, processus_rec, set_color(20, 20, 20, 255));
-	draw_rectangle(win, last_live_rec, set_color(20, 20, 20, 255));
+	draw_rectangle(win, process_rec, set_color(20, 20, 20, 255));
+	draw_rectangle(win, live_rec, set_color(20, 20, 20, 255));
 	red_writing(win, &name_rec, "Player -4 :");
-	red_writing(win, &processus_rec, "Processes:");
-	red_writing(win, &last_live_rec, "Last live:");
+	red_writing(win, &process_rec, "Processes:");
+	red_writing(win, &live_rec, "Last live:");
 	player4_input_writing(win, all_rec, x, y);
 }
 
 static void	player3(t_window *win, t_all_rec *all_rec, int x, int y)
 {
 	SDL_Rect	name_rec;
-	SDL_Rect	processus_rec;
-	SDL_Rect	last_live_rec;
+	SDL_Rect	process_rec;
+	SDL_Rect	live_rec;
 
 	name_rec = init_new_rect(x, y, win->w * 0.06, win->h * 0.02);
-	processus_rec = init_new_rect(x + 10, y + 30, win->w * 0.04, win->h * 0.015);
-	last_live_rec = init_new_rect(x + 10, y + 60, win->w * 0.04, win->h * 0.015);
+	process_rec = init_new_rect(x + 10, y + 30, win->w * 0.04, win->h * 0.015);
+	live_rec = init_new_rect(x + 10, y + 60, win->w * 0.04, win->h * 0.015);
 	draw_rectangle(win, name_rec, set_color(20, 20, 20, 255));
-	draw_rectangle(win, processus_rec, set_color(20, 20, 20, 255));
-	draw_rectangle(win, last_live_rec, set_color(20, 20, 20, 255));
+	draw_rectangle(win, process_rec, set_color(20, 20, 20, 255));
+	draw_rectangle(win, live_rec, set_color(20, 20, 20, 255));
 	green_writing(win, &name_rec, "Player -3 :");
-	green_writing(win, &processus_rec, "Processes:");
-	green_writing(win, &last_live_rec, "Last live:");
+	green_writing(win, &process_rec, "Processes:");
+	green_writing(win, &live_rec, "Last live:");
 	player3_input_writing(win, all_rec, x, y);
 }
 
 static void	player2(t_window *win, t_all_rec *all_rec, int x, int y)
 {
 	SDL_Rect	name_rec;
-	SDL_Rect	processus_rec;
-	SDL_Rect	last_live_rec;
+	SDL_Rect	process_rec;
+	SDL_Rect	live_rec;
 
 	name_rec = init_new_rect(x, y, win->w * 0.06, win->h * 0.02);
-	processus_rec = init_new_rect(x + 10, y + 30, win->w * 0.04, win->h * 0.015);
-	last_live_rec = init_new_rect(x + 10, y + 60, win->w * 0.04, win->h * 0.015);
+	process_rec = init_new_rect(x + 10, y + 30, win->w * 0.04, win->h * 0.015);
+	live_rec = init_new_rect(x + 10, y + 60, win->w * 0.04, win->h * 0.015);
 	draw_rectangle(win, name_rec, set_color(20, 20, 20, 255));
-	draw_rectangle(win, processus_rec, set_color(20, 20, 20, 255));
-	draw_rectangle(win, last_live_rec, set_color(20, 20, 20, 255));
+	draw_rectangle(win, process_rec, set_color(20, 20, 20, 255));
+	draw_rectangle(win, live_rec, set_color(20, 20, 20, 255));
 	blue_writing(win, &name_rec, "Player -2 :");
-	blue_writing(win, &processus_rec, "Processes:");
-	blue_writing(win, &last_live_rec, "Last live:");
+	blue_writing(win, &process_rec, "Processes:");
+	blue_writing(win, &live_rec, "Last live:");
 	player2_input_writing(win, all_rec, x, y);
 }
 
 static void	player1(t_window *win, t_all_rec *all_rec, int x, int y)
 {
 	SDL_Rect	name_rec;
-	SDL_Rect	processus_rec;
-	SDL_Rect	last_live_rec;
+	SDL_Rect	process_rec;
+	SDL_Rect	live_rec;
 
 	name_rec = init_new_rect(x, y, win->w * 0.06, win->h * 0.02);
-	processus_rec = init_new_rect(x + 10, y + 30, win->w * 0.04, win->h * 0.015);
-	last_live_rec = init_new_rect(x + 10, y + 60, win->w * 0.04, win->h * 0.015);
+	process_rec = init_new_rect(x + 10, y + 30, win->w * 0.04, win->h * 0.015);
+	live_rec = init_new_rect(x + 10, y + 60, win->w * 0.04, win->h * 0.015);
 	draw_rectangle(win, name_rec, set_color(20, 20, 20, 255));
-	draw_rectangle(win, processus_rec, set_color(20, 20, 20, 255));
-	draw_rectangle(win, last_live_rec, set_color(20, 20, 20, 255));
-	classic_writing(win, &name_rec, "Player -1 :");
-	classic_writing(win, &processus_rec, "Processes:");
-	classic_writing(win, &last_live_rec, "Last live:");
+	draw_rectangle(win, process_rec, set_color(20, 20, 20, 255));
+	draw_rectangle(win, live_rec, set_color(20, 20, 20, 255));
+	purple_writing(win, &name_rec, "Player -1 :");
+	purple_writing(win, &process_rec, "Processes:");
+	purple_writing(win, &live_rec, "Last live:");
 	player1_input_writing(win, all_rec, x, y);
 }
 
-/*
-**	I'll add if statement or state to switch on/on players [!]
-*/
-void	player_box(t_window *win, t_all_rec *all_rec, int x, int y)
+void	player_box(t_vm *vm, t_window *win, t_all_rec *all_rec, int x, int y)
 {
-	player1(win, all_rec, x, y);
-	player2(win, all_rec, x, y + 100);
-	player3(win, all_rec, x, y + 200);
-	player4(win, all_rec, x, y + 300);
+	uint8_t	nb_of_player;
+
+	nb_of_player = vm->nb_of_player_alive;
+	if (nb_of_player >= 1)
+	{
+		player1(win, all_rec, x, y);
+		purple_writing(win, &all_rec->name1, vm->all_players[0]->name->str);
+	}
+	if (nb_of_player >= 2)
+	{
+		player2(win, all_rec, x, y + 100);
+		blue_writing(win, &all_rec->name2, vm->all_players[1]->name->str);
+	}
+	if (nb_of_player >= 3)
+	{
+		player3(win, all_rec, x, y + 200);
+		green_writing(win, &all_rec->name3, vm->all_players[2]->name->str);
+	}
+	if (nb_of_player >= 4)
+	{
+		player4(win, all_rec, x, y + 300);
+		red_writing(win, &all_rec->name4, vm->all_players[3]->name->str);
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/29 14:38:45 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/16 23:49:33 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/17 14:59:32 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,19 +80,15 @@ static uint8_t		check(t_vm *vm)
 
 void				battle(t_vm *vm)
 {
-	t_visu		visu;
 	t_window	win;
-	t_all_rec	rec;
 	long		cycle;
 
-	visu.win = &win;
-	visu.all_rec = &rec;
 	cycle = 0;
 	if (vm->option & OPT_VISU)
-		setup_window(vm, &visu);
+		setup_window(vm, &win);
 	while (vm->nb_of_player_alive > 0)
 	{
-		run_visu(vm, visu.win, visu.all_rec);
+		run_visu(vm, &win);
 		lets_fight(vm, vm->cursor);
 		cycle++;
 		vm->cycle_counter++;

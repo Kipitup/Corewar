@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/20 09:28:58 by francis           #+#    #+#             */
-/*   Updated: 2020/07/16 23:49:51 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/17 14:59:46 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,19 @@ typedef struct	s_rectangle
 {
 	SDL_Rect	run_pause;	
 	SDL_Rect	to_die;	
-	SDL_Rect	delta;	
-	SDL_Rect	nb_live;	
-	SDL_Rect	check;
+//	SDL_Rect	delta;
+//	SDL_Rect	nb_live;
+//	SDL_Rect	check;
+	SDL_Rect	name1;
 	SDL_Rect	player1_process;
 	SDL_Rect	player1_live;
+	SDL_Rect	name2;
 	SDL_Rect	player2_process;
 	SDL_Rect	player2_live;
+	SDL_Rect	name3;
 	SDL_Rect	player3_process;
 	SDL_Rect	player3_live;
+	SDL_Rect	name4;
 	SDL_Rect	player4_process;
 	SDL_Rect	player4_live;
 }				t_all_rec;
@@ -62,19 +66,28 @@ typedef struct	s_visu
 	t_all_rec	*all_rec;
 }				t_visu;
 
-/*
-** ******************************** INIT ***************************************
-*/
-void		setup_window(t_vm *vm, t_visu *visu);
-int			run_visu(t_vm *vm, t_window *win, t_all_rec *rec);
+int8_t		(*color_func)(t_window *win, SDL_Rect *rect, char *str);
 
 /*
-** ******************************** CLEAN **************************************
+** ******************************* INIT ****************************************
+*/
+void		setup_window(t_vm *vm, t_window *win);
+void		draw_init_zones(t_vm *vm, t_window *win, t_all_rec *all_rec);
+void		init_arena(t_window *win);
+
+/*
+** ****************************** RUNNING **************************************
+*/
+void		active_zones(t_vm *vm, t_window *win, t_all_rec *all_rec);
+void		active_arena(t_vm *vm, t_window *win);
+int			run_visu(t_vm *vm, t_window *win);
+/*
+** ******************************* CLEAN ***************************************
 */
 void		destroy_visual(t_window *win);
 
 /*
-** ******************************** TOOLS **************************************
+** ******************************* TOOLS ***************************************
 */
 SDL_Rect	init_new_rect(int x, int y, int width, int height);
 SDL_Point	set_point(int x, int y);
@@ -89,19 +102,17 @@ int8_t		classic_writing(t_window *win, SDL_Rect *rect, char *str);
 int8_t		green_writing(t_window *win, SDL_Rect *rect, char *str);
 int8_t		blue_writing(t_window *win, SDL_Rect *rect, char *str);
 int8_t		red_writing(t_window *win, SDL_Rect *rect, char *str);
+int8_t		purple_writing(t_window *win, SDL_Rect *rect, char *str);
 
 /*
 ** ****************************** DRAWING **************************************
 */
-int8_t		draw_init_zones(t_window *win, t_all_rec *all_rec);
-void		active_zones(t_window *win, t_all_rec *all_rec);
+void		player_box(t_vm *vm, t_window *win, t_all_rec *rec, int x, int y);
+void		info_box(t_window *win, t_all_rec *rec, int x, int y);
+void		command_box(t_window *win, t_all_rec *rec,int x, int y);
 void		draw_arena(t_window *win);
 void		draw_header_rec(t_window *win);
-void		draw_player_info_comm_rec(t_window *win, t_all_rec *all_rec);
-void		player_box(t_window *win, t_all_rec *all_rec, int x, int y);
-void		info_box(t_window *win, t_all_rec *all_rec, int x, int y);
-void		command_box(t_window *win, t_all_rec *all_rec,int x, int y);
-int8_t		init_arena(t_window *win);
+void		draw_player_info_comm_rec(t_vm *vm, t_window *win, t_all_rec *rec);
 
 void		player1_input_writing(t_window *win, t_all_rec *rec, int x, int y);
 void		player2_input_writing(t_window *win, t_all_rec *rec, int x, int y);

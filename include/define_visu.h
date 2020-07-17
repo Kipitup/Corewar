@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/16 22:35:46 by francis           #+#    #+#             */
-/*   Updated: 2020/07/16 22:36:38 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/17 13:50:10 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,9 @@
 # define	FAILURE			-1
 # define	RENDER_FAILURE	-2
 # define	FONT_PATH "../virtual_machine/visualizator/font/Font-Regular.ttf"
+# define	PURPLE			1
+# define	BLUE			2
+# define	GREEN			3
+# define	RED				4
 
 #endif

@@ -6,7 +6,7 @@
 #    By: amartino <amartino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/26 11:56:39 by amartino          #+#    #+#              #
-#    Updated: 2020/07/16 21:56:02 by francis          ###   ########.fr        #
+#    Updated: 2020/07/17 09:55:37 by francis          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
                      ####################################
@@ -133,7 +133,8 @@ ifeq ($(visu), 1)
 	SRCS += destroy_visual 
 	SRCS += active_zones
 	SRCS += font_writing
-	SRCS += init_visu
+	SRCS += setup_window 
+	SRCS += run_visu 
 	SRCS += player_input
 	SRCS += player_box
 	SRCS += visu_tools

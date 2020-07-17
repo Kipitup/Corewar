@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/20 20:12:40 by francis           #+#    #+#             */
-/*   Updated: 2020/07/14 17:28:09 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/17 14:56:29 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,18 @@ static void	info_input_writing(t_window *win, t_all_rec *all_rec, int x, int y)
 	SDL_Rect	check_input;
 
 	x = x + win->w * 0.10;
-	to_die_input = init_new_rect(x, y, win->w * 0.04, win->h * 0.02);
-	delta_input = init_new_rect(x, y + 50, win->w * 0.04, win->h * 0.02);
-	nb_live_input = init_new_rect(x, y + 100, win->w * 0.04, win->h * 0.02);
-	check_input = init_new_rect(x, y + 150, win->w * 0.04, win->h * 0.02);
+	to_die_input = init_new_rect(x, y, win->w * 0.03, win->h * 0.02);
+	delta_input = init_new_rect(x, y + 50, win->w * 0.015, win->h * 0.02);
+	nb_live_input = init_new_rect(x, y + 100, win->w * 0.015, win->h * 0.02);
+	check_input = init_new_rect(x, y + 150, win->w * 0.015, win->h * 0.02);
 	draw_rectangle(win, to_die_input, set_color(20, 20, 20, 255));
 	draw_rectangle(win, delta_input, set_color(20, 20, 20, 255));
 	draw_rectangle(win, nb_live_input, set_color(20, 20, 20, 255));
 	draw_rectangle(win, check_input, set_color(20, 20, 20, 255));
 	all_rec->to_die = to_die_input;
-	all_rec->delta = delta_input;
-	all_rec->nb_live = nb_live_input;
-	all_rec->check = check_input;
+	classic_writing(win, &delta_input, ft_itoa(CYCLE_DELTA));
+	classic_writing(win, &nb_live_input, ft_itoa(NBR_LIVE));
+	classic_writing(win, &check_input, ft_itoa(MAX_CHECKS));
 }
 
 void		info_box(t_window *win, t_all_rec *all_rec, int x, int y)
