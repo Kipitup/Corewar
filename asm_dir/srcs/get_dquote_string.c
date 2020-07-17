@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/15 17:58:10 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/17 14:43:07 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/07/17 14:49:00 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ char	*get_dquote_string(t_data *data)
 		exit_error(data, PARSE_ERROR);
 	}
 	str = ft_strndup(data->input + data->column, i);
+	if (str == NULL)
+		str = ft_strdup("");
 	if (str == NULL)
 		exit_error(data, MALLOC_FAILURE);
 	data->column += i + 1;
