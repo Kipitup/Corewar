@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/20 09:28:58 by francis           #+#    #+#             */
-/*   Updated: 2020/07/17 18:19:47 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/17 23:39:12 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct	s_rectangle
 	SDL_Rect	run_pause;	
 	SDL_Rect	to_die;	
 	SDL_Rect	cycle_frame;	
+	SDL_Rect	cycle_counter;	
 	SDL_Rect	name1;
 	SDL_Rect	player1_process;
 	SDL_Rect	player1_live;
@@ -71,8 +72,11 @@ void			init_arena(t_window *win);
 ** ****************************** RUNNING **************************************
 */
 void			active_zones(t_vm *vm, t_window *win, t_all_rec *all_rec);
+void			ending_screen(t_vm *vm, t_window *win, t_all_rec *all_rec);
 void			active_arena(t_vm *vm, t_window *win);
-int				run_visu(t_vm *vm, t_window *win);
+void			run_visu(t_vm *vm, t_window *win);
+void			end_visu(t_vm *vm, t_window *win);
+void			winner(t_vm *vm, t_window *win);
 /*
 ** ******************************* CLEAN ***************************************
 */

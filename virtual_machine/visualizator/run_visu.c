@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/17 09:54:14 by francis           #+#    #+#             */
-/*   Updated: 2020/07/17 18:12:59 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/17 23:42:40 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	event_handler(t_window *win)
 		win->cycle_frame = win->cycle_frame == 1 ? 1 : win->cycle_frame / 2;
 }
 
-int		run_visu(t_vm *vm, t_window *win)
+void	run_visu(t_vm *vm, t_window *win)
 {
 	t_all_rec	all_rec;
 
@@ -49,5 +49,18 @@ int		run_visu(t_vm *vm, t_window *win)
 	}
 	if (win->running == OFF)
 		destroy_visual(win);
-	return (SUCCESS);
+}
+
+void	end_visu(t_vm *vm, t_window *win)
+{
+	t_all_rec	all_rec;
+
+	SDL_RenderClear(win->renderer);
+	draw_init_zones(vm, win, &all_rec); 
+	if (SDL_PollEvent(&win->event) != 0)
+		event_handler(win);
+	ending_screen(vm, win, &all_rec);
+	SDL_RenderPresent(win->renderer);
+	sleep(50);
+	destroy_visual(win);
 }

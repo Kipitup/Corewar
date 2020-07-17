@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/20 19:22:40 by francis           #+#    #+#             */
-/*   Updated: 2020/07/17 23:05:48 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/18 00:13:00 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,29 +72,26 @@ static void	player1(t_window *win, t_all_rec *all_rec, int x, int y)
 	player1_input_writing(win, all_rec, x, y);
 }
 
-void	player_box(t_vm *vm, t_window *win, t_all_rec *all_rec, int x, int y)
+void	player_box(t_vm *vm, t_window *win, t_all_rec *rec, int x, int y)
 {
-	uint8_t	nb_of_player;
-
-	nb_of_player = vm->nb_of_player_alive;
-	if (nb_of_player >= 1)
+	if (vm->nb_of_player_alive >= 1)
 	{
-		player1(win, all_rec, x, y);
-		purple_writing(win, &all_rec->name1, vm->all_players[0]->name->str);
+		player1(win, rec, x, y);
+//		purple_writing(win, &rec->name1, vct_getstr(vm->all_players[0]->name));
 	}
-	if (nb_of_player >= 2)
+	if (vm->nb_of_player_alive >= 2)
 	{
-		player2(win, all_rec, x, y + 100);
-		blue_writing(win, &all_rec->name2, vm->all_players[1]->name->str);
+		player2(win, rec, x, y + 100);
+//		blue_writing(win, &rec->name2, vm->all_players[1]->name->str);
 	}
-	if (nb_of_player >= 3)
+	if (vm->nb_of_player_alive >= 3)
 	{
-		player3(win, all_rec, x, y + 200);
-		green_writing(win, &all_rec->name3, vm->all_players[2]->name->str);
+		player3(win, rec, x, y + 200);
+//		green_writing(win, &rec->name3, vm->all_players[2]->name->str);
 	}
-	if (nb_of_player >= 4)
+	if (vm->nb_of_player_alive >= 4)
 	{
-		player4(win, all_rec, x, y + 300);
-		red_writing(win, &all_rec->name4, vm->all_players[3]->name->str);
+		player4(win, rec, x, y + 300);
+//		red_writing(win, &rec->name4, vm->all_players[3]->name->str);
 	}
 }

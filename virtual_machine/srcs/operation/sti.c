@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/01 14:24:37 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/17 13:36:55 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/07/17 23:56:50 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,11 @@ void				op_sti(t_vm *vm, t_cursor *cursor)
 		return ;
 	address = cursor->pc + ((arg_2 + arg_3) % IDX_MOD);
 	vm->arena[address % MEM_SIZE] = cursor->registries[arg_1] >> 24;
+	vm->arena_owner[address % MEM_SIZE] = cursor->id;
 	vm->arena[(address + 1) % MEM_SIZE] = cursor->registries[arg_1] >> 16;
+	vm->arena_owner[(address + 1) % MEM_SIZE] = cursor->id;
 	vm->arena[(address + 2) % MEM_SIZE] = cursor->registries[arg_1] >> 8;
+	vm->arena_owner[(address + 2) % MEM_SIZE] = cursor->id;
 	vm->arena[(address + 3) % MEM_SIZE] = cursor->registries[arg_1];
+	vm->arena_owner[(address + 3) % MEM_SIZE] = cursor->id;
 }

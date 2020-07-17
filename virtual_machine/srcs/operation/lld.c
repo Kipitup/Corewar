@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/01 14:25:17 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/17 13:35:56 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/07/17 21:57:33 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int32_t	get_long_indirect(t_vm *vm, t_cursor *cursor, uint8_t nb_arg)
 	int32_t		value;
 
 	value = 0;
-	pc = cursor->pc + cursor->param[nb_arg];
+	pc = cursor->pc + (int16_t)cursor->param[nb_arg];
 	value = value | vm->arena[pc % MEM_SIZE];
 	value = value << 8;
 	value = value | vm->arena[(pc + 1) % MEM_SIZE];

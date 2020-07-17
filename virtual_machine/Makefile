@@ -6,7 +6,7 @@
 #    By: amartino <amartino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/26 11:56:39 by amartino          #+#    #+#              #
-#    Updated: 2020/07/17 22:45:55 by francis          ###   ########.fr        #
+#    Updated: 2020/07/17 23:36:17 by francis          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
                      ####################################
@@ -133,6 +133,7 @@ ifeq ($(visu), 1)
 	SRCS += font_writing
 	SRCS += setup_window 
 	SRCS += run_visu 
+	SRCS += winner 
 	SRCS += player_input
 	SRCS += player_box
 	SRCS += visu_tools

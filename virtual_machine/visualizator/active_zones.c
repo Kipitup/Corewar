@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 16:16:21 by francis           #+#    #+#             */
-/*   Updated: 2020/07/17 23:07:17 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/17 23:27:11 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ static void	player_rec(t_vm *vm, t_window *win, t_all_rec *all_rec)
 
 static void	info_rec(t_vm *vm, t_window *win, t_all_rec *all_rec)
 {
-	classic_writing(win, &all_rec->to_die, ft_itoa(vm->cycle_counter));
+	classic_writing(win, &all_rec->to_die, ft_itoa(vm->cycle_to_die));
+	classic_writing(win, &all_rec->cycle_counter, ft_itoa(vm->cycle_counter));
 	classic_writing(win, &all_rec->cycle_frame, ft_itoa(win->cycle_frame));
 }
 
@@ -46,4 +47,12 @@ void		active_zones(t_vm *vm, t_window *win, t_all_rec *all_rec)
 	info_rec(vm, win, all_rec);
 	player_rec(vm, win, all_rec);
 	active_arena(vm, win);
+}
+
+void		ending_screen(t_vm *vm, t_window *win, t_all_rec *all_rec)
+{
+	run_pause_rec(win, all_rec);
+	info_rec(vm, win, all_rec);
+	player_rec(vm, win, all_rec);
+	winner(vm, win);
 }
