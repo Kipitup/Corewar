@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 18:55:53 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/17 10:44:11 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/17 13:22:10 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,16 @@ void	new_token(t_data *data, enum e_token type, char *value, size_t size)
 {
 	t_token token;
 	t_list	*lst_new;
+	static size_t	op_offset;
 
-	ft_bzero(&token, sizeof(t_token));
+	ft_bzero(&token, sizeof (t_token));
+	if (type < 16)
+		op_offset += data->offset;
 	token.type = type;
 	token.value = value;
 	token.size = size;
+	if (type == E_LABEL)
+		token.cur_offset = op_offset;
 	lst_new = ft_lstnew(&token, sizeof(t_token));
 	if (lst_new == NULL)
 		exit_error(data, MALLOC_FAILURE);

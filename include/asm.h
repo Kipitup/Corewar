@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 12:01:37 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/17 12:38:03 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/07/17 13:14:42 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ typedef struct	s_token
 	enum e_token	type;
 	char			*value;
 	size_t			size;
+	size_t			cur_offset;
 }				t_token;
 
 typedef struct	s_label

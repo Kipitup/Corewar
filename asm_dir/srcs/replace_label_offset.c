@@ -6,13 +6,13 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/17 11:01:27 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/17 11:22:50 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/17 13:25:24 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-static char	*label_offset(t_data *data, char *label_name)
+static char	*label_offset(t_data *data, char *label_name, size_t cur_offset)
 {
 	t_list	*label_lst;
 	t_label	*label;
@@ -24,7 +24,7 @@ static char	*label_offset(t_data *data, char *label_name)
 		if (ft_strequ(label->name, label_name) == TRUE)
 		{
 			ft_strdel(&label_name);
-			return (ft_itoa(label->offset));
+			return (ft_itoa(label->offset - cur_offset));
 		}
 		label_lst = label_lst->next;
 	}
@@ -42,7 +42,7 @@ void		replace_label_offset(t_data *data)
 		token = token_lst->content;
 		if (token->type == E_LABEL)
 		{
-			token->value = label_offset(data, token->value);
+			token->value = label_offset(data, token->value, token->cur_offset);
 			if (token->value == NULL)
 				exit_error(data, UNDEFINED_LABEL);
 		}

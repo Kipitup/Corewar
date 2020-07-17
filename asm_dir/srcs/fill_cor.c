@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/17 09:53:33 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/17 11:30:46 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/17 11:46:54 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void		fill_cor(t_data *data)
 	t_list	*token_lst;
 
 	replace_label_offset(data);
+	ft_printf("Writing output program to %s\n", data->cor_name);
 	token_lst = data->token_lst;
 	write_nb(data, COREWAR_EXEC_MAGIC, 4);
 	write_cor(data, token_lst->content);
