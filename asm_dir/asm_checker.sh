@@ -20,6 +20,10 @@ if [ -f $file.cor ]
 then
 	diff $file.cor $file.cor_asm
 	ARG=$?
+	hexdump -Cv $file.cor > tmp1
+	hexdump -Cv $file.cor_asm > tmp2
+	diff tmp1 tmp2 > diff
+	#rm tmp1 tmp2
 fi
-#rm -f $file.cor $file.cor_asm # Mute this line if you want keep .cor file
+rm -f $file.cor $file.cor_asm # Mute this line if you want keep .cor file
 exit $ARG

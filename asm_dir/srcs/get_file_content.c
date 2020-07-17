@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 12:43:06 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/17 11:19:52 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/17 12:56:56 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	get_file_content(t_data *data)
 		parser_asm(data);
 		ft_strdel(&data->input);
 	}
-//	debug_token(data->token_lst);
 //	debug_label(data->label_lst);
 	open_cor(data);
 	fill_cor(data);
+	debug_token(data->token_lst);
 }

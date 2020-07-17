@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/15 16:43:54 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/17 11:15:40 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/17 12:53:06 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	debug_token(t_list *token_lst)
 	while (token_lst != NULL)
 	{
 		token = token_lst->content;
-		ft_printf("[ %s ] -> %s ( %d )\n", token_type[token->type], token->value, token->size);
+		ft_printf("%s[ %s ] -> %s ( %d )\n", token->type < 16 ? "\n" : "\t", token_type[token->type], token->value, token->size);
 		token_lst = token_lst->next;
 	}
 }

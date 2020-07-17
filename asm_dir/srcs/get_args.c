@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/16 12:42:49 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/17 11:13:17 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/17 12:42:19 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,12 @@ static void		add_arg_type_token(t_data *data, size_t i)
 
 static int		dir_size(const enum e_token type)
 {
-	static char	size[NB_OP] = {2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 2, 1, 1, 2};
+	static char	size[NB_OP] = {LONG_DIRECT_SIZE, LONG_DIRECT_SIZE,
+			LONG_DIRECT_SIZE, LONG_DIRECT_SIZE, LONG_DIRECT_SIZE,
+			LONG_DIRECT_SIZE, LONG_DIRECT_SIZE, LONG_DIRECT_SIZE,
+			SMALL_DIRECT_SIZE, SMALL_DIRECT_SIZE, SMALL_DIRECT_SIZE,
+			SMALL_DIRECT_SIZE, LONG_DIRECT_SIZE, SMALL_DIRECT_SIZE,
+			SMALL_DIRECT_SIZE, LONG_DIRECT_SIZE};
 
 	return (size[type]);
 }
@@ -94,9 +99,9 @@ static uint64_t	get_next_arg(t_data *data, char *arg, const enum e_token type)
 			i++;
 		if (arg[i + 1] != '\0')
 			exit_error(data, PARSE_ERROR);
-		new_token(data, E_REG, ft_strdup(arg + 1), REG_SIZE / 2);
+		new_token(data, E_REG, ft_strdup(arg + 1), REGISTER_SIZE);
 		ocp = REG_CODE;
-		data->offset += REG_SIZE / 2;
+		data->offset += REGISTER_SIZE;
 	}
 	else
 	{
@@ -104,7 +109,7 @@ static uint64_t	get_next_arg(t_data *data, char *arg, const enum e_token type)
 		{
 			if (check_label_char(arg + 1) == false)
 				exit_error(data, WRONG_LABEL_NAME);
-			new_token(data, E_LABEL, ft_strdup(arg + 1), IND_SIZE / 2);
+			new_token(data, E_LABEL, ft_strdup(arg + 1), INDIRECT_SIZE);
 		}
 		else
 		{
@@ -112,10 +117,10 @@ static uint64_t	get_next_arg(t_data *data, char *arg, const enum e_token type)
 				i++;
 			if (arg[i] != '\0')
 				exit_error(data, PARSE_ERROR);
-			new_token(data, E_IND, ft_strdup(arg), IND_SIZE / 2);
+			new_token(data, E_IND, ft_strdup(arg), INDIRECT_SIZE);
 		}
 		ocp = IND_CODE;
-		data->offset += IND_SIZE / 2;
+		data->offset += INDIRECT_SIZE;
 	}
 	return (ocp);
 }

@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 12:01:37 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/17 11:12:19 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/17 12:38:03 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,11 @@
 # define WRONG_LABEL_NAME	"Invalid label name"
 # define INVALID_ARG		"Invalid argument"
 # define UNDEFINED_LABEL	"Undefined label"
+
+# define REGISTER_SIZE		1
+# define SMALL_DIRECT_SIZE	2
+# define LONG_DIRECT_SIZE	4
+# define INDIRECT_SIZE		2
 
 enum	e_token
 {
