@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/16 22:19:42 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/17 08:37:00 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/17 15:16:45 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ static void	check_type_args(t_data *data, const enum e_token type,
 	if ((arg1 = ocp >> 6) == IND_CODE)
 		arg1 = T_IND;
 	if ((arg2 = ocp >> 4 & 0b11) == IND_CODE)
-		arg1 = T_IND;
+		arg2 = T_IND;
 	if ((arg3 = ocp >> 2 & 0b11) == IND_CODE)
-		arg1 = T_IND;
+		arg3 = T_IND;
 	if ((arg1 & types[type][0]) != arg1)
 		exit_error(data, INVALID_ARG);
 	if ((arg2 & types[type][1]) != arg2)

@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/16 10:50:22 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/17 14:33:59 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/07/17 15:00:18 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*trim_side(char *s)
 {
-	size_t	i;
+	int		i;
 
 	i = 0;
 	if (s == NULL)
@@ -22,10 +22,13 @@ char	*trim_side(char *s)
 	while (ft_isblank(*s) == true)
 		s++;
 	i = ft_strlen(s);
-	if (i == 0)
+	if (i-- == 0)
 		return (NULL);
-	while (i > 0 && ft_isblank(*(s + i)) == true)
-		s[--i] = '\0';
+	while (i >= 0 && ft_isblank(*(s + i)) == true)
+	{
+		s[i] = '\0';
+		i--;
+	}
 	return (s);
 }
 

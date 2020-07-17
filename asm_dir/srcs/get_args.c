@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/16 12:42:49 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/17 14:27:49 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/07/17 15:12:11 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,13 +72,28 @@ static _Bool	check_label_char(const char *arg)
 	return (true);
 }
 
+bool			is_number(char *s)
+{
+	if (*s == '-')
+		s++;
+	if (*s == '\0')
+		return (false);
+	while (*s != '\0')
+	{
+		if (ft_isdigit(*s) == false)
+			return (false);
+		s++;
+	}
+	return (true);
+}
+
 static uint64_t	get_next_arg(t_data *data, char *arg, const enum e_token type)
 {
 	uint64_t	ocp;
 	size_t		i;
 	size_t		size;
 
-	trim_side(arg);
+	arg = trim_side(arg);
 	i = 0;
 	if (arg[0] == DIRECT_CHAR)
 	{
@@ -90,7 +105,11 @@ static uint64_t	get_next_arg(t_data *data, char *arg, const enum e_token type)
 			new_token(data, E_LABEL, ft_strdup(arg + 2), size);
 		}
 		else
+		{
+			if (is_number(arg + 1) == false)
+				exit_error(data, PARSE_ERROR);
 			new_token(data, E_DIR, ft_strdup(arg + 1), size);
+		}
 		ocp = DIR_CODE;
 		data->offset += size;
 	}
@@ -114,9 +133,7 @@ static uint64_t	get_next_arg(t_data *data, char *arg, const enum e_token type)
 		}
 		else
 		{
-			while (ft_isdigit(arg[i]) == TRUE)
-				i++;
-			if (arg[i] != '\0')
+			if (is_number(arg) == false)
 				exit_error(data, PARSE_ERROR);
 			new_token(data, E_IND, ft_strdup(arg), INDIRECT_SIZE);
 		}

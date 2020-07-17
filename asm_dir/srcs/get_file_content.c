@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 12:43:06 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/17 14:38:58 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/07/17 15:00:54 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,5 @@ void	get_file_content(t_data *data)
 //	debug_label(data->label_lst);
 	open_cor(data);
 	fill_cor(data);
-	debug_token(data->token_lst);
+//	debug_token(data->token_lst);
 }
