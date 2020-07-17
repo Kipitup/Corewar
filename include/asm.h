@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 12:01:37 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/17 00:42:10 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/17 09:20:43 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,6 @@
 # define NB_OP				16
 # define NB_TOKEN			27
 # define NB_STATE			3
-
-# define F_REG				0b0001	
-# define F_DIR				0b0010
-# define F_IND				0b0100
-# define F_REG_IND			0b0101
-# define F_REG_DIR			0b0011
-# define F_IND_DIR			0b0110
-# define F_ALL				0b0111
 
 # define TOO_FEW_ARG		"Too few argument"
 # define TOO_MUCH_ARG		"Too much arguments"
@@ -86,8 +78,8 @@ typedef struct	s_token
 
 typedef struct	s_label
 {
-	char			*name;
-	const size_t	offset;
+	char	*name;
+	size_t	offset;
 }				t_label;
 
 typedef struct	s_data

@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 12:43:06 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/16 21:59:15 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/17 08:24:00 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	get_file_content(t_data *data)
 {
 	ssize_t		ret;
 
-	data->line = -1;
 	while ((ret = get_next_line(data->fd, &data->input)) > 0)
 	{
 		data->line++;
@@ -24,6 +23,6 @@ void	get_file_content(t_data *data)
 		parser_asm(data);
 		ft_strdel(&data->input);
 	}
-	debug_token(data->token_lst);
-//	debug_label(data->label_lst);
+//	debug_token(data->token_lst);
+	debug_label(data->label_lst);
 }

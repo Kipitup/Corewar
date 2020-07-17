@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/15 22:06:02 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/16 22:02:26 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/17 08:42:10 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static void	new_label(t_data *data, char *label_name)
 
 	ft_bzero(&new_label, sizeof(t_label));
 	new_label.name = label_name;
+	new_label.offset = data->offset;
 	new_lst = ft_lstnew(&new_label, sizeof(t_label));
 	if (new_lst == NULL)
 		exit_error(data, MALLOC_FAILURE);

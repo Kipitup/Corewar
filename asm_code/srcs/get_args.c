@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/16 12:42:49 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/17 01:10:05 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/17 09:11:29 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,21 +40,18 @@ static t_token	*get_ocp_token(t_data *data)
 
 static void		add_arg_type_token(t_data *data, size_t i)
 {
-	static char	ocp[NB_OP] = {0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1};
+	static char	ocp[NB_OP] = {0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1};
 
 	if (ocp[i] == 1)
-	{
-		ft_putendl("New ocp token");
 		new_token(data, E_OCP, NULL);
-	}
 }
 
-/*static int		dir_size(enum e_token type)
+static int		dir_size(const enum e_token type)
 {
-	static char	size[NB_OP] = {4, 4, 4, 4, 4, 4, 4, 4, 2, 2, 2, 2, 4, 2, 2, 4};
+	static char	size[NB_OP] = {2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 2, 1, 1, 2};
 
 	return (size[type]);
-}*/
+}
 
 static _Bool	check_label_char(const char *arg)
 {
@@ -70,7 +67,7 @@ static _Bool	check_label_char(const char *arg)
 	return (true);
 }
 
-static uint64_t	get_next_arg(t_data *data, char *arg)
+static uint64_t	get_next_arg(t_data *data, char *arg, const enum e_token type)
 {
 	uint64_t	ocp;
 	size_t		i;
@@ -87,6 +84,7 @@ static uint64_t	get_next_arg(t_data *data, char *arg)
 		else
 			new_token(data, E_ARG, ft_strdup(arg + 1));
 		ocp = DIR_CODE;
+		data->offset += dir_size(type);
 	}
 	else if (arg[0] == 'r')
 	{
@@ -96,6 +94,7 @@ static uint64_t	get_next_arg(t_data *data, char *arg)
 			exit_error(data, PARSE_ERROR);
 		new_token(data, E_ARG, ft_strdup(arg + 1));
 		ocp = REG_CODE;
+		data->offset += REG_SIZE / 2;
 	}
 	else
 	{
@@ -114,6 +113,7 @@ static uint64_t	get_next_arg(t_data *data, char *arg)
 			new_token(data, E_ARG, ft_strdup(arg));
 		}
 		ocp = IND_CODE;
+		data->offset += IND_SIZE / 2;
 	}
 	return (ocp);
 }
@@ -135,7 +135,7 @@ void			get_args(t_data *data, char **split, size_t *index)
 	split_arg = ft_strsplit(split[*index], SEPARATOR_CHAR);
 	while (split_arg[i] != NULL && i < MAX_ARGS_NUMBER)
 	{
-		new_ocp = get_next_arg(data, split_arg[i]);
+		new_ocp = get_next_arg(data, split_arg[i], op_token->type);
 		ocp |= new_ocp << (6 - i * 2);
 		i++;
 	}
@@ -143,7 +143,10 @@ void			get_args(t_data *data, char **split, size_t *index)
 	if (i == MAX_ARGS_NUMBER)
 		exit_error(data, TOO_MUCH_ARG);
 	if (ocp_token != NULL)
+	{
 		ocp_token->value = ft_itoa(ocp);
-	check_op(data, op_token, ocp_token, i);
+		check_op(data, op_token, ocp_token, i);
+		data->offset++;
+	}
 	(*index)++;
 }

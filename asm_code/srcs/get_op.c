@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/15 15:37:16 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/16 22:01:20 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/17 08:03:09 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,6 @@ void	get_op(t_data *data, char **split, size_t *index)
 	}
 	if (i == NB_OP)
 		exit_error(data, PARSE_ERROR);
+	data->offset++;
 	(*index)++;
 }
