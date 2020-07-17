@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 12:01:37 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/17 16:25:41 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/17 16:43:24 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ void	check_no_ocp_op(t_data *data, const enum e_token type,
 			const uint64_t ocp);
 void	check_op(t_data *data, const t_token *op_token,
 				const t_token *ocp_token, const size_t nb_args);
+bool	check_label_char(const char *arg);
 void	del_array(char **array);
 void	del_label_lst(void *content, size_t content_size);
 void	del_token_lst(void *content, size_t content_size);

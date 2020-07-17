@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/16 12:42:49 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/17 16:27:52 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/17 16:40:00 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,20 +56,6 @@ static int		dir_size(const enum e_token type)
 			SMALL_DIRECT_SIZE, LONG_DIRECT_SIZE};
 
 	return (size[type]);
-}
-
-static _Bool	check_label_char(const char *arg)
-{
-	size_t	i;
-
-	i = 0;
-	while (arg[i] != '\0')
-	{
-		if (ft_strchr(LABEL_CHARS, arg[i]) == NULL)
-			return (false);
-		i++;
-	}
-	return (true);
 }
 
 bool			is_number(char *s)

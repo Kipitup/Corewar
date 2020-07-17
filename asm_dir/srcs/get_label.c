@@ -6,11 +6,27 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/15 22:06:02 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/17 14:34:32 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/07/17 16:44:26 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
+
+bool		check_label_char(const char *arg)
+{
+	size_t	i;
+
+	i = 0;
+	if (arg == NULL || arg[i] == '\0')
+		return (false);
+	while (arg[i] != '\0')
+	{
+		if (ft_strchr(LABEL_CHARS, arg[i]) == NULL)
+			return (false);
+		i++;
+	}
+	return (true);
+}
 
 static void	new_label(t_data *data, char *label_name)
 {
@@ -28,6 +44,7 @@ static void	new_label(t_data *data, char *label_name)
 
 bool		get_label(t_data *data, char **split, size_t *index)
 {
+	char	*str;
 	size_t	len;
 
 	if (split[*index] == NULL)
@@ -35,7 +52,13 @@ bool		get_label(t_data *data, char **split, size_t *index)
 	len = ft_strlen(split[*index]);
 	if (split[*index][len - 1] == LABEL_CHAR)
 	{
-		new_label(data, ft_strndup(split[*index], len - 1));
+		str = ft_strndup(split[*index], len - 1);
+		if (check_label_char(str) == false)
+		{
+			ft_strdel(&str);
+			exit_error(data, WRONG_LABEL_NAME);
+		}
+		new_label(data, str);
 		data->column += len;
 		(*index)++;
 		return (true);
