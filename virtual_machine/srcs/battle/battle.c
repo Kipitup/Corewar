@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/29 14:38:45 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/17 17:12:54 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/07/17 22:08:58 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@ static void			remove_cursor(t_vm *vm)
 {
 	t_cursor	*cursor;
 	t_cursor	*tmp;
+	size_t		last_live;
 
-	if (vm->cursor != NULL && vm->cursor->last_live > (size_t)vm->cycle_to_die)
+	last_live = vm->cycle_counter - vm->cursor->last_live;
+	if (vm->cursor != NULL && last_live > (size_t)vm->cycle_to_die)
 	{
 		tmp = vm->cursor->next;
 		free(vm->cursor);
@@ -27,7 +29,8 @@ static void			remove_cursor(t_vm *vm)
 	cursor = vm->cursor;
 	while (cursor != NULL && cursor->next != NULL)
 	{
-		if (cursor->next->last_live > (size_t)vm->cycle_to_die)
+		last_live = vm->cycle_counter - vm->cursor->next->last_live;
+		if (last_live > (size_t)vm->cycle_to_die)
 		{
 			tmp = cursor->next->next;
 			free(cursor->next);
@@ -96,7 +99,7 @@ void				battle(t_vm *vm)
 		if (cycle == vm->cycle_to_die)
 		{
 			cycle = 0;
-			ft_dprintf(STD_ERR, "\n{c_red}cycle_to_die %ld{c_end}\n", vm->cycle_to_die);
+		ft_dprintf(STD_ERR, "\n{c_red}cycle_to_die %ld{c_end}\n", vm->cycle_to_die);
 			vm->nb_of_player_alive = check(vm);
 		}
 	}

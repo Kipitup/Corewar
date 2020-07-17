@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/16 19:38:37 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/17 14:25:45 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/07/17 21:56:41 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,11 @@ int32_t		get_indirect(t_vm *vm, t_cursor *cursor, uint8_t nb_arg)
 {
 	size_t 		pc;
 	int32_t		value;
+	int16_t		arg;
 
 	value = 0;
-	pc = cursor->pc + (cursor->param[nb_arg] % IDX_MOD);
+	arg = cursor->param[nb_arg];
+	pc = cursor->pc + (arg % IDX_MOD);
 	value = value | vm->arena[pc % MEM_SIZE];
 	value = value << 8;
 	value = value | vm->arena[(pc + 1) % MEM_SIZE];
