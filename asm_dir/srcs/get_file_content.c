@@ -6,11 +6,20 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 12:43:06 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/17 12:56:56 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/07/17 14:38:58 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
+
+bool	is_empty_line(char *s)
+{
+	if (s == NULL)
+		return (true);
+	while (*s != '\0' && ft_isblank(*s) == true)
+		s++;
+	return (*s == '\0' || *s == COMMENT_CHAR || *s == ';');
+}
 
 void	get_file_content(t_data *data)
 {
@@ -20,7 +29,8 @@ void	get_file_content(t_data *data)
 	{
 		data->line++;
 		data->column = 0;
-		parser_asm(data);
+		if (is_empty_line(data->input) == false)
+			parser_asm(data);
 		ft_strdel(&data->input);
 	}
 //	debug_label(data->label_lst);

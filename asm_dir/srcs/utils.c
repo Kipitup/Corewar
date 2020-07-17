@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 18:55:53 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/17 13:22:10 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/17 13:33:28 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	new_token(t_data *data, enum e_token type, char *value, size_t size)
 
 	ft_bzero(&token, sizeof (t_token));
 	if (type < 16)
-		op_offset += data->offset;
+		op_offset = data->offset;
 	token.type = type;
 	token.value = value;
 	token.size = size;

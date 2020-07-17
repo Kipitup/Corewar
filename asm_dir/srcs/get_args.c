@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/16 12:42:49 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/17 12:42:19 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/07/17 14:27:49 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ static uint64_t	get_next_arg(t_data *data, char *arg, const enum e_token type)
 	size_t		i;
 	size_t		size;
 
+	trim_side(arg);
 	i = 0;
 	if (arg[0] == DIRECT_CHAR)
 	{
@@ -125,7 +126,7 @@ static uint64_t	get_next_arg(t_data *data, char *arg, const enum e_token type)
 	return (ocp);
 }
 
-void			get_args(t_data *data, char **split, size_t *index)
+void			get_args(t_data *data, char *merge)
 {
 	t_token 	*op_token;
 	t_token		*ocp_token;
@@ -139,7 +140,7 @@ void			get_args(t_data *data, char **split, size_t *index)
 	op_token = get_op_token(data);
 	add_arg_type_token(data, op_token->type);
 	ocp_token = get_ocp_token(data);
-	split_arg = ft_strsplit(split[*index], SEPARATOR_CHAR);
+	split_arg = ft_strsplit(merge, SEPARATOR_CHAR);
 	while (split_arg[i] != NULL && i < MAX_ARGS_NUMBER)
 	{
 		new_ocp = get_next_arg(data, split_arg[i], op_token->type);
@@ -155,5 +156,4 @@ void			get_args(t_data *data, char **split, size_t *index)
 		check_op(data, op_token, ocp_token, i);
 		data->offset++;
 	}
-	(*index)++;
 }

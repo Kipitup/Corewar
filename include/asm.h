@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 12:01:37 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/17 13:14:42 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/17 14:33:47 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,14 +118,14 @@ void	ft_arrdel(char **array);
 void	ft_lstaddend(t_list **alst, t_list *new);
 int		ft_isblank(const char c);
 char	*ft_join_free(char *s1, char *s2, int op);
-void	get_args(t_data *data, char **split, size_t *index);
+void	get_args(t_data *data, char *merge);
 void	get_comment(t_data *data);
 char	*get_dquote_string(t_data *data);
 void	get_file_content(t_data *data);
 void	get_instruction(t_data *data);
 void	get_name(t_data *data);
 void	get_op(t_data *data, char **split, size_t *i);
-void	get_label(t_data *data, char **split, size_t *index);
+bool	get_label(t_data *data, char **split, size_t *index);
 void	new_token(t_data *data, enum e_token type, char *value, size_t size);
 void	open_cor(t_data *data);
 void	open_file(t_data *data);
@@ -133,6 +133,7 @@ void	parser_asm(t_data *data);
 void	replace_label_offset(t_data *data);
 char	**ft_split_white_spaces(char const *s);
 int		usage_error(int ac);
+char	*trim_side(char *s);
 
 void	debug_label(t_list *label_lst);
 void	debug_token(t_list *token_lst);
