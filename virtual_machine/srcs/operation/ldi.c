@@ -13,8 +13,8 @@
 #include "vm.h"
 
 /*
-**	Loads the value (value = ARG1 (T_DIR/T_REG/T_IND) + ARG2 (T_REG/T_DIR))
-**	of the first two arguments inside the third one (T_REG).
+**	Loads the value (value = ARG1 (DIR_CODE/REG_CODE/IND_CODE) + ARG2 (REG_CODE/DIR_CODE))
+**	of the first two arguments inside the third one (REG_CODE).
 */
 
 void		op_ldi(t_vm *vm, t_cursor *cursor)
@@ -29,9 +29,9 @@ void		op_ldi(t_vm *vm, t_cursor *cursor)
 	type_of_param = param_type(vm, cursor, FIRST_PARAM);
 	arg_1 = get_param_when_3_possible_type(vm, cursor, ARG_1, type_of_param);
 	type_of_param = param_type(vm, cursor, SECOND_PARAM);
-	if (type_of_param == T_REG)
+	if (type_of_param == REG_CODE)
 		arg_2 = get_register(cursor, cursor->param[1]);
-	else if (type_of_param == T_DIR)
+	else if (type_of_param == DIR_CODE)
 		arg_2 = cursor->param[1];
 	else
 		return ;

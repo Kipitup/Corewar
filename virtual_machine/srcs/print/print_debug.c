@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/26 12:14:01 by amartinod         #+#    #+#             */
-/*   Updated: 2020/06/30 18:00:15 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/07/17 14:18:57 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +68,15 @@ void			print_cursor(t_cursor *cursor)
 	while (cursor != NULL)
 	{
 		i = 1;
-		ft_dprintf(STD_ERR, "{c_cyan}Cursor ID: %d{c_end}\n", cursor->id);
-		ft_dprintf(STD_ERR, "Current  : {c_green}%zu{c_end}\n", cursor->pc);
-		ft_dprintf(STD_ERR, "Registers: | r1   | r2   | r3   | r4   | r5   |\
+		ft_dprintf(STD_ERR, "{c_cyan}Cursor ID  : %d{c_end}\n", cursor->id);
+		ft_dprintf(STD_ERR, "PC         : {c_green}%zu{c_end}\n", cursor->pc);
+		ft_dprintf(STD_ERR, "wait_cycle : {c_green}%zu{c_end}\n", cursor->wait_cycle);
+		ft_dprintf(STD_ERR, "last_live  : {c_green}%zu{c_end}\n", cursor->last_live);
+		ft_dprintf(STD_ERR, "op_code    : {c_green}%u{c_end}\n", cursor->op_code);
+		ft_dprintf(STD_ERR, "carry      : {c_green}%d{c_end}\n", cursor->carry);
+		ft_dprintf(STD_ERR, "Registers  : | r1   | r2   | r3   | r4   | r5   |\
  r6   | r7   | r8   | r9   | r10  | r11  | r12  | r13  | r14  | r15  | r16  |\
- \n\t   {c_yellow}");
+ \n\t     {c_yellow}");
 		while (i <= REG_NUMBER)
 		{
 			ft_dprintf(STD_ERR, "| %-4d ", cursor->registries[i]);

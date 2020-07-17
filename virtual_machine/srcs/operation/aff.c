@@ -13,7 +13,7 @@
 #include "vm.h"
 
 /*
-** This operation takes the value from the registry passed as argument (T_REG),
+** This operation takes the value from the registry passed as argument (REG_CODE),
 ** casts it to the type char and prints it to the standard output.
 */
 

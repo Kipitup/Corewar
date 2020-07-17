@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/16 19:38:37 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/17 13:35:27 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/07/17 14:25:45 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int32_t		get_param_when_3_possible_type(t_vm *vm, t_cursor *cursor,
 	return (arg);
 }
 
-t_cursor		*fork_cursor(t_cursor *cursor, size_t address)
+t_cursor		*fork_cursor(t_cursor *cursor, int32_t address)
 {
 	t_cursor	*new_cursor;
 
@@ -67,7 +67,7 @@ t_cursor		*fork_cursor(t_cursor *cursor, size_t address)
 	if (new_cursor != NULL)
 	{
 		new_cursor = ft_memcpy(new_cursor, cursor, sizeof(t_cursor));
-		new_cursor->pc = address;
+		new_cursor->pc = address % MEM_SIZE;
 	}
 	return (new_cursor);
 }

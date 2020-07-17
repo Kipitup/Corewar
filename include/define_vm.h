@@ -6,12 +6,14 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 11:16:29 by amartino          #+#    #+#             */
-/*   Updated: 2020/07/17 12:49:43 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/07/17 20:20:42 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DEFINE_VM_H
 # define DEFINE_VM_H
+
+# define COLOR_MODE				1
 
 # define NO_SPECIFIC_POSITION	0
 # define MINIMUM_LEN			4

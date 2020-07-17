@@ -13,8 +13,8 @@
 #include "vm.h"
 
 /*
-** This operation writes the value of the first parameter (T_REG) at the
-** address (addr = (ARG2 (T_REG/T_DIR/T_IND) + ARG3 (T_REG/T_DIR)) % IDX_MOD).
+** This operation writes the value of the first parameter (REG_CODE) at the
+** address (addr = (ARG2 (REG_CODE/DIR_CODE/IND_CODE) + ARG3 (REG_CODE/DIR_CODE)) % IDX_MOD).
 */
 
 void				op_sti(t_vm *vm, t_cursor *cursor)
@@ -29,9 +29,9 @@ void				op_sti(t_vm *vm, t_cursor *cursor)
 	type_of_param = param_type(vm, cursor, SECOND_PARAM);
 	arg_2 = get_param_when_3_possible_type(vm, cursor, ARG_2, type_of_param);
 	type_of_param = param_type(vm, cursor, THIRD_PARAM);
-	if (type_of_param == T_REG)
+	if (type_of_param == REG_CODE)
 		arg_3 = get_register(cursor, cursor->param[2]);
-	else if (type_of_param == T_DIR)
+	else if (type_of_param == DIR_CODE)
 		arg_3 = cursor->param[2];
 	else
 		return ;

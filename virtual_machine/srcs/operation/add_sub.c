@@ -13,8 +13,8 @@
 #include "vm.h"
 
 /*
-**	Add/sub the value of the first and the second parameter (T_REG), and stock
-**	the result in the third parameter (T_REG).
+**	Add/sub the value of the first and the second parameter (REG_CODE), and stock
+**	the result in the third parameter (REG_CODE).
 ** If the result = 0 then carry = 1 else carry = 0.
 */
 

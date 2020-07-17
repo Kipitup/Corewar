@@ -40,9 +40,9 @@ void			op_lld(t_vm *vm, t_cursor *cursor)
 	uint8_t		type_of_param;
 
 	type_of_param = param_type(vm, cursor, FIRST_PARAM);
-	if (type_of_param == T_DIR)
+	if (type_of_param == DIR_CODE)
 		arg_1 = cursor->param[0];
-	else if (type_of_param == T_IND)
+	else if (type_of_param == IND_CODE)
 		arg_1 = get_long_indirect(vm, cursor, 0);
 	else
 		return ;

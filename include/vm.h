@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 12:52:38 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/17 12:30:12 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/07/17 14:12:21 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ uint8_t		get_param(t_vm *vm, t_cursor *cursor, size_t pc);
 uint8_t		param_type(t_vm *vm, t_cursor *cursor, uint8_t bit_shift);
 int32_t		get_register(t_cursor *cursor, size_t reg_number);
 int32_t		get_indirect(t_vm *vm, t_cursor *cursor, uint8_t nb_arg);
-t_cursor	*fork_cursor(t_cursor *cursor, size_t address);
+t_cursor	*fork_cursor(t_cursor *cursor, int32_t address);
 int32_t		get_param_when_3_possible_type(t_vm *vm, t_cursor *cursor, 
 									uint8_t arg, uint8_t type);
 

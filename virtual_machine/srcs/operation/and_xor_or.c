@@ -14,8 +14,8 @@
 
 /*
 ** Performs a bitwise  AND - XOR - OR operation for the values of the first two
-** arguments (T_DIR/T_REG/T_IND) and writes the result to the third argument.
-** (T_REG)
+** arguments (DIR_CODE/REG_CODE/IND_CODE) and writes the result to the third argument.
+** (REG_CODE)
 **	if the result of the operation = 0 then carry = 0 else carry = 1.
 */
 
