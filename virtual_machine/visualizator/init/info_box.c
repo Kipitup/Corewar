@@ -6,11 +6,24 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/20 20:12:40 by francis           #+#    #+#             */
-/*   Updated: 2020/07/17 23:21:18 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/18 11:16:03 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "visu.h"
+
+static void	tmp_for_itoa_leaks(t_window *win, SDL_Rect *delta, SDL_Rect *live)
+{
+	char	*tmp_delta;
+	char	*tmp_live;
+
+	tmp_delta = ft_itoa(CYCLE_DELTA);
+	tmp_live = ft_itoa(NBR_LIVE);
+	classic_writing(win, delta, tmp_delta);
+	classic_writing(win, live, tmp_live);
+	ft_strdel(&tmp_delta);
+	ft_strdel(&tmp_live);
+}
 
 static void	info_input_writing(t_window *win, t_all_rec *all_rec, int x, int y)
 {
@@ -29,8 +42,7 @@ static void	info_input_writing(t_window *win, t_all_rec *all_rec, int x, int y)
 	all_rec->to_die = to_die_input;
 	all_rec->cycle_frame = cycle_input;
 	all_rec->cycle_counter = counter_input;
-	classic_writing(win, &delta_input, ft_itoa(CYCLE_DELTA));
-	classic_writing(win, &nb_live_input, ft_itoa(NBR_LIVE));
+	tmp_for_itoa_leaks(win, &delta_input, &nb_live_input);
 }
 
 void		info_box(t_window *win, t_all_rec *all_rec, int x, int y)

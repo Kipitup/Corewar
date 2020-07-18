@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/20 09:28:58 by francis           #+#    #+#             */
-/*   Updated: 2020/07/17 23:39:12 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/18 10:43:55 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct	s_window
 	SDL_Event		event;
 	TTF_Font		*font;
 	size_t			cycle_frame;
+	size_t			nb_of_player;
 }				t_window;
 
 typedef struct	s_rectangle
@@ -40,17 +41,9 @@ typedef struct	s_rectangle
 	SDL_Rect	cycle_frame;	
 	SDL_Rect	cycle_counter;	
 	SDL_Rect	name1;
-	SDL_Rect	player1_process;
-	SDL_Rect	player1_live;
 	SDL_Rect	name2;
-	SDL_Rect	player2_process;
-	SDL_Rect	player2_live;
 	SDL_Rect	name3;
-	SDL_Rect	player3_process;
-	SDL_Rect	player3_live;
 	SDL_Rect	name4;
-	SDL_Rect	player4_process;
-	SDL_Rect	player4_live;
 }				t_all_rec;
 
 typedef struct	s_visu
