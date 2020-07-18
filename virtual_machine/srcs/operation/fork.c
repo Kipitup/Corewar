@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/01 14:24:57 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/17 14:21:33 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/07/18 11:43:12 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,19 @@
 **	Creates a copy of the process and place the PC of the new process is :
 **	PC = (ARG1 (DIR_CODE) % IDX_MOD) + POS_OF_OLD_PROCESS.
 */
+
+t_cursor		*fork_cursor(t_cursor *cursor, int32_t address)
+{
+	t_cursor	*new_cursor;
+
+	new_cursor = ft_memalloc(sizeof(t_cursor));
+	if (new_cursor != NULL)
+	{
+		new_cursor = ft_memcpy(new_cursor, cursor, sizeof(t_cursor));
+		new_cursor->pc = modulo(address, MEM_SIZE);
+	}
+	return (new_cursor);
+}
 
 void		op_fork(t_vm *vm, t_cursor *cursor)
 {
