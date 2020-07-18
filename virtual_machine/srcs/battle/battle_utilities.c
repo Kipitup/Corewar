@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/16 19:38:37 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/18 15:35:30 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/07/18 15:59:03 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int32_t		get_param_when_3_possible_type(t_vm *vm, t_cursor *cursor,
 	return (arg);
 }
 
-uint16_t			modulo(int16_t a, int16_t b)
+uint16_t	modulo(int16_t a, int16_t b)
 {
 	if (a % b >= 0)
 		return (a % b);
