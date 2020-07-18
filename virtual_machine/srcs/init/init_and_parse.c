@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 11:18:57 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/16 22:04:35 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/18 15:20:41 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ static int8_t		get_player(t_vm *vm, size_t *i, char **av, size_t index)
 **
 ** Also the position is decremented so it can be used as an index
 */
+
 static int8_t		opt_position(t_vm *vm, size_t *i, size_t ac, char **av)
 {
 	ssize_t		position;
@@ -51,7 +52,7 @@ static int8_t		opt_position(t_vm *vm, size_t *i, size_t ac, char **av)
 		if (position > MAX_PLAYERS || position == 0)
 			ft_perror(POSITION_OUT_OF_RANGE, __FILE__, __LINE__);
 		else if ((vm->option & ((1 << position) << BITWISE_OPT_SHIFT)) != 0)
-			ft_perror(INDEX_ALREADY_USED, __FILE__, __LINE__);	
+			ft_perror(INDEX_ALREADY_USED, __FILE__, __LINE__);
 		else if (position != FAILURE)
 		{
 			vm->option |= ((1 << position) << BITWISE_OPT_SHIFT);
@@ -71,9 +72,10 @@ static int8_t		opt_dump(t_vm *vm, size_t *i, size_t ac, char **av)
 	int8_t		ret;
 
 	ret = FAILURE;
-	vm->option &= ~OPT_RESET_DUMP; 
+	vm->option &= ~OPT_RESET_DUMP;
 	vm->option |= OPT_DUMP;
-	vm->option |= (ft_strequ(av[*i], "-dump32") == TRUE) ? OPT_DUMP32 : OPT_DUMP64;
+	vm->option |= (ft_strequ(av[*i], "-dump32") == TRUE)
+		? OPT_DUMP32 : OPT_DUMP64;
 	(*i)++;
 	if (*i < ac)
 	{
@@ -92,7 +94,7 @@ static int8_t		opt_dump(t_vm *vm, size_t *i, size_t ac, char **av)
 
 static int8_t		get_option(t_vm *vm, size_t *i, size_t ac, char **av)
 {
-	char 		*str;
+	char		*str;
 	int8_t		ret;
 
 	ret = SUCCESS;
@@ -103,7 +105,7 @@ static int8_t		get_option(t_vm *vm, size_t *i, size_t ac, char **av)
 		(*i)++;
 	}
 	else if (ft_strequ(str, "-dump32") == TRUE)
-		ret = opt_dump(vm, i ,ac, av);
+		ret = opt_dump(vm, i, ac, av);
 	else if (ft_strequ(str, "-dump64") == TRUE)
 		ret = opt_dump(vm, i, ac, av);
 	else if (ft_strequ(str, "-n") == TRUE)
@@ -116,6 +118,7 @@ static int8_t		get_option(t_vm *vm, size_t *i, size_t ac, char **av)
 /*
 ** The address of i send in the function, so it incrementation is done there.
 */
+
 t_vm				*init_and_parse(size_t ac, char **av)
 {
 	t_vm		*vm;

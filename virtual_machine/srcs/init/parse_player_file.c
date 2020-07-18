@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 14:03:49 by amartinod         #+#    #+#             */
-/*   Updated: 2020/06/24 16:40:25 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/07/18 15:17:41 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static int8_t	assign_player(t_vm *vm, t_player *player, size_t position)
 		while (i < MAX_PLAYERS)
 		{
 			if (vm->all_players[i] == NULL)
-				break;
+				break ;
 			i++;
 		}
 		if (i >= MAX_PLAYERS)
@@ -86,9 +86,9 @@ static t_player	*init_player(t_vector *file, size_t position)
 
 	player = NULL;
 	magic_nb = (hexa(file, 0) << 24 | hexa(file, 1) << 16 | hexa(file, 2) << 8
-				| hexa(file, 3));
+			| hexa(file, 3));
 	code_size = (hexa(file, 136) << 24 | hexa(file, 137) << 16
-				| hexa(file, 138) << 8 | hexa(file, 139));
+			| hexa(file, 138) << 8 | hexa(file, 139));
 	if (magic_nb != COREWAR_EXEC_MAGIC)
 		ft_perror(WRONG_MAGIC_NB, __FILE__, __LINE__);
 	else if (code_size > CHAMP_MAX_SIZE)
@@ -105,7 +105,7 @@ static t_player	*init_player(t_vector *file, size_t position)
 	return (player);
 }
 
-int8_t			parse_file_and_get_info(t_vm *vm, t_vector *name, size_t position)
+int8_t			parse_file_and_get_info(t_vm *vm, t_vector *name, size_t pos)
 {
 	t_vector		*file;
 	t_player		*player;
@@ -119,13 +119,12 @@ int8_t			parse_file_and_get_info(t_vm *vm, t_vector *name, size_t position)
 			ft_perror(FILE_TOO_SHORT, __FILE__, __LINE__);
 		else
 		{
-			player = init_player(file, position);
+			player = init_player(file, pos);
 			if (player != NULL)
-  				player = get_player_info(file, player);
+				player = get_player_info(file, player);
 			if (player != NULL)
-				ret = assign_player(vm, player, position);
+				ret = assign_player(vm, player, pos);
 		}
-
 	}
 	return (ret);
 }
