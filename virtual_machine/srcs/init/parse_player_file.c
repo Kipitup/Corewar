@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 14:03:49 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/18 17:33:53 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/18 19:14:13 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,10 @@ static int8_t	assign_player(t_vm *vm, t_player *player, size_t position)
 			i++;
 		}
 		if (i >= MAX_PLAYERS)
+		{
 			ret = ft_perror_failure(TOO_MANY_CHAMPS, __FILE__, __LINE__);
+			clean_player(&player);
+		}
 		else
 			ret = rearrange_player(vm, player, position, i);
 	}
@@ -61,6 +64,7 @@ static int8_t	assign_player(t_vm *vm, t_player *player, size_t position)
 static t_player	*get_player_info(t_vector *file, t_player *player)
 {
 	size_t		start;
+	int32_t		tmp;
 
 	start = sizeof(COREWAR_EXEC_MAGIC);
 	player->name = vct_sub(file, start, PROG_NAME_LENGTH);
@@ -68,10 +72,13 @@ static t_player	*get_player_info(t_vector *file, t_player *player)
 	player->comment = vct_sub(file, start, COMMENT_LENGTH);
 	start = start + COMMENT_LENGTH + FILE_PADDING;
 	player->exec = ft_memalloc(sizeof(uint8_t) * player->size);
-	if (player->name == NULL || player->comment == NULL || player->exec == NULL)
+	tmp = (file->len - (COMMENT_LENGTH + PROG_NAME_LENGTH + 4 + 4 + 4 + 4));
+	if (player->name == NULL || player->comment == NULL || player->exec == NULL
+		|| tmp < 0 || (uint32_t)tmp != player->size)
 	{
+		ft_perror(((uint32_t)tmp != player->size  || tmp < 0)
+			? "Wrong player size" : MALLOC_ERR, __FILE__, __LINE__);
 		clean_player(&player);
-		ft_perror(MALLOC_ERR, __FILE__, __LINE__);
 	}
 	else
 		ft_memcpy(player->exec, file->str + start, player->size);
@@ -81,14 +88,16 @@ static t_player	*get_player_info(t_vector *file, t_player *player)
 static t_player	*init_player(t_vector *file, size_t position)
 {
 	t_player		*player;
-	uint32_t		magic_nb;
-	uint32_t		code_size;
+	uint64_t		magic_nb;
+	uint64_t		code_size;
 
 	player = NULL;
-	magic_nb = (hexa(file, 0) << 24 | hexa(file, 1) << 16 | hexa(file, 2) << 8
-			| hexa(file, 3));
-	code_size = (hexa(file, 136) << 24 | hexa(file, 137) << 16
-			| hexa(file, 138) << 8 | hexa(file, 139));
+	magic_nb = (uint64_t)(hexa(file, 0)) << 24 | hexa(file, 1) << 16
+			| hexa(file, 2) << 8 | hexa(file, 3);
+	code_size = (uint64_t)hexa(file, 136) << 24 | hexa(file, 137) << 16
+			| hexa(file, 138) << 8 | hexa(file, 139);
+	magic_nb = (uint32_t)magic_nb;
+	code_size = (uint32_t)code_size;
 	if (magic_nb != COREWAR_EXEC_MAGIC)
 		ft_perror(WRONG_MAGIC_NB, __FILE__, __LINE__);
 	else if (code_size > CHAMP_MAX_SIZE)

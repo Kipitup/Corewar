@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/29 14:38:45 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/18 17:41:54 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/18 18:24:57 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ static void			remove_cursor(t_vm *vm)
 	t_cursor	*tmp;
 	size_t		last_live;
 
+	if (vm->cursor == NULL)
+		return ;
 	last_live = vm->cycle_counter - vm->cursor->last_live;
 	if (vm->cursor != NULL && last_live > (size_t)vm->cycle_to_die)
 	{
@@ -61,7 +63,6 @@ static uint8_t		remove_dead_cursor(t_vm *vm)
 		}
 		tmp = tmp->next;
 	}
-	ft_printf("nb alive %d\tcycle to die %zu\n", alive, vm->cycle_to_die);
 	return (alive);
 }
 
@@ -69,7 +70,6 @@ static uint8_t		check(t_vm *vm)
 {
 	uint8_t		alive;
 
-	ft_printf("check counter %zu\tlive counter %zu\n", vm->check_counter, vm->live_counter);
 	if (vm->live_counter >= NBR_LIVE)
 	{
 		vm->live_counter = 0;
