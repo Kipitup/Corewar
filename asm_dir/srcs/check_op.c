@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/16 22:19:42 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/17 18:04:35 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/18 10:53:10 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,8 @@ static void	check_type_args(t_data *data, const enum e_token type,
 }
 
 void		check_op(t_data *data, const t_token *op_token,
-				const t_token *ocp_token, const size_t nb_args)
+				const uint64_t ocp, const size_t nb_args)
 {
 	check_nb_args(data, op_token->type, nb_args);
-	check_type_args(data, op_token->type, ft_atoi(ocp_token->value));
+	check_type_args(data, op_token->type, ocp);
 }

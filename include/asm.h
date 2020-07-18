@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 12:01:37 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/17 19:01:58 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/18 11:04:28 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,12 +109,10 @@ typedef struct	s_data
 	enum e_state	state;
 }				t_data;
 
-void			check_no_ocp_op(t_data *data, const enum e_token type,
-						const uint64_t ocp);
+void		check_no_ocp_op(t_data *data, const enum e_token type,
+				const uint64_t ocp);
 void			check_op(t_data *data, const t_token *op_token,
-						const t_token *ocp_token, const size_t nb_args);
-void			check_op_args(t_data *data, t_token *op_token, uint64_t ocp,
-						size_t nb_args);
+						const uint64_t ocp, const size_t nb_args);
 bool			check_label_char(const char *arg);
 void			del_array(char **array);
 void			del_label_lst(void *content, size_t content_size);
@@ -128,6 +126,8 @@ int				ft_isblank(const char c);
 char			*ft_join_free(char *s1, char *s2, int op);
 char			**ft_split_white_spaces(char const *s);
 void			get_args(t_data *data, char *merge);
+size_t			get_arg_tokens(t_data *data, char *merge, t_token *op_token,
+						size_t *nb_args);
 void			get_comment(t_data *data);
 uint64_t		get_dir_arg(t_data *data, char *arg, const enum e_token type);
 char			*get_dquote_string(t_data *data);
@@ -136,7 +136,6 @@ uint64_t		get_ind_arg(t_data *data, char *arg);
 void			get_instruction(t_data *data);
 bool			get_label(t_data *data, char **split, size_t *index);
 void			get_name(t_data *data);
-uint64_t		get_next_arg(t_data *data, char *arg, const enum e_token type);
 void			get_op(t_data *data, char **split, size_t *i);
 uint64_t		get_reg_arg(t_data *data, char *arg);
 bool			is_number(char *s);
