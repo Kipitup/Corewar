@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/16 19:38:37 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/18 15:31:44 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/18 15:35:30 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,13 @@ int32_t		get_indirect(t_vm *vm, t_cursor *cursor, uint8_t nb_arg)
 	value = 0;
 	arg = cursor->param[nb_arg];
 	pc = cursor->pc + (arg % IDX_MOD);
-	value = value | vm->arena[pc % MEM_SIZE];
+	value = value | vm->arena[modulo(pc, MEM_SIZE)];
 	value = value << 8;
-	value = value | vm->arena[(pc + 1) % MEM_SIZE];
+	value = value | vm->arena[modulo(pc + 1, MEM_SIZE)];
 	value = value << 8;
-	value = value | vm->arena[(pc + 2) % MEM_SIZE];
+	value = value | vm->arena[modulo(pc + 2, MEM_SIZE)];
 	value = value << 8;
-	value = value | vm->arena[(pc + 3) % MEM_SIZE];
+	value = value | vm->arena[modulo(pc + 3, MEM_SIZE)];
 	return (value);
 }
 
@@ -66,7 +66,7 @@ int32_t		get_param_when_3_possible_type(t_vm *vm, t_cursor *cursor,
 	return (arg);
 }
 
-int32_t		modulo(int32_t a, int32_t b)
+uint16_t			modulo(int16_t a, int16_t b)
 {
 	if (a % b >= 0)
 		return (a % b);
