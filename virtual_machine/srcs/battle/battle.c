@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/29 14:38:45 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/18 10:49:49 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/18 15:07:36 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,15 +44,20 @@ static void			remove_cursor(t_vm *vm)
 
 static uint8_t		remove_dead_cursor(t_vm *vm)
 {
-	t_cursor	*tmp;
-	uint8_t		alive;
+	t_cursor		*tmp;
+	static uint8_t	player[5] = {0, 0, 0, 0, 0};
+	uint8_t			alive;
 
 	alive = 0;
 	remove_cursor(vm);
 	tmp = vm->cursor;
 	while (tmp != NULL)
 	{
-		alive++;
+		if (player[tmp->id] == 0)
+		{
+			alive++;
+			player[tmp->id] = tmp->id;
+		}
 		tmp = tmp->next;
 	}
 	return (alive);
@@ -106,9 +111,10 @@ void				battle(t_vm *vm)
 		if (cycle == vm->cycle_to_die)
 		{
 			cycle = 0;
-		ft_dprintf(STD_ERR, "\n{c_red}cycle_to_die %ld{c_end}\n", vm->cycle_to_die);
+			ft_dprintf(STD_ERR, "\n{c_red}cycle_to_die %ld{c_end}\n", vm->cycle_to_die);
 			vm->nb_of_player_alive = check(vm);
 		}
+		ft_printf("player = %d\n", vm->nb_of_player_alive);
 	} 
 	if (vm->option & OPT_VISU && win.running == ON)
 		end_visu(vm, &win);
