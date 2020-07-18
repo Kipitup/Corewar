@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/01 14:24:17 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/18 16:07:45 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/18 19:19:46 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void		op_ldi(t_vm *vm, t_cursor *cursor)
 	int32_t		arg_1;
 	int32_t		arg_2;
 	int32_t		address;
-	int32_t		value;
+	int64_t		value;
 	uint8_t		type_of_param;
 
 	value = 0;
@@ -44,5 +44,5 @@ void		op_ldi(t_vm *vm, t_cursor *cursor)
 	value = value | vm->arena[modulo(address + 2, MEM_SIZE)];
 	value = value << 8;
 	value = value | vm->arena[modulo(address + 3, MEM_SIZE)];
-	cursor->registries[cursor->param[2]] = value;
+	cursor->registries[cursor->param[2]] = (int32_t)value;
 }
