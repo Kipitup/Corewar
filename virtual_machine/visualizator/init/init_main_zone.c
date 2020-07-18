@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/20 09:15:55 by francis           #+#    #+#             */
-/*   Updated: 2020/07/18 11:38:49 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/18 11:45:42 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,15 @@ void	draw_header_rec(t_window *win)
 void	draw_player_info_comm_rec(t_vm *vm, t_window *win, t_all_rec *all_rec)
 {
 	SDL_Rect	main_rec;
+	SDL_Point	point;
 	int			x;
 	int			y;
 
 	x = (win->w * 0.75) + 15;
 	y = win->h * 0.11;
 	main_rec = init_new_rect(x, y, win->w * 0.24, win->h * 0.885);
-	player_box(vm, win, all_rec, x + 15, y + 25);
+	point = set_point(x + 15, y + 25);
+	player_box(vm, win, all_rec, point);
 	info_box(win, all_rec, x + 15, y + 450);
 	command_box(win, all_rec, x + 15, y + win->h * 0.75);
 }

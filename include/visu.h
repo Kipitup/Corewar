@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/20 09:28:58 by francis           #+#    #+#             */
-/*   Updated: 2020/07/18 11:32:10 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/18 11:46:39 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void			purple_writing(t_window *win, SDL_Rect *rect, char *str);
 /*
 ** ****************************** DRAWING **************************************
 */
-void			player_box(t_vm *vm, t_window *w, t_all_rec *rec, int x, int y);
+void			player_box(t_vm *vm, t_window *w, t_all_rec *rec, SDL_Point pt);
 void			info_box(t_window *win, t_all_rec *rec, int x, int y);
 void			command_box(t_window *win, t_all_rec *rec,int x, int y);
 void			draw_arena(t_window *win);
