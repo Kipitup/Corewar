@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/15 17:58:10 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/17 17:54:39 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/18 19:34:17 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*get_dquote_string(t_data *data)
 	data->column++;
 	if (is_end_line(data->input[data->column]) == true)
 		exit_error(data, PARSE_ERROR);
-	while (is_end_line(data->input[data->column + i]) == false
+	while (data->input[data->column + i] != '\0'
 		&& data->input[data->column + i] != '"')
 	{
 		i++;
