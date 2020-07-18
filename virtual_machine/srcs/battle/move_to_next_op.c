@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/02 15:44:13 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/16 10:33:48 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/07/18 15:23:42 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 /*
 ** A parameter can either be 0b01 (register), 0b10 (direct), or 0b11 (indirect).
 */
+
 void		move_to_next_op(t_vm *vm, t_cursor *cursor, uint8_t op_code)
 {
 	uint8_t		bytecode;

@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/29 18:34:53 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/18 13:51:31 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/07/18 16:16:35 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,9 @@ static void			execute_operation(t_vm *vm, t_cursor *cursor)
 			ret = check_bytecode_and_param(op_code, bytecode);
 		}
 		if (ret != FALSE)
-		{
-			ft_dprintf(STD_ERR, "\n{c_yellow}ope: %s{c_end} cursor is on %zu\n", g_op_tab[op_code].name, cursor->pc);
 			ret = get_param(vm, cursor, (cursor->pc + 1) % MEM_SIZE);
-		}
 		if (ret != FALSE)
 			g_op_tab[op_code].op_func(vm, cursor);
-		else
-			ft_perror("Not a good param, go to next byte", __FILE__, __LINE__);
 		if (op_code != OPE_ZJMP || cursor->carry == FALSE)
 			move_to_next_op(vm, cursor, op_code);
 	}
@@ -59,5 +54,4 @@ void				lets_fight(t_vm *vm, t_cursor *cursor)
 			execute_operation(vm, cursor);
 		cursor = cursor->next;
 	}
-	ft_dprintf(STD_ERR, "{c_yellow}|-------------------------------------|{c_end}\n");
 }

@@ -6,7 +6,7 @@
 #    By: amartino <amartino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/26 11:56:39 by amartino          #+#    #+#              #
-#    Updated: 2020/07/18 15:55:36 by francis          ###   ########.fr        #
+#    Updated: 2020/07/17 23:36:17 by francis          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
                      ####################################
@@ -95,7 +95,6 @@ SRCS += set_up_arena
 
 # operation
 SRCS += check_bytecode_and_param
-SRCS += operation
 SRCS += op
 SRCS += live
 SRCS += ld

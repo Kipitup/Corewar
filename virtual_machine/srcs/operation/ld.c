@@ -6,16 +6,16 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/01 14:20:21 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/17 13:34:48 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/07/18 15:25:04 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
 /*
-**	Loads the value passed in the first parameter (DIR_CODE/IND_CODE) inside of the
-**	second argument (REG_CODE). If the value passed in the register was equal to
-**	zero then the carry = 1, if it wasn't null then carry = 0.
+**	Loads the value passed in the first parameter (DIR_CODE/IND_CODE) inside
+**	of the second argument (REG_CODE). If the value passed in the register was
+**	equal to zero then the carry = 1, if it wasn't null then carry = 0.
 */
 
 void		op_ld(t_vm *vm, t_cursor *cursor)

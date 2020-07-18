@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/01 18:12:42 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/04 10:22:35 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/07/18 15:38:04 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,10 @@
 ** That is why if the bytecode == 3 (0b11), I increment it to 4 (0b100) to
 ** match the param type.
 */
+
 static uint8_t		is_param_ok(uint8_t bytecode_chunk, uint8_t type_param)
 {
-	uint8_t 	ret;
+	uint8_t		ret;
 
 	ret = FALSE;
 	if (bytecode_chunk >= 0b01 && bytecode_chunk <= 0b11)
@@ -45,6 +46,7 @@ static uint8_t		is_param_ok(uint8_t bytecode_chunk, uint8_t type_param)
 ** A parameter can either be 0b01, 0b10, or 0b11.
 ** The bytecode_chunk contain the 2 bits of the param type, hence the bit shift.
 */
+
 uint8_t				check_bytecode_and_param(uint8_t op_code, uint8_t bytecode)
 {
 	uint8_t		ret;
@@ -53,17 +55,17 @@ uint8_t				check_bytecode_and_param(uint8_t op_code, uint8_t bytecode)
 	ret = FALSE;
 	if (g_op_tab[op_code].nb_param >= 1)
 	{
-		bytecode_chunk = (bytecode & 0b11000000) >> 6; 
+		bytecode_chunk = (bytecode & 0b11000000) >> 6;
 		ret = is_param_ok(bytecode_chunk, g_op_tab[op_code].type_param[0]);
 	}
 	if (g_op_tab[op_code].nb_param >= 2 && ret != FALSE)
 	{
-		bytecode_chunk = (bytecode & 0b00110000) >> 4; 
+		bytecode_chunk = (bytecode & 0b00110000) >> 4;
 		ret = is_param_ok(bytecode_chunk, g_op_tab[op_code].type_param[1]);
 	}
 	if (g_op_tab[op_code].nb_param >= 3 && ret != FALSE)
 	{
-		bytecode_chunk = (bytecode & 0b00001100) >> 2; 
+		bytecode_chunk = (bytecode & 0b00001100) >> 2;
 		ret = is_param_ok(bytecode_chunk, g_op_tab[op_code].type_param[2]);
 	}
 	return (ret);

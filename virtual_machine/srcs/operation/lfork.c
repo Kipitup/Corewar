@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/01 14:25:49 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/18 15:15:00 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/18 15:28:22 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@ void		op_lfork(t_vm *vm, t_cursor *cursor)
 	{
 		new_cursor->next = vm->cursor;
 		vm->cursor = new_cursor;
+	}
+	else
+	{
 		clean_vm(&vm);
 		exit(EXIT_FAILURE);
 	}

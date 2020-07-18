@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/29 10:32:07 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/17 16:43:20 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/07/18 15:22:05 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void		annonce_player(t_player **all_players)
 	while (i < MAX_PLAYERS && all_players[i] != NULL)
 	{
 		p = all_players[i];
-		ft_printf("\n* Player %zu, weighing %zu bytes, \"%s\" (\"%s\") !", p->id,
-				p->size, p->name->str, p->comment->str);
+		ft_printf("\n* Player %zu, weighing %zu bytes, \"%s\" (\"%s\") !",
+				p->id, p->size, p->name->str, p->comment->str);
 		i++;
 	}
 }

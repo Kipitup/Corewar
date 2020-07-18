@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/29 14:38:45 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/18 15:41:13 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/18 16:16:35 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,13 @@ static void			remove_cursor(t_vm *vm)
 static uint8_t		remove_dead_cursor(t_vm *vm)
 {
 	t_cursor		*tmp;
-	static uint8_t	player[5] = {0, 0, 0, 0, 0};
+	uint8_t			player[5];
 	uint8_t			alive;
 
 	alive = 0;
 	remove_cursor(vm);
 	tmp = vm->cursor;
+	ft_bzero(&(player), 5);
 	while (tmp != NULL)
 	{
 		if (player[tmp->id] == 0)
@@ -109,7 +110,6 @@ void				battle(t_vm *vm)
 		if (cycle == vm->cycle_to_die)
 		{
 			cycle = 0;
-			ft_dprintf(STD_ERR, "\n{c_red}cycle_to_die %ld{c_end}\n", vm->cycle_to_die);
 			vm->nb_of_player_alive = check(vm);
 		}
 	}
