@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 11:05:47 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/18 17:54:22 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/07/18 18:05:05 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void		usage(void)
 [(-n num) champ1.cor] ...\n");
 }
 
-int		main(int ac, char **av)
+int				main(int ac, char **av)
 {
 	t_vm	*vm;
 
