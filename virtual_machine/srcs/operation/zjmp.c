@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/01 14:23:56 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/18 11:48:23 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/07/18 12:59:40 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 void		op_zjmp(t_vm *vm, t_cursor *cursor)
 {
-	int32_t		arg;
+	int16_t		arg;
 	int32_t		address;
 
 	(void)vm;

@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/29 18:34:53 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/18 11:14:02 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/07/18 13:51:31 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ static void			execute_operation(t_vm *vm, t_cursor *cursor)
 
 	ret = TRUE;
 	op_code = cursor->op_code;
-	ft_dprintf(STD_ERR, "op_code to check %02x | cursor is on %zu\n", op_code, cursor->pc);
 	if (op_code > 0 && op_code <= NB_OF_OPE)
 	{
 		if (g_op_tab[op_code].bytecode == TRUE)
@@ -60,5 +59,5 @@ void				lets_fight(t_vm *vm, t_cursor *cursor)
 			execute_operation(vm, cursor);
 		cursor = cursor->next;
 	}
-	ft_dprintf(STD_ERR, "|  ");
+	ft_dprintf(STD_ERR, "{c_yellow}|-------------------------------------|{c_end}\n");
 }

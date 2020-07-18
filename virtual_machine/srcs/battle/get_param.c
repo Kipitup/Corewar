@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/02 18:32:55 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/17 16:35:34 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/07/18 14:06:41 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int32_t	get_ind(t_vm *vm, t_cursor *cursor, size_t pc, size_t i)
 	value = value | vm->arena[pc % MEM_SIZE];
 	value = value << 8;
 	value = value | vm->arena[(pc + 1) % MEM_SIZE];
-	cursor->param[i] = value;
+	cursor->param[i] = (int16_t)value;
 	ft_dprintf(STD_ERR, "param ind %02x (%d)\n", value, value);
 	return (IND_SIZE);
 }

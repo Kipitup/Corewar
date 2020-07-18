@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/17 09:54:14 by francis           #+#    #+#             */
-/*   Updated: 2020/07/18 11:35:08 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/18 12:37:34 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ void	end_visu(t_vm *vm, t_window *win)
 			event_handler(win);
 		ending_screen(vm, win, &all_rec);
 		SDL_RenderPresent(win->renderer);
-		sleep(50);
+//		sleep(50);
+		SDL_Delay(2000);
 		destroy_visual(win);
 	}
 }

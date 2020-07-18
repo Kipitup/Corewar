@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/01 14:25:49 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/17 14:25:58 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/07/18 12:59:16 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void		op_lfork(t_vm *vm, t_cursor *cursor)
 {
 	t_cursor	*new_cursor;
-	int32_t		arg_1;
+	int16_t		arg_1;
 	int32_t		address;
 
 	arg_1 = cursor->param[0];

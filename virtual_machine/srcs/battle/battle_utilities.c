@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/16 19:38:37 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/18 11:39:02 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/07/18 13:04:48 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,12 @@ int32_t		get_param_when_3_possible_type(t_vm *vm, t_cursor *cursor,
 	else if (type == T_IND)
 		arg = get_indirect(vm, cursor, 1);
 	else if (type == T_DIR)
-		arg = cursor->param[nb_arg];
+	{
+		if (g_op_tab[cursor->op_code].dir_size == 2)
+			arg = (int16_t)cursor->param[nb_arg];
+		else
+			arg = cursor->param[nb_arg];
+	}
 	return (arg);
 }
 
