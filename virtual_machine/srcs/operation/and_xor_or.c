@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/01 14:23:00 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/17 12:49:20 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/07/18 15:35:54 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 /*
 ** Performs a bitwise  AND - XOR - OR operation for the values of the first two
-** arguments (DIR_CODE/REG_CODE/IND_CODE) and writes the result to the third argument.
-** (REG_CODE)
+** arguments (DIR_CODE/REG_CODE/IND_CODE) and writes the result to the third
+**	argument (REG_CODE).
 **	if the result of the operation = 0 then carry = 0 else carry = 1.
 */
 

@@ -21,15 +21,6 @@ Norme: ./srcs/operation/ld.c
 Norme: ./srcs/operation/lfork.c
 Norme: ./srcs/operation/check_bytecode_and_param.c
 Error (line 15): C++ comment
-Error (line 26): bad spacing before is_param_ok
-Error (line 28, col 8): bad spacing
-Error (line 48): bad spacing before check_bytecode_and_param
-Error (line 56): spaces at the end of line
-Error (line 61): spaces at the end of line
-Error (line 66): spaces at the end of line
-Norme: ./srcs/operation/operation.c
-Error: file must end with a single empty line
-Error (line 13): multiple empty lines
 Norme: ./srcs/operation/lld.c
 Error (line 20): bad spacing before get_long_indirect
 Error (line 20): bad spacing after get_long_indirect
@@ -46,36 +37,17 @@ Error (line 16): line has 83 characters
 Norme: ./srcs/operation/ldi.c
 Error (line 16): line has 91 characters
 Norme: ./srcs/operation/and_xor_or.c
-Error (line 17): line has 87 characters
 Norme: ./srcs/clean/clean.c
-Error (line 53): Space before function name
-Error (line 53, col 4): bad spacing
 Norme: ./srcs/init/init_and_parse.c
-Error (line 41): bad spacing before opt_position
-Error (line 54): spaces at the end of line
-Error (line 54, col 52): bad character after ;
-Error (line 74): spaces at the end of line
-Error (line 76): line has 84 characters
-Error (line 95, col 5): bad spacing
-Error (line 106, col 23): space before ,
-Error (line 106, col 23): bad character after ,
-Error (line 119): bad spacing before init_and_parse
 Norme: ./srcs/init/parse_player_file.c
-Error (line 50, col 4): missing space after break
-Error (line 108): line has 83 characters
-Error (line 124): must begin only by tabulations
-Error (line 124): bad indentation
-Error (line 128): Empty line
-Error (line 129, col 1): no empty line before block
 Norme: ./srcs/init/parsing_utilities.c
 Norme: ./srcs/init/set_up_arena.c
 Norme: ./srcs/battle/battle.c
-Error (line 84): function battle has 29 lines
-Error (line 97, col 3): missing space after break
-Error (line 109): line has 85 characters
-Error (line 109): bad indentation
-Error (line 112): spaces at the end of line
-Error (line 112, col 1): no newline after block
+Error (line 89): function battle has 30 lines
+Error (line 102, col 3): missing space after break
+Error (line 114): line has 89 characters
+Error (line 118): spaces at the end of line
+Error (line 118, col 1): no newline after block
 Norme: ./srcs/battle/move_to_next_op.c
 Norme: ./srcs/battle/lets_fight.c
 Error (line 15): function execute_operation has 27 lines
@@ -83,10 +55,5 @@ Error (line 32): line has 118 characters
 Error (line 62): line has 87 characters
 Norme: ./srcs/battle/get_param.c
 Error (line 28): get_dir have 5 parameters
-Error (line 29, col 19): space before )
-Error (line 66): line has 94 characters
-Error (line 72): line has 82 characters
-Error (line 99): line has 89 characters
-Error (line 99): spaces at the end of line
-Error (line 103): spaces at the end of line
+Error (line 66): line has 92 characters
 Norme: ./srcs/battle/battle_utilities.c
