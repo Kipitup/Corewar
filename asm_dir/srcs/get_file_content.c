@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 12:43:06 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/18 10:33:25 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/18 15:50:26 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,16 @@ bool	is_empty_line(char *s)
 void	get_file_content(t_data *data)
 {
 	ssize_t		ret;
+	t_vector	*vct;
+	size_t		len;
 
-	while ((ret = get_next_line(data->fd_s, &data->input)) > 0)
+	while ((ret = vct_read_line(data->fd_s, &vct)) > 0)
 	{
+		data->input = ft_strdup(vct_getstr(vct));
+		len = vct_len(vct);
+		vct_del(&vct);
+		if (ft_strlen(data->input) < len)
+			exit_error(data, PARSE_ERROR);
 		data->line++;
 		data->column = 0;
 		if (is_empty_line(data->input) == false)
