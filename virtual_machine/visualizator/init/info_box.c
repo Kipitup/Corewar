@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/20 20:12:40 by francis           #+#    #+#             */
-/*   Updated: 2020/07/18 11:16:03 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/18 11:40:20 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void		info_box(t_window *win, t_all_rec *all_rec, int x, int y)
 	SDL_Rect	nb_live_rec;
 	SDL_Rect	counter_rec;
 	SDL_Rect	cycle_rec;
-	
+
 	to_die_rec = init_new_rect(x, y, win->w * 0.08, win->h * 0.02);
 	delta_rec = init_new_rect(x, y + 50, win->w * 0.08, win->h * 0.02);
 	nb_live_rec = init_new_rect(x, y + 100, win->w * 0.08, win->h * 0.02);

@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/04 12:10:13 by francis           #+#    #+#             */
-/*   Updated: 2020/07/18 10:13:11 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/18 11:37:04 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	init_pause_rec(t_window *win, t_all_rec *all_rec, int x, int y)
 	all_rec->run_pause = run_pause;
 }
 
-void	command_box(t_window *win, t_all_rec *all_rec, int x, int y)
+void		command_box(t_window *win, t_all_rec *all_rec, int x, int y)
 {
 	SDL_Rect	command_rec;
 	SDL_Rect	up_speed_rec;

@@ -6,13 +6,13 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/04 09:19:26 by francis           #+#    #+#             */
-/*   Updated: 2020/07/17 17:26:56 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/18 11:34:23 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "visu.h"
 
-static int8_t uint8_t_to_hexa(char *str, uint8_t arena_mem)
+static int8_t	uint8_t_to_hexa(char *str, uint8_t arena_mem)
 {
 	char	*tmp;
 	int8_t	ret;
@@ -37,7 +37,7 @@ static int8_t uint8_t_to_hexa(char *str, uint8_t arena_mem)
 	return (ret);
 }
 
-void	init_arena(t_window *win)
+void			init_arena(t_window *win)
 {
 	SDL_Point	point;
 	SDL_Rect	rec;
@@ -59,7 +59,7 @@ void	init_arena(t_window *win)
 	}
 }
 
-void	active_arena(t_vm *vm, t_window *win)
+void			active_arena(t_vm *vm, t_window *win)
 {
 	SDL_Point			point;
 	SDL_Rect			rec;
@@ -74,7 +74,7 @@ void	active_arena(t_vm *vm, t_window *win)
 	{
 		rec = init_new_rect(point.x, point.y, win->w * 0.009, win->h * 0.015);
 		uint8_t_to_hexa(mem, vm->arena[count]);
-		color[vm->arena_owner[count]](win, &rec, mem); 
+		color[vm->arena_owner[count]](win, &rec, mem);
 		point.x = point.x + win->w * 0.012;
 		if ((count + 1) % 64 == 0 && count != 0)
 		{

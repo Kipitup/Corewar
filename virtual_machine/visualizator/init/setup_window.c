@@ -6,19 +6,19 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 12:03:48 by francis           #+#    #+#             */
-/*   Updated: 2020/07/18 10:16:40 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/18 11:41:29 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "visu.h"
 
 /*
- **	setup the window to host program corewar.
- **	important steps are to create the window depending on the user's screen
- **	and set the renderer. Renderer depends on the surface of the window.
- **	Avoid using directly the surface so SDL will not loose the pointer to it,
- **	As the renderer works on the surface.
- */
+**	setup the window to host program corewar.
+**	important steps are to create the window depending on the user's screen
+**	and set the renderer. Renderer depends on the surface of the window.
+**	Avoid using directly the surface so SDL will not loose the pointer to it,
+**	As the renderer works on the surface.
+*/
 static void		init_window_variable(t_window *win, t_vm *vm)
 {
 		win->running = ON;
@@ -31,7 +31,7 @@ static void		init_window_variable(t_window *win, t_vm *vm)
 static int8_t	create_window(t_window *win, t_vm *vm)
 {
 	SDL_DisplayMode	display_info;
-	int8_t	ret;
+	int8_t			ret;
 
 	ret = FAILURE;
 	if (SDL_Init(SDL_INIT_EVERYTHING) == SUCCESS && TTF_Init() != FAILURE)
@@ -52,7 +52,7 @@ static int8_t	create_window(t_window *win, t_vm *vm)
 	return (ret);
 }
 
-void		setup_window(t_vm *vm, t_window *win)
+void			setup_window(t_vm *vm, t_window *win)
 {
 	t_all_rec rec;
 
@@ -60,7 +60,7 @@ void		setup_window(t_vm *vm, t_window *win)
 	{
 		if (SDL_SetRenderDrawColor(win->renderer, 20, 20, 20, 0) >= 0)
 		{
-			draw_init_zones(vm, win, &rec); 
+			draw_init_zones(vm, win, &rec);
 			draw_arena(win);
 			SDL_RenderPresent(win->renderer);
 		}

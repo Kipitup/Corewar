@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/20 09:28:58 by francis           #+#    #+#             */
-/*   Updated: 2020/07/18 10:43:55 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/18 11:32:10 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ typedef struct	s_window
 
 typedef struct	s_rectangle
 {
-	SDL_Rect	run_pause;	
-	SDL_Rect	to_die;	
-	SDL_Rect	cycle_frame;	
-	SDL_Rect	cycle_counter;	
+	SDL_Rect	run_pause;
+	SDL_Rect	to_die;
+	SDL_Rect	cycle_frame;
+	SDL_Rect	cycle_counter;
 	SDL_Rect	name1;
 	SDL_Rect	name2;
 	SDL_Rect	name3;
@@ -95,15 +95,15 @@ void			purple_writing(t_window *win, SDL_Rect *rect, char *str);
 /*
 ** ****************************** DRAWING **************************************
 */
-void			player_box(t_vm *vm, t_window *win, t_all_rec *rec, int x, int y);
+void			player_box(t_vm *vm, t_window *w, t_all_rec *rec, int x, int y);
 void			info_box(t_window *win, t_all_rec *rec, int x, int y);
 void			command_box(t_window *win, t_all_rec *rec,int x, int y);
 void			draw_arena(t_window *win);
 void			draw_header_rec(t_window *win);
-void			draw_player_info_comm_rec(t_vm *vm, t_window *win, t_all_rec *rec);
-void			player1_input_writing(t_window *win, t_all_rec *rec, int x, int y);
-void			player2_input_writing(t_window *win, t_all_rec *rec, int x, int y);
-void			player3_input_writing(t_window *win, t_all_rec *rec, int x, int y);
-void			player4_input_writing(t_window *win, t_all_rec *rec, int x, int y);
+void			draw_player_info_comm_rec(t_vm *vm, t_window *w, t_all_rec *rc);
+void			player1_input_writing(t_window *w, t_all_rec *rc, int x, int y);
+void			player2_input_writing(t_window *w, t_all_rec *rc, int x, int y);
+void			player3_input_writing(t_window *w, t_all_rec *rc, int x, int y);
+void			player4_input_writing(t_window *w, t_all_rec *rc, int x, int y);
 
 #endif

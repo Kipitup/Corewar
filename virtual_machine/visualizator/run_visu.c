@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/17 09:54:14 by francis           #+#    #+#             */
-/*   Updated: 2020/07/18 10:14:24 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/18 11:35:08 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	run_visu(t_vm *vm, t_window *win)
 	if (win->running == ON)
 	{
 		SDL_RenderClear(win->renderer);
-		draw_init_zones(vm, win, &all_rec); 
+		draw_init_zones(vm, win, &all_rec);
 		if (SDL_PollEvent(&win->event) != 0)
 			event_handler(win);
 		active_zones(vm, win, &all_rec);
@@ -52,7 +52,7 @@ void	end_visu(t_vm *vm, t_window *win)
 	if (win != NULL)
 	{
 		SDL_RenderClear(win->renderer);
-		draw_init_zones(vm, win, &all_rec); 
+		draw_init_zones(vm, win, &all_rec);
 		if (SDL_PollEvent(&win->event) != 0)
 			event_handler(win);
 		ending_screen(vm, win, &all_rec);

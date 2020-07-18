@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/20 11:28:03 by francis           #+#    #+#             */
-/*   Updated: 2020/07/17 15:30:27 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/18 11:35:59 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,10 @@ SDL_Rect	init_new_rect(int x, int y, int width, int height)
 	return (new_rect);
 }
 
-/*
-**	defines a two dimensional point
-*/
 SDL_Point	set_point(int x, int y)
 {
 	SDL_Point	point;
-	
+
 	point.x = x;
 	point.y = y;
 	return (point);

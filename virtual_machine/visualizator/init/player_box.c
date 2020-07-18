@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/20 19:22:40 by francis           #+#    #+#             */
-/*   Updated: 2020/07/18 10:46:09 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/18 11:39:20 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void	player1(t_window *win, t_all_rec *all_rec, int x, int y)
 	player1_input_writing(win, all_rec, x, y);
 }
 
-void	player_box(t_vm *vm, t_window *win, t_all_rec *rec, int x, int y)
+void		player_box(t_vm *vm, t_window *win, t_all_rec *rec, int x, int y)
 {
 	if (win->nb_of_player >= 1)
 	{
