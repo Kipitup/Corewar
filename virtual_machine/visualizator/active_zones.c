@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 16:16:21 by francis           #+#    #+#             */
-/*   Updated: 2020/07/18 14:16:11 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/18 17:20:12 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,24 @@ static void	info_rec(t_vm *vm, t_window *win, t_all_rec *all_rec)
 	char	*tmp_to_die;
 	char	*tmp_cycle_counter;
 	char	*tmp_cycle_frame;
+	char	*tmp_live_counter;
+	char	*tmp_check_counter;
 
 	tmp_to_die = ft_itoa(vm->cycle_to_die);
 	tmp_cycle_counter = ft_itoa(vm->cycle_counter);
 	tmp_cycle_frame = ft_itoa(win->cycle_frame);
+	tmp_live_counter = ft_itoa(vm->live_counter);
+	tmp_check_counter = ft_itoa(vm->check_counter);
 	classic_writing(win, &all_rec->to_die, tmp_to_die);
 	classic_writing(win, &all_rec->cycle_counter, tmp_cycle_counter);
 	classic_writing(win, &all_rec->cycle_frame, tmp_cycle_frame);
+	classic_writing(win, &all_rec->live_counter, tmp_live_counter);
+	classic_writing(win, &all_rec->check_counter, tmp_check_counter);
 	ft_strdel(&tmp_to_die);
 	ft_strdel(&tmp_cycle_counter);
 	ft_strdel(&tmp_cycle_frame);
+	ft_strdel(&tmp_live_counter);
+	ft_strdel(&tmp_check_counter);
 }
 
 static void	run_pause_rec(t_window *win, t_all_rec *all_rec)

@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/20 20:12:40 by francis           #+#    #+#             */
-/*   Updated: 2020/07/18 11:40:20 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/18 17:23:43 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,28 @@ void		info_box(t_window *win, t_all_rec *all_rec, int x, int y)
 	classic_writing(win, &counter_rec, "CYCLE_COUNTER:");
 	classic_writing(win, &cycle_rec, "CYCLE_PER_FRAME:");
 	info_input_writing(win, all_rec, x, y);
+}
+
+static void	live_and_check_writing(t_window *win, t_all_rec *rec, int x, int y)
+{
+	SDL_Rect	live_input;
+	SDL_Rect	check_input;
+
+	x = x + win->w * 0.10;
+	live_input = init_new_rect(x, y + 250, win->w * 0.015, win->h * 0.02);
+	check_input = init_new_rect(x, y + 300, win->w * 0.015, win->h * 0.02);
+	rec->live_counter = live_input;
+	rec->check_counter= check_input;
+}
+
+void		live_and_check_box(t_window *win, t_all_rec *all_rec, int x, int y)
+{
+	SDL_Rect	live_rec;
+	SDL_Rect	check_rec;
+
+	live_rec = init_new_rect(x, y + 250, win->w * 0.08, win->h * 0.02);
+	check_rec = init_new_rect(x, y + 300, win->w * 0.08, win->h * 0.02);
+	classic_writing(win, &live_rec, "LIVE_COUNTER:");
+	classic_writing(win, &check_rec, "CHECK_COUNTER:");
+	live_and_check_writing(win, all_rec, x, y);
 }

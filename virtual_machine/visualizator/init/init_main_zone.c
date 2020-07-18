@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/20 09:15:55 by francis           #+#    #+#             */
-/*   Updated: 2020/07/18 11:45:42 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/18 17:19:37 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	draw_player_info_comm_rec(t_vm *vm, t_window *win, t_all_rec *all_rec)
 	point = set_point(x + 15, y + 25);
 	player_box(vm, win, all_rec, point);
 	info_box(win, all_rec, x + 15, y + 450);
+	live_and_check_box(win, all_rec, x + 15, y + 450);
 	command_box(win, all_rec, x + 15, y + win->h * 0.75);
 }
 
