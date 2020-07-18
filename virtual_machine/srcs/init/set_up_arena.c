@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/26 12:09:56 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/17 17:48:14 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/18 19:24:57 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ t_vm				*set_up_arena(t_vm *vm)
 	int8_t		ret;
 
 	ret = init_cursor(vm);
-	if (ret == FAILURE)
+	if (ret == FAILURE || vm->cursor == NULL)
 		clean_vm(&vm);
 	else
 	{
