@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/01 14:21:00 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/18 15:51:00 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/07/18 16:25:12 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,3 @@ void		op_st(t_vm *vm, t_cursor *cursor)
 		vm->arena_owner[modulo(addr + 3, MEM_SIZE)] = cursor->id;
 	}
 }
-
-//		ft_dprintf(STD_ERR, "addr is %d\n", addr);
-//		ft_dprintf(STD_ERR, "arg 2 is %d registery : %d\n", arg_2, arg_1);

@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/01 14:25:17 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/18 11:45:10 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/07/18 16:22:23 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,10 @@
 **	is not applied.
 **	if the result of the operation = 0 then carry = 0 else carry = 1.
 */
+
 static int32_t	get_long_indirect(t_vm *vm, t_cursor *cursor, uint8_t nb_arg)
 {
-	size_t 		pc;
+	size_t		pc;
 	int32_t		value;
 
 	value = 0;
@@ -33,6 +34,7 @@ static int32_t	get_long_indirect(t_vm *vm, t_cursor *cursor, uint8_t nb_arg)
 	value = value | vm->arena[modulo(pc + 3, MEM_SIZE)];
 	return (value);
 }
+
 void			op_lld(t_vm *vm, t_cursor *cursor)
 {
 	int32_t		arg_1;

@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/01 14:25:35 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/18 15:26:04 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/07/18 16:24:31 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,17 @@
 **	Works exactly as the ldi operation appart from the fact that the IDX_MOD
 **	is not applied.
 */
+
+static void	op_lldi_bis(t_vm *vm, int32_t value, int32_t address)
+{
+	value = value | vm->arena[modulo(address, MEM_SIZE)];
+	value = value << 8;
+	value = value | vm->arena[modulo(address + 1, MEM_SIZE)];
+	value = value << 8;
+	value = value | vm->arena[modulo(address + 2, MEM_SIZE)];
+	value = value << 8;
+	value = value | vm->arena[modulo(address + 3, MEM_SIZE)];
+}
 
 void		op_lldi(t_vm *vm, t_cursor *cursor)
 {
@@ -36,13 +47,7 @@ void		op_lldi(t_vm *vm, t_cursor *cursor)
 	else
 		return ;
 	address = cursor->pc + (arg_1 + arg_2);
-	value = value | vm->arena[modulo(address, MEM_SIZE)];
-	value = value << 8;
-	value = value | vm->arena[modulo(address + 1, MEM_SIZE)];
-	value = value << 8;
-	value = value | vm->arena[modulo(address + 2, MEM_SIZE)];
-	value = value << 8;
-	value = value | vm->arena[modulo(address + 3, MEM_SIZE)];
+	op_lldi_bis(vm, value, address);
 	cursor->registries[cursor->param[2]] = value;
 	cursor->carry = (value == 0) ? 1 : 0;
 }

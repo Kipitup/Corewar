@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/26 12:14:01 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/17 14:18:57 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/07/18 16:32:22 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void			print_all_player_and_option(t_vm *vm)
 	i = 0;
 	if (vm != NULL)
 	{
-		ft_printf("option: %08b\n",  2, vm->option);
+		ft_printf("option: %08b\n", 2, vm->option);
 		ft_printf("dump nb %zu\n\n", vm->opt_dump);
 		while (i < MAX_PLAYERS)
 		{

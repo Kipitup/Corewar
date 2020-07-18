@@ -6,13 +6,11 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/01 18:12:42 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/18 15:38:04 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/18 16:21:48 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
-
-//ft_printf("bytecode       %08b\n", 2, bytecode);
 
 /*
 ** The problem with the param type is that it doesn't match the parameter.

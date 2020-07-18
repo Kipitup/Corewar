@@ -6,15 +6,15 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/01 14:26:10 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/17 13:40:44 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/07/18 16:21:32 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
 /*
-** This operation takes the value from the registry passed as argument (REG_CODE),
-** casts it to the type char and prints it to the standard output.
+** This operation takes the value from the registry passed as argument
+** (REG_CODE), casts it to the type char and prints it to the standard output.
 */
 
 void		op_aff(t_vm *vm, t_cursor *cursor)
