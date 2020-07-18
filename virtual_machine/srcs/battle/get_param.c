@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/02 18:32:55 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/17 16:35:34 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/07/18 15:14:14 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ static int32_t	get_ind(t_vm *vm, t_cursor *cursor, size_t pc, size_t i)
 	value = value | vm->arena[pc % MEM_SIZE];
 	value = value << 8;
 	value = value | vm->arena[(pc + 1) % MEM_SIZE];
-	cursor->param[i] = value;
+	cursor->param[i] = (int16_t)value;
 	ft_dprintf(STD_ERR, "param ind %02x (%d)\n", value, value);
 	return (IND_SIZE);
 }
 
 static int32_t	get_dir(t_vm *vm, t_cursor *cursor, size_t pc, size_t i,
-		uint8_t dir_size )
+		uint8_t dir_size)
 {
 	int64_t		value;
 
@@ -48,7 +48,7 @@ static int32_t	get_dir(t_vm *vm, t_cursor *cursor, size_t pc, size_t i,
 	return (dir_size);
 }
 
-uint8_t			get_param_with_bytecode(t_vm *vm, t_cursor *cursor, size_t pc,
+uint8_t			get_param_with_bytecode(t_vm *vm, t_cursor *curso, size_t pc,
 		uint8_t bytecode)
 {
 	size_t		i;
@@ -62,16 +62,16 @@ uint8_t			get_param_with_bytecode(t_vm *vm, t_cursor *cursor, size_t pc,
 		bytecode_chunk = (bytecode & (0b11 << bit_shift)) >> bit_shift;
 		if (bytecode_chunk == 0b01)
 		{
-			cursor->param[i] = vm->arena[pc % MEM_SIZE];
-			ft_dprintf(STD_ERR, "param reg %02x (%d)\n", cursor->param[i], cursor->param[i]);
-			if (cursor->param[i] < 1 || cursor->param[i] > REG_NUMBER)
+			curso->param[i] = vm->arena[pc % MEM_SIZE];
+			ft_dprintf(STD_ERR, "param reg %02x (%d)\n", curso->param[i], curso->param[i]);
+			if (curso->param[i] < 1 || curso->param[i] > REG_NUMBER)
 				return (FALSE);
 			pc++;
 		}
 		else if (bytecode_chunk == 0b10)
-			pc += get_dir(vm, cursor, pc, i, g_op_tab[cursor->op_code].dir_size);
+			pc += get_dir(vm, curso, pc, i, g_op_tab[curso->op_code].dir_size);
 		else if (bytecode_chunk == 0b11)
-			pc += get_ind(vm, cursor, pc, i);
+			pc += get_ind(vm, curso, pc, i);
 		bit_shift -= 2;
 		i++;
 	}
@@ -96,11 +96,11 @@ uint8_t			get_param(t_vm *vm, t_cursor *cursor, size_t pc)
 }
 
 /*
-** static uint8_t		param_type(t_vm *vm, t_cursor *cursor, uint8_t bit_shift)		
+** static uint8_t	param_type(t_vm *vm, t_cursor *cursor, uint8_t bit_shift)
 ** {
 ** 	uint8_t		bytecode;
 ** 	uint8_t		bytecode_chunk;
-** 
+**
 ** 	bytecode = vm->arena[cursor->pc + 1 % MEM_SIZE];
 ** 	bytecode_chunk = (bytecode & (0b11 << bit_shift)) >> bit_shift;
 ** 	return (bytecode_chunk);

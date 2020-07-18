@@ -20,7 +20,7 @@ then
 else
 	start=$keyword;
 fi
-make -j8 debug=1 > /dev/null
+make -j8 debug=1 visu=1 > /dev/null
 corewar_of=./result/test_corewar_origin.tmp
 corewar_pf=./result/test_corewar_personal.tmp
 diff_file=./result/diff.tmp

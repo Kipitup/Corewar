@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/01 14:24:37 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/18 12:20:47 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/18 13:01:58 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void				op_sti(t_vm *vm, t_cursor *cursor)
 	if (type_of_param == REG_CODE)
 		arg_3 = get_register(cursor, cursor->param[2]);
 	else if (type_of_param == DIR_CODE)
-		arg_3 = cursor->param[2];
+		arg_3 = (int16_t)cursor->param[2];
 	else
 		return ;
 	addr = cursor->pc + ((arg_2 + arg_3) % IDX_MOD);

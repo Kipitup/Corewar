@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/17 09:54:14 by francis           #+#    #+#             */
-/*   Updated: 2020/07/18 14:33:40 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/18 11:35:08 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	event_handler(t_window *win)
 void	run_visu(t_vm *vm, t_window *win)
 {
 	t_all_rec	all_rec;
-	
+
 	if (win->running == ON)
 	{
 		SDL_RenderClear(win->renderer);
