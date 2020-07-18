@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/01 14:18:54 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/18 11:14:27 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/07/18 16:42:54 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,5 @@ void		op_live(t_vm *vm, t_cursor *cursor)
 	cursor->last_live = vm->cycle_counter;
 	num = -cursor->param[0];
 	if (num > 0 && num <= nb_player)
-	{
 		vm->last_player_alive = num;
-		ft_dprintf(STD_ERR, "last player alive is %d\n", num * -1);
-	}
 }

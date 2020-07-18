@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/01 14:23:56 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/18 12:59:40 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/07/18 16:41:19 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void		op_zjmp(t_vm *vm, t_cursor *cursor)
 	int32_t		address;
 
 	(void)vm;
-	ft_dprintf(STD_ERR, "carry is %d\n", cursor->carry);
 	if (cursor->carry == TRUE)
 	{
 		arg = cursor->param[0];

@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 11:05:47 by amartinod         #+#    #+#             */
-/*   Updated: 2020/06/24 10:49:15 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/07/18 16:40:32 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ int		main(int ac, char **av)
 			vm = set_up_arena(vm);
 		if (vm != NULL)
 		{
-			annonce_player(vm->all_players);
+			if ((vm->option & OPT_VISU) == 0)
+				annonce_player(vm->all_players);
 			battle(vm);
 			if (vm->nb_of_player_alive == 0)
 				and_the_winner_is(vm);

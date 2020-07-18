@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/02 18:32:55 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/18 15:43:49 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/07/18 16:42:16 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ static int32_t	get_ind(t_vm *vm, t_cursor *cursor, size_t pc, size_t i)
 	value = value << 8;
 	value = value | vm->arena[modulo(pc + 1, MEM_SIZE)];
 	cursor->param[i] = (int16_t)value;
-	ft_dprintf(STD_ERR, "param ind %02x (%d)\n", value, value);
 	return (IND_SIZE);
 }
 
@@ -43,7 +42,6 @@ static int32_t	get_dir(t_vm *vm, t_cursor *cursor, size_t pc, size_t i)
 	else
 		value = (int16_t)value;
 	cursor->param[i] = (int32_t)value;
-	ft_dprintf(STD_ERR, "param dir %02x (%d)\n", value, value);
 	return (g_op_tab[cursor->op_code].dir_size);
 }
 

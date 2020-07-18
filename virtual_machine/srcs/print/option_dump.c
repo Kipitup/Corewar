@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/29 10:36:55 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/18 16:29:14 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/18 16:34:06 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static uint8_t	is_on_cursor(t_cursor *cursor, size_t i)
 }
 
 static void		dump_option_bis(size_t i, size_t dump_type)
-{			
+{
 	if (i % dump_type == 0)
 		ft_dprintf(STD_OUT, "\n0x%04x : ", i);
 	if (i % 8 == 0 && COLOR_MODE == TRUE)
