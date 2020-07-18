@@ -1,4 +1,6 @@
 #binary
+visu_corewar
+asm
 
 # Object files
 libftprintf/build/*.o
