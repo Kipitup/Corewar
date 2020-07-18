@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 14:03:49 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/18 19:05:54 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/07/18 19:14:13 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,10 @@ static int8_t	assign_player(t_vm *vm, t_player *player, size_t position)
 			i++;
 		}
 		if (i >= MAX_PLAYERS)
+		{
 			ret = ft_perror_failure(TOO_MANY_CHAMPS, __FILE__, __LINE__);
+			clean_player(&player);
+		}
 		else
 			ret = rearrange_player(vm, player, position, i);
 	}

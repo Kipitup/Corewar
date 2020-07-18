@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/29 10:32:07 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/18 15:22:05 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/18 19:14:48 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,5 @@ void		and_the_winner_is(t_vm *vm)
 	t_player	*p;
 
 	p = vm->all_players[vm->last_player_alive - 1];
-	ft_printf("Contestant %d, \"%s\", has won !\n", p->id, p->name->str);
+	ft_printf("\nContestant %d, \"%s\", has won !\n", p->id, p->name->str);
 }
