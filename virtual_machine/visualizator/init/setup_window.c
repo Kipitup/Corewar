@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 12:03:48 by francis           #+#    #+#             */
-/*   Updated: 2020/07/18 11:41:29 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/18 11:43:15 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,14 @@
 **	Avoid using directly the surface so SDL will not loose the pointer to it,
 **	As the renderer works on the surface.
 */
+
 static void		init_window_variable(t_window *win, t_vm *vm)
 {
-		win->running = ON;
-		win->play = VISU_START;
-		win->font = TTF_OpenFont(FONT_PATH, 70);
-		win->cycle_frame = 32;
-		win->nb_of_player = vm->nb_of_player_alive;
+	win->running = ON;
+	win->play = VISU_START;
+	win->font = TTF_OpenFont(FONT_PATH, 70);
+	win->cycle_frame = 32;
+	win->nb_of_player = vm->nb_of_player_alive;
 }
 
 static int8_t	create_window(t_window *win, t_vm *vm)

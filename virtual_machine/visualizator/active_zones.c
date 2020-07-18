@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 16:16:21 by francis           #+#    #+#             */
-/*   Updated: 2020/07/18 11:33:35 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/18 11:42:42 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 **	purple_writing(win, &all_rec->player1_live, "itoa(nb)");
 **	}
 */
+
 static void	info_rec(t_vm *vm, t_window *win, t_all_rec *all_rec)
 {
 	char	*tmp_to_die;
