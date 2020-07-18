@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/20 19:22:40 by francis           #+#    #+#             */
-/*   Updated: 2020/07/18 11:47:41 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/18 19:12:38 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,17 +57,17 @@ void		player_box(t_vm *vm, t_window *win, t_all_rec *rec, SDL_Point point)
 	}
 	if (win->nb_of_player >= 2)
 	{
-		player2(win, rec, point.x, point.y + 100);
+		player2(win, rec, point.x, point.y + 70);
 		blue_writing(win, &rec->name2, vm->all_players[1]->name->str);
 	}
 	if (win->nb_of_player >= 3)
 	{
-		player3(win, rec, point.x, point.y + 200);
+		player3(win, rec, point.x, point.y + 140);
 		green_writing(win, &rec->name3, vm->all_players[2]->name->str);
 	}
 	if (win->nb_of_player >= 4)
 	{
-		player4(win, rec, point.x, point.y + 300);
+		player4(win, rec, point.x, point.y + 210);
 		red_writing(win, &rec->name4, vm->all_players[3]->name->str);
 	}
 }
