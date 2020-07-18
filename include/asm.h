@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 12:01:37 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/18 11:04:28 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/18 20:18:29 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,21 @@
 # define NB_TOKEN			28
 # define NB_STATE			3
 
-# define TOO_FEW_ARG		"Too few argument"
-# define TOO_MUCH_ARG		"Too much arguments"
-# define INVALID_FILE_NAME	"Invalid file name"
-# define OPEN_FAILURE		"Cannot open file"
-# define MALLOC_FAILURE		"Cannot allocate memory"
-# define USAGE				"Usage: ./asm mychampion.s"
-# define PARSE_ERROR		"Parse error"
-# define TOO_LONG_NAME		"Program name too long"
-# define WRONG_LABEL_NAME	"Invalid label name"
-# define INVALID_ARG		"Invalid argument"
-# define UNDEFINED_LABEL	"Undefined label"
-# define NO_INSTRUCTION		"No instruction"
-# define NO_ARG				"Instruction without any argument"
-# define WRONG_REG_NB		"Invalid register number"
+# define TOO_FEW_ARG			"Too few argument"
+# define TOO_MUCH_ARG			"Too much arguments"
+# define INVALID_FILE_NAME		"Invalid file name"
+# define OPEN_FAILURE			"Cannot open file"
+# define MALLOC_FAILURE			"Cannot allocate memory"
+# define USAGE					"Usage: ./asm mychampion.s"
+# define PARSE_ERROR			"Parse error"
+# define TOO_LONG_NAME			"Program name too long"
+# define WRONG_LABEL_NAME		"Invalid label name"
+# define INVALID_ARG			"Invalid argument"
+# define UNDEFINED_LABEL		"Undefined label"
+# define NO_INSTRUCTION			"No instruction"
+# define NO_ARG					"Instruction without any argument"
+# define WRONG_REG_NB			"Invalid register number"
+# define LABEL_ALREADY_EXIST	"Label name already exists"
 
 # define REGISTER_SIZE		1
 # define SMALL_DIRECT_SIZE	2
