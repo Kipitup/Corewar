@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/01 14:23:56 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/17 17:07:23 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/07/18 11:48:23 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,6 @@ void		op_zjmp(t_vm *vm, t_cursor *cursor)
 	{
 		arg = cursor->param[0];
 		address = cursor->pc + (arg % IDX_MOD);
-		cursor->pc = address % MEM_SIZE;
+		cursor->pc = modulo(address, MEM_SIZE);
 	}
 }

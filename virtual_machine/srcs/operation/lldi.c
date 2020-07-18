@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/01 14:25:35 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/17 13:40:25 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/07/18 11:45:59 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,12 @@ void		op_lldi(t_vm *vm, t_cursor *cursor)
 	else
 		return ;
 	address = cursor->pc + (arg_1 + arg_2);
-	value = value | vm->arena[address % MEM_SIZE];
+	value = value | vm->arena[modulo(address, MEM_SIZE)];
 	value = value << 8;
-	value = value | vm->arena[(address + 1) % MEM_SIZE];
+	value = value | vm->arena[modulo(address + 1, MEM_SIZE)];
 	value = value << 8;
-	value = value | vm->arena[(address + 2) % MEM_SIZE];
+	value = value | vm->arena[modulo(address + 2, MEM_SIZE)];
 	value = value << 8;
-	value = value | vm->arena[(address + 3) % MEM_SIZE];
+	value = value | vm->arena[modulo(address + 3, MEM_SIZE)];
 	cursor->registries[cursor->param[2]] = value;
 }

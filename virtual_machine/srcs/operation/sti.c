@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/01 14:24:37 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/17 13:36:55 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/07/18 11:49:55 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 /*
 ** This operation writes the value of the first parameter (REG_CODE) at the
-** address (addr = (ARG2 (REG_CODE/DIR_CODE/IND_CODE) + ARG3 (REG_CODE/DIR_CODE)) % IDX_MOD).
+** address : addr = 
+** (ARG2 (REG_CODE/DIR_CODE/IND_CODE) + ARG3 (REG_CODE/DIR_CODE)) % IDX_MOD.
 */
 
 void				op_sti(t_vm *vm, t_cursor *cursor)
@@ -36,8 +37,8 @@ void				op_sti(t_vm *vm, t_cursor *cursor)
 	else
 		return ;
 	address = cursor->pc + ((arg_2 + arg_3) % IDX_MOD);
-	vm->arena[address % MEM_SIZE] = cursor->registries[arg_1] >> 24;
-	vm->arena[(address + 1) % MEM_SIZE] = cursor->registries[arg_1] >> 16;
-	vm->arena[(address + 2) % MEM_SIZE] = cursor->registries[arg_1] >> 8;
-	vm->arena[(address + 3) % MEM_SIZE] = cursor->registries[arg_1];
+	vm->arena[modulo(address, MEM_SIZE)] = cursor->registries[arg_1] >> 24;
+	vm->arena[modulo(address + 1, MEM_SIZE)] = cursor->registries[arg_1] >> 16;
+	vm->arena[modulo(address + 2, MEM_SIZE)] = cursor->registries[arg_1] >> 8;
+	vm->arena[modulo(address + 3, MEM_SIZE)] = cursor->registries[arg_1];
 }
