@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/29 14:38:45 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/18 16:16:35 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/18 15:07:36 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void				battle(t_vm *vm)
 		if (vm->option & OPT_DUMP && vm->opt_dump == vm->cycle_counter)
 		{
 			dump_option(vm);
-			break;
+			break ;
 		}
 		lets_fight(vm, vm->cursor);
 		run_visu(vm, &win);

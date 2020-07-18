@@ -6,15 +6,16 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/01 14:24:17 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/18 13:02:24 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/07/18 16:07:45 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
 /*
-**	Loads the value (value = ARG1 (DIR_CODE/REG_CODE/IND_CODE) + ARG2 (REG_CODE/DIR_CODE))
-**	of the first two arguments inside the third one (REG_CODE).
+**	Loads the value (value = ARG1 (DIR_CODE/REG_CODE/IND_CODE)
+**	+ ARG2 (REG_CODE/DIR_CODE)) of the first two arguments inside the third
+**	one (REG_CODE).
 */
 
 void		op_ldi(t_vm *vm, t_cursor *cursor)
