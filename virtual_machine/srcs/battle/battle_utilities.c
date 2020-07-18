@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/16 19:38:37 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/18 15:59:03 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/18 19:20:24 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ uint8_t		param_type(t_vm *vm, t_cursor *cursor, uint8_t bit_shift)
 	uint8_t		bytecode;
 	uint8_t		bytecode_chunk;
 
-	bytecode = vm->arena[cursor->pc + 1 % MEM_SIZE];
+	bytecode = vm->arena[(cursor->pc + 1) % MEM_SIZE];
 	bytecode_chunk = (bytecode & (0b11 << bit_shift)) >> bit_shift;
 	return (bytecode_chunk);
 }

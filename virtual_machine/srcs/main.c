@@ -6,13 +6,19 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 11:05:47 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/18 16:40:32 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/18 18:05:05 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-int		main(int ac, char **av)
+static void		usage(void)
+{
+	ft_printf("Usage: ./corewar -visu [(-dump32 | -dump64) n_cycles] \
+[(-n num) champ1.cor] ...\n");
+}
+
+int				main(int ac, char **av)
 {
 	t_vm	*vm;
 
@@ -32,6 +38,6 @@ int		main(int ac, char **av)
 		clean_vm(&vm);
 	}
 	else
-		ft_printf("Usage: \n");
+		usage();
 	return (EXIT_SUCCESS);
 }
