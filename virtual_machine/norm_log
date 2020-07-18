@@ -1,6 +1,5 @@
 Norme: ./srcs/main.c
 Norme: ./srcs/print/print_output.c
-Error (line 25): line has 82 characters
 Norme: ./srcs/print/print_debug.c
 Error (line 46, col 29): bad spacing
 Error (line 53): must begin only by tabulations
@@ -14,16 +13,12 @@ Norme: ./srcs/print/option_dump.c
 Error (line 32): function dump_option has 27 lines
 Error (line 49): line has 83 characters
 Norme: ./srcs/operation/add_sub.c
-Error (line 16): line has 82 characters
 Norme: ./srcs/operation/fork.c
 Norme: ./srcs/operation/op.c
 Norme: ./srcs/operation/zjmp.c
 Norme: ./srcs/operation/lldi.c
 Norme: ./srcs/operation/ld.c
-Error (line 16): line has 84 characters
 Norme: ./srcs/operation/lfork.c
-Error (line 28, col 1): no newline after block
-Error (line 28, col 2): no newline before block
 Norme: ./srcs/operation/check_bytecode_and_param.c
 Error (line 15): C++ comment
 Error (line 26): bad spacing before is_param_ok
@@ -43,6 +38,9 @@ Error (line 36): bad spacing before op_lld
 Norme: ./srcs/operation/live.c
 Norme: ./srcs/operation/sti.c
 Norme: ./srcs/operation/st.c
+Error (line 20): function op_st has 26 lines
+Error (line 37): Empty line
+Error (line 42): Empty line
 Norme: ./srcs/operation/aff.c
 Error (line 16): line has 83 characters
 Norme: ./srcs/operation/ldi.c
@@ -79,11 +77,10 @@ Error (line 109): bad indentation
 Error (line 112): spaces at the end of line
 Error (line 112, col 1): no newline after block
 Norme: ./srcs/battle/move_to_next_op.c
-Error (line 18): bad spacing before move_to_next_op
 Norme: ./srcs/battle/lets_fight.c
-Error (line 15): function execute_operation has 28 lines
-Error (line 23): line has 92 characters
-Error (line 33): line has 118 characters
+Error (line 15): function execute_operation has 27 lines
+Error (line 32): line has 118 characters
+Error (line 62): line has 87 characters
 Norme: ./srcs/battle/get_param.c
 Error (line 28): get_dir have 5 parameters
 Error (line 29, col 19): space before )
@@ -93,7 +90,3 @@ Error (line 99): line has 89 characters
 Error (line 99): spaces at the end of line
 Error (line 103): spaces at the end of line
 Norme: ./srcs/battle/battle_utilities.c
-Error: global scope bad aligned
-Error (line 15): spaces at the end of line
-Error (line 27, col 7): bad spacing
-Error (line 49): spaces at the end of line

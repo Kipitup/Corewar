@@ -6,13 +6,13 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/16 19:38:37 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/18 13:04:48 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/07/18 15:26:54 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-uint8_t		param_type(t_vm *vm, t_cursor *cursor, uint8_t bit_shift)		
+uint8_t		param_type(t_vm *vm, t_cursor *cursor, uint8_t bit_shift)
 {
 	uint8_t		bytecode;
 	uint8_t		bytecode_chunk;
@@ -24,7 +24,7 @@ uint8_t		param_type(t_vm *vm, t_cursor *cursor, uint8_t bit_shift)
 
 int32_t		get_indirect(t_vm *vm, t_cursor *cursor, uint8_t nb_arg)
 {
-	size_t 		pc;
+	size_t		pc;
 	int32_t		value;
 	int16_t		arg;
 
@@ -46,8 +46,8 @@ int32_t		get_register(t_cursor *cursor, size_t reg_number)
 	return (cursor->registries[reg_number]);
 }
 
-int32_t		get_param_when_3_possible_type(t_vm *vm, t_cursor *cursor, 
-		uint8_t nb_arg, uint8_t type)
+int32_t		get_param_when_3_possible_type(t_vm *vm, t_cursor *cursor,
+				uint8_t nb_arg, uint8_t type)
 {
 	int32_t		arg;
 
@@ -66,7 +66,7 @@ int32_t		get_param_when_3_possible_type(t_vm *vm, t_cursor *cursor,
 	return (arg);
 }
 
-int32_t			modulo(int32_t a, int32_t b)
+int32_t		modulo(int32_t a, int32_t b)
 {
 	if (a % b >= 0)
 		return (a % b);

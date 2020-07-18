@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/01 14:24:57 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/18 15:14:31 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/18 15:27:52 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 **	PC = (ARG1 (DIR_CODE) % IDX_MOD) + POS_OF_OLD_PROCESS.
 */
 
-t_cursor		*fork_cursor(t_cursor *cursor, int32_t address)
+t_cursor	*fork_cursor(t_cursor *cursor, int32_t address)
 {
 	t_cursor	*new_cursor;
 
@@ -43,6 +43,9 @@ void		op_fork(t_vm *vm, t_cursor *cursor)
 	{
 		new_cursor->next = vm->cursor;
 		vm->cursor = new_cursor;
+	}
+	else
+	{
 		clean_vm(&vm);
 		exit(EXIT_FAILURE);
 	}

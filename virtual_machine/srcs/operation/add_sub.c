@@ -6,15 +6,15 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/01 14:21:32 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/17 13:39:47 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/07/18 15:22:51 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
 /*
-**	Add/sub the value of the first and the second parameter (REG_CODE), and stock
-**	the result in the third parameter (REG_CODE).
+**	Add/sub the value of the first and the second parameter (REG_CODE),
+**	and stock the result in the third parameter (REG_CODE).
 ** If the result = 0 then carry = 1 else carry = 0.
 */
 
