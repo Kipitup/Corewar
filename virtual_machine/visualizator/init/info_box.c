@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/20 20:12:40 by francis           #+#    #+#             */
-/*   Updated: 2020/07/18 17:23:43 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/18 17:27:06 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static void	live_and_check_writing(t_window *win, t_all_rec *rec, int x, int y)
 	SDL_Rect	check_input;
 
 	x = x + win->w * 0.10;
-	live_input = init_new_rect(x, y + 250, win->w * 0.015, win->h * 0.02);
+	live_input = init_new_rect(x, y + 250, win->w * 0.032, win->h * 0.02);
 	check_input = init_new_rect(x, y + 300, win->w * 0.015, win->h * 0.02);
 	rec->live_counter = live_input;
 	rec->check_counter= check_input;

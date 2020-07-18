@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 11:07:28 by amartinod         #+#    #+#             */
-/*   Updated: 2020/06/26 15:49:10 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/07/18 17:38:44 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void			clean_vm(t_vm **vm)
 			while (i < MAX_PLAYERS)
 			{
 				free_player(tmp->all_players[i]);
+				free(tmp->all_players[i]);
 				i++;
 			}
 			free(tmp->all_players);

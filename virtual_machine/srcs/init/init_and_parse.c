@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 11:18:57 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/18 15:20:41 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/18 17:34:15 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ static int8_t		get_player(t_vm *vm, size_t *i, char **av, size_t index)
 			ret = parse_file_and_get_info(vm, file, index);
 		else
 			ret = ft_perror_failure(MALLOC_ERR, __FILE__, __LINE__);
+		vct_del(&file);
 	}
 	(*i)++;
 	return (ret);

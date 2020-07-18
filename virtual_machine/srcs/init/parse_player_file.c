@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 14:03:49 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/18 15:17:41 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/18 17:33:53 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,5 +126,6 @@ int8_t			parse_file_and_get_info(t_vm *vm, t_vector *name, size_t pos)
 				ret = assign_player(vm, player, pos);
 		}
 	}
+	vct_del(&file);
 	return (ret);
 }
