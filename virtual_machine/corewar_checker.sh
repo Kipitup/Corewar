@@ -20,7 +20,7 @@ then
 else
 	start=$keyword;
 fi
-make -j8 debug=1 visu=1 > /dev/null
+make -j8 visu=1 > /dev/null
 corewar_of=./result/test_corewar_origin.tmp
 corewar_pf=./result/test_corewar_personal.tmp
 diff_file=./result/diff.tmp
@@ -53,7 +53,8 @@ do
 		$COR -d $i $3 > $corewar_of 2>&1
 		./corewar -dump64 $i $3 > $corewar_pf 2>-
 	fi
-	diff -y -W 408 --suppress-common-lines $corewar_of $corewar_pf > $diff_file
+	diff $corewar_of $corewar_pf > $diff_file
+	#diff -y -W 408 --suppress-common-lines $corewar_of $corewar_pf > $diff_file
 	if [ -s $diff_file ]
 	then
 		echo -e "\t\033[31m[FAIL]\033[0m"

@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/01 14:24:37 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/18 13:01:58 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/07/18 15:51:18 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void				op_sti(t_vm *vm, t_cursor *cursor)
 	int32_t		addr;
 	uint8_t		type_of_param;
 
-	arg_1 = cursor->param[0];
+	arg_1 = cursor->registries[cursor->param[0]];
 	type_of_param = param_type(vm, cursor, SECOND_PARAM);
 	arg_2 = get_param_when_3_possible_type(vm, cursor, ARG_2, type_of_param);
 	type_of_param = param_type(vm, cursor, THIRD_PARAM);
@@ -37,12 +37,12 @@ void				op_sti(t_vm *vm, t_cursor *cursor)
 	else
 		return ;
 	addr = cursor->pc + ((arg_2 + arg_3) % IDX_MOD);
-	vm->arena[modulo(addr, MEM_SIZE)] = cursor->registries[arg_1] >> 24;
+	vm->arena[modulo(addr, MEM_SIZE)] = arg_1 >> 24;
+	vm->arena[modulo(addr + 1, MEM_SIZE)] = arg_1 >> 16;
+	vm->arena[modulo(addr + 2, MEM_SIZE)] = arg_1 >> 8;
+	vm->arena[modulo(addr + 3, MEM_SIZE)] = arg_1;
 	vm->arena_owner[modulo(addr, MEM_SIZE)] = cursor->id;
-	vm->arena[modulo(addr + 1, MEM_SIZE)] = cursor->registries[arg_1] >> 16;
 	vm->arena_owner[modulo((addr + 1), MEM_SIZE)] = cursor->id;
-	vm->arena[modulo(addr + 2, MEM_SIZE)] = cursor->registries[arg_1] >> 8;
 	vm->arena_owner[modulo((addr + 2), MEM_SIZE)] = cursor->id;
-	vm->arena[modulo(addr + 3, MEM_SIZE)] = cursor->registries[arg_1];
 	vm->arena_owner[modulo((addr + 3), MEM_SIZE)] = cursor->id;
 }
