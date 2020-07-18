@@ -1,36 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   aff.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/23 11:05:47 by amartinod         #+#    #+#             */
-/*   Updated: 2020/06/24 10:49:15 by amartinod        ###   ########.fr       */
+/*   Created: 2020/07/01 14:26:10 by amartinod         #+#    #+#             */
+/*   Updated: 2020/07/17 13:40:44 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-int		main(int ac, char **av)
-{
-	t_vm	*vm;
+/*
+** This operation takes the value from the registry passed as argument (REG_CODE),
+** casts it to the type char and prints it to the standard output.
+*/
 
-	if (ac > 1)
-	{
-		vm = init_and_parse((size_t)ac, av);
-		if (vm != NULL)
-			vm = set_up_arena(vm);
-		if (vm != NULL)
-		{
-			annonce_player(vm->all_players);
-			battle(vm);
-			if (vm->nb_of_player_alive == 0)
-				and_the_winner_is(vm);
-		}
-		clean_vm(&vm);
-	}
-	else
-		ft_printf("Usage: \n");
-	return (EXIT_SUCCESS);
+void		op_aff(t_vm *vm, t_cursor *cursor)
+{
+	int32_t		arg_1;
+	char		c;
+
+	(void)vm;
+	arg_1 = get_register(cursor, cursor->param[0]);
+	c = (char)arg_1;
+	ft_printf("%c", (c % 255));
 }
