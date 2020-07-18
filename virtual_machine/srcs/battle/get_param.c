@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/02 18:32:55 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/18 15:43:49 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/07/18 16:01:09 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,8 @@ uint8_t			get_param_with_bytecode(t_vm *vm, t_cursor *curso, size_t pc,
 		if (bytecode_chunk == 0b01)
 		{
 			cursor->param[i] = vm->arena[modulo(pc, MEM_SIZE)];
-			ft_dprintf(STD_ERR, "param reg %02x (%d)\n", cursor->param[i], cursor->param[i]);
+			ft_dprintf(STD_ERR, "param reg %02x (%d)\n", cursor->param[i],
+						cursor->param[i]);
 			if (cursor->param[i] < 1 || cursor->param[i] > REG_NUMBER)
 				return (FALSE);
 			pc++;

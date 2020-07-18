@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/29 18:34:53 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/18 15:36:37 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/07/18 16:06:34 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ static void			execute_operation(t_vm *vm, t_cursor *cursor)
 		}
 		if (ret != FALSE)
 		{
-			ft_dprintf(STD_ERR, "\n{c_yellow}ope: %s{c_end} cursor is on %zu\n", g_op_tab[op_code].name, cursor->pc);
+			ft_dprintf(STD_ERR, "\n{c_yellow}ope: %s{c_end} cursor is on %zu\n",
+						g_op_tab[op_code].name, cursor->pc);
 			ret = get_param(vm, cursor, (cursor->pc + 1) % MEM_SIZE);
 		}
 		if (ret != FALSE)
@@ -59,5 +60,6 @@ void				lets_fight(t_vm *vm, t_cursor *cursor)
 			execute_operation(vm, cursor);
 		cursor = cursor->next;
 	}
-	ft_dprintf(STD_ERR, "{c_yellow}|-------------------------------------|{c_end}\n");
+	ft_dprintf(STD_ERR, "{c_yellow}|-------------------------------------|\
+{c_end}\n");
 }

@@ -43,17 +43,10 @@ Norme: ./srcs/init/parse_player_file.c
 Norme: ./srcs/init/parsing_utilities.c
 Norme: ./srcs/init/set_up_arena.c
 Norme: ./srcs/battle/battle.c
-Error (line 89): function battle has 30 lines
-Error (line 102, col 3): missing space after break
-Error (line 114): line has 89 characters
-Error (line 118): spaces at the end of line
-Error (line 118, col 1): no newline after block
+Error (line 89): function battle has 31 lines
 Norme: ./srcs/battle/move_to_next_op.c
 Norme: ./srcs/battle/lets_fight.c
-Error (line 15): function execute_operation has 27 lines
-Error (line 32): line has 118 characters
-Error (line 62): line has 87 characters
+Error (line 15): function execute_operation has 28 lines
 Norme: ./srcs/battle/get_param.c
-Error (line 65): line has 94 characters
+Error (line 50): function get_param_with_bytecode has 26 lines
 Norme: ./srcs/battle/battle_utilities.c
-Error: global scope bad aligned
