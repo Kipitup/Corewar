@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 12:03:48 by francis           #+#    #+#             */
-/*   Updated: 2020/07/18 14:41:18 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/18 15:39:20 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,23 +57,26 @@ void			setup_window(t_vm *vm, t_window *win)
 {
 	t_all_rec rec;
 
-	if (create_window(win, vm) == SUCCESS)
+	if (vm->option & OPT_VISU)
 	{
-		if (SDL_SetRenderDrawColor(win->renderer, 20, 20, 20, 0) >= 0)
+		if (create_window(win, vm) == SUCCESS)
 		{
-			draw_init_zones(vm, win, &rec);
-			draw_arena(win);
-			SDL_RenderPresent(win->renderer);
+			if (SDL_SetRenderDrawColor(win->renderer, 20, 20, 20, 0) >= 0)
+			{
+				draw_init_zones(vm, win, &rec);
+				draw_arena(win);
+				SDL_RenderPresent(win->renderer);
+			}
+			else
+			{
+				ft_printf("Error SDL: %s\n", SDL_GetError());
+				destroy_visual(win);
+			}
 		}
 		else
 		{
-			ft_printf("Error SDL: %s\n", SDL_GetError());
+			ft_printf("Error creating window: %s\n", SDL_GetError());
 			destroy_visual(win);
 		}
-	}
-	else
-	{
-		ft_printf("Error creating window: %s\n", SDL_GetError());
-		destroy_visual(win);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/17 09:54:14 by francis           #+#    #+#             */
-/*   Updated: 2020/07/18 11:35:08 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/18 15:39:56 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,25 +32,28 @@ void	run_visu(t_vm *vm, t_window *win)
 {
 	t_all_rec	all_rec;
 
-	if (win->running == ON)
+	if (vm->option & OPT_VISU && vm->cycle_counter % win->cycle_frame == 0)
 	{
-		SDL_RenderClear(win->renderer);
-		draw_init_zones(vm, win, &all_rec);
-		if (SDL_PollEvent(&win->event) != 0)
-			event_handler(win);
-		active_zones(vm, win, &all_rec);
-		SDL_RenderPresent(win->renderer);
-		SDL_Delay(100);
+		if (win->running == ON)
+		{
+			SDL_RenderClear(win->renderer);
+			draw_init_zones(vm, win, &all_rec);
+			if (SDL_PollEvent(&win->event) != 0)
+				event_handler(win);
+			active_zones(vm, win, &all_rec);
+			SDL_RenderPresent(win->renderer);
+			SDL_Delay(100);
+		}
+		if (win->running == OFF)
+			destroy_visual(win);
 	}
-	if (win->running == OFF)
-		destroy_visual(win);
 }
 
 void	end_visu(t_vm *vm, t_window *win)
 {
 	t_all_rec	all_rec;
 
-	if (win != NULL)
+	if (vm->option & OPT_VISU && win != NULL && win->running == ON)
 	{
 		while (win->running == ON)
 		{

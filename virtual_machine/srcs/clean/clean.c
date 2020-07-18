@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 11:07:28 by amartinod         #+#    #+#             */
-/*   Updated: 2020/06/26 15:49:10 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/07/18 15:27:19 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void			clean_player(t_player **player)
 	}
 }
 
-void 			clean_vm(t_vm **vm)
+void			clean_vm(t_vm **vm)
 {
 	t_vm		*tmp;
 	size_t		i;

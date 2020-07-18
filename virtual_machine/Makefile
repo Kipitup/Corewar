@@ -6,7 +6,7 @@
 #    By: amartino <amartino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/26 11:56:39 by amartino          #+#    #+#              #
-#    Updated: 2020/07/17 23:36:17 by francis          ###   ########.fr        #
+#    Updated: 2020/07/18 15:55:36 by francis          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
                      ####################################
@@ -17,8 +17,9 @@
 NAME = corewar
 LIB_DIR = ../libft
 LIB = libft.a
-CC = clang
-CFLAGS += -Wall -Wextra #-Werror
+CC = clang 
+CFLAGS += -Wall -Wextra -Werror
+LDFLAGS += `sdl2-config --libs --cflags` -lSDL2_image -lSDL2_ttf
 INCLUDES += -I../include
 INCLUDES += -I../libft/includes
 INCLUDES += -I../libft/ft_printf/includes
@@ -34,9 +35,6 @@ HEAD += ../include/vm.h
                      #                   				#
                      ####################################
 # FLAGS
-ifeq ($(visu), 1)
-	CFLAGS += `sdl2-config --libs --cflags` -lSDL2_image -lSDL2_ttf
-endif
 ifeq ($(debug), 0)
 	CFLAGS += -g3
 else ifeq ($(debug), 1)
@@ -126,21 +124,19 @@ SRCS += option_dump
 SRCS += print_output
 
 # visu
-ifeq ($(visu), 1)
-	SRCS += init_main_zone
-	SRCS += destroy_visual 
-	SRCS += active_zones
-	SRCS += font_writing
-	SRCS += setup_window 
-	SRCS += run_visu 
-	SRCS += winner 
-	SRCS += player_input
-	SRCS += player_box
-	SRCS += visu_tools
-	SRCS +=	arena
-	SRCS += info_box
-	SRCS += command_box
-endif
+SRCS += init_main_zone
+SRCS += destroy_visual 
+SRCS += active_zones
+SRCS += font_writing
+SRCS += setup_window 
+SRCS += run_visu 
+SRCS += winner 
+SRCS += player_input
+SRCS += player_box
+SRCS += visu_tools
+SRCS +=	arena
+SRCS += info_box
+SRCS += command_box
 
 # clean
 SRCS += clean
@@ -176,7 +172,7 @@ fast:
 	$(MAKE) re -j8
 
 $(NAME): $(OBJS) $(LIB_PATH)
-	$(CC) $(CFLAGS) -o $@ $(OBJS) $(LIB_PATH) $(INCLUDES)
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $(OBJS) $(LIB_PATH) $(INCLUDES)
 
 $(OBJS): $(BUILD_DIR)%.o: %.c $(HEAD) Makefile
 	mkdir -p $(BUILD_DIR)

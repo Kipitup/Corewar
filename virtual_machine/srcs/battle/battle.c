@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/29 14:38:45 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/18 15:07:36 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/18 15:41:13 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,7 @@ void				battle(t_vm *vm)
 	long		cycle;
 
 	cycle = 0;
-	if (vm->option & OPT_VISU)
-		setup_window(vm, &win);
+	setup_window(vm, &win);
 	while (vm->nb_of_player_alive > 0)
 	{
 		if (vm->option & OPT_DUMP && vm->opt_dump == vm->cycle_counter)
@@ -102,8 +101,7 @@ void				battle(t_vm *vm)
 			break;
 		}
 		lets_fight(vm, vm->cursor);
-		if (vm->option & OPT_VISU && vm->cycle_counter % win.cycle_frame == 0)
-			run_visu(vm, &win);
+		run_visu(vm, &win);
 		if (vm->option & OPT_VISU && win.running == OFF)
 			break ;
 		cycle++;
@@ -114,8 +112,6 @@ void				battle(t_vm *vm)
 			ft_dprintf(STD_ERR, "\n{c_red}cycle_to_die %ld{c_end}\n", vm->cycle_to_die);
 			vm->nb_of_player_alive = check(vm);
 		}
-		ft_printf("player = %d\n", vm->nb_of_player_alive);
-	} 
-	if (vm->option & OPT_VISU && win.running == ON)
-		end_visu(vm, &win);
+	}
+	end_visu(vm, &win);
 }
