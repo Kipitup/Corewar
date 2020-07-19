@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 14:03:49 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/18 19:14:13 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/07/18 21:35:29 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ static t_player	*get_player_info(t_vector *file, t_player *player)
 	if (player->name == NULL || player->comment == NULL || player->exec == NULL
 		|| tmp < 0 || (uint32_t)tmp != player->size)
 	{
-		ft_perror(((uint32_t)tmp != player->size  || tmp < 0)
+		ft_perror(((uint32_t)tmp != player->size || tmp < 0)
 			? "Wrong player size" : MALLOC_ERR, __FILE__, __LINE__);
 		clean_player(&player);
 	}
