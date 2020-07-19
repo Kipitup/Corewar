@@ -1,4 +1,0 @@
-53c53
-< 0x0c40 : ff 03 70 02 00 0f 03 70 03 ff ff 01 ff ff ff ff 03 70 02 00 0f 03 70 03 ff ff 01 ff ff ff ff 03 70 02 00 0f 03 70 03 ff ff 01 ff ff ff ff 03 70 02 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
----
-> 0x0c40 : ff 03 70 02 00 0f 03 70 03 ff ff 01 ff ff ff ff 03 70 02 00 0f 03 70 03 ff ff 01 ff ff ff ff 03 70 02 00 0f 03 70 03 ff ff 01 ff ff ff ff ff ff 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 

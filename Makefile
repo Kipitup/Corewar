@@ -6,7 +6,7 @@
 #    By: amartino <amartino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/26 11:56:39 by amartino          #+#    #+#              #
-#    Updated: 2020/07/17 23:36:17 by francis          ###   ########.fr        #
+#    Updated: 2020/07/19 09:19:20 by amartinod        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
                      ####################################
@@ -15,18 +15,21 @@
                      #                   				#
                      ####################################
 NAME = corewar
-LIB_DIR = ../libft
+ASM_DIR = asm_dir
+VM_DIR = virtual_machine
+LIB_DIR = libft
 LIB = libft.a
 CC = clang 
 CFLAGS += -Wall -Wextra -Werror
 LDFLAGS += `sdl2-config --libs --cflags` -lSDL2_image -lSDL2_ttf
-INCLUDES += -I../include
-INCLUDES += -I../libft/includes
-INCLUDES += -I../libft/ft_printf/includes
+INCLUDES += -I./include
+INCLUDES += -I./libft/includes
+INCLUDES += -I./libft/ft_printf/includes
 
-HEAD += ../include/define_vm.h
-HEAD += ../include/visu.h
-HEAD += ../include/vm.h
+HEAD += ./include/define_vm.h
+HEAD += ./include/visu.h
+HEAD += ./include/vm.h
+
 
 
                      ####################################
@@ -66,16 +69,16 @@ endif
 LIB_PATH = $(LIB_DIR)/$(LIB)
 
 # SRCS
-PATH_SRC += srcs
-PATH_SRC += srcs/init
-PATH_SRC += srcs/operation
-PATH_SRC += srcs/battle
-PATH_SRC += srcs/print
-PATH_SRC += srcs/clean
-PATH_SRC += visualizator
-PATH_SRC += visualizator/init
-PATH_SRC += visualizator/font
-PATH_SRC += visualizator/clean
+PATH_SRC += $(VM_DIR)/srcs
+PATH_SRC += $(VM_DIR)/srcs/init
+PATH_SRC += $(VM_DIR)/srcs/operation
+PATH_SRC += $(VM_DIR)/srcs/battle
+PATH_SRC += $(VM_DIR)/srcs/print
+PATH_SRC += $(VM_DIR)/srcs/clean
+PATH_SRC += $(VM_DIR)/visualizator
+PATH_SRC += $(VM_DIR)/visualizator/init
+PATH_SRC += $(VM_DIR)/visualizator/font
+PATH_SRC += $(VM_DIR)/visualizator/clean
 
 vpath %.c $(PATH_SRC)
 
@@ -170,7 +173,7 @@ all: $(NAME)
 fast:
 	$(MAKE) re -j8
 
-$(NAME): $(OBJS) $(LIB_PATH)
+$(NAME): $(OBJS) $(LIB_PATH) $(ASM_DIR)
 	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $(OBJS) $(LIB_PATH) $(INCLUDES)
 
 $(OBJS): $(BUILD_DIR)%.o: %.c $(HEAD) Makefile
@@ -180,6 +183,9 @@ $(OBJS): $(BUILD_DIR)%.o: %.c $(HEAD) Makefile
 
 $(LIB_PATH): FORCE
 	make -C $(LIB_DIR)
+
+$(ASM_DIR): FORCE
+	make -C $(ASM_DIR)
 
 #unit_test:
 #	@echo "\n | Unitest |"
@@ -193,11 +199,13 @@ clean:
 	rm -rf ./$(BUILD_DIR)
 	echo "$(YELLOW)OBJS$(END) \t\t were \t\t $(GREEN)clean$(END)\n"
 	$(MAKE) clean -C $(LIB_DIR)
+	$(MAKE) clean -C $(ASM_DIR)
 
 fclean: clean
 	rm -rf $(NAME)
 	echo "$(YELLOW)$(NAME)$(END) \t\t was \t\t $(GREEN)clean$(END)\n"
 	$(MAKE) fclean -C $(LIB_DIR)
+	$(MAKE) fclean -C $(ASM_DIR)
 
 re: fclean
 	$(MAKE)
