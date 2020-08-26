@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 11:16:29 by amartino          #+#    #+#             */
-/*   Updated: 2020/07/18 17:01:47 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/07/19 10:18:27 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,19 +29,20 @@
 # define ARG_2					1
 # define ARG_3					2
 
-# define OPT_DUMP				0b00000001
-# define OPT_DUMP32				0b00000010
-# define OPT_DUMP64				0b00000100
-# define OPT_RESET_DUMP			0b00000111
-# define OPT_VISU				0b00001000
+# define OPT_DUMP				0x01
+# define OPT_DUMP32				0x02
+# define OPT_DUMP64				0x04
+# define OPT_RESET_DUMP			0x07
+# define OPT_VISU				0x08
 
 /*
 ** error basic
 */
-# define MALLOC_ERR				"memory allocation failed"	
+# define MALLOC_ERR				"memory allocation failed"
 # define TOO_MANY_CHAMPS		"too many champions"
+
 /*
-** error option 
+** error option
 */
 # define INVALID_OPT			"this is not a valid option"
 # define WRONG_OPT_VALUE 		"option value should be a positive int"
@@ -62,9 +63,8 @@
 # define CODE_TOO_LONG			"executable code size exceed CHAMP_MAX_SIZE"
 # define FILE_TOO_SHORT			"file is too short to be valid"
 
-
 /*
-** ope code 
+** ope code
 */
 # define OPE_LIVE				0x01
 # define OPE_LD					0x02

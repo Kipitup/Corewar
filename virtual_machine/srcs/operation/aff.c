@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/01 14:26:10 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/18 16:21:32 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/19 11:13:21 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,5 @@ void		op_aff(t_vm *vm, t_cursor *cursor)
 	(void)vm;
 	arg_1 = get_register(cursor, cursor->param[0]);
 	c = (char)arg_1;
-	ft_printf("%c", (c % 255));
+	ft_printf("Aff: %c\n", (c % 256));
 }

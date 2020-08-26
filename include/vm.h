@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 12:52:38 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/18 15:36:00 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/07/19 10:14:12 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,7 @@ typedef struct		s_cursor
 	uint8_t			id;
 	char			padding[5];
 	struct s_cursor	*next;
-}				t_cursor;
-
-typedef struct		s_op_tab t_op_tab;
+}					t_cursor;
 
 typedef struct		s_vm
 {
@@ -92,75 +90,77 @@ extern t_op_tab		g_op_tab[17];
 ** ################################# INIT #####################################
 ** ############################################################################
 */
-t_vm		*init_and_parse(size_t ac, char **av);
-ssize_t		get_nb(char *nb_str);
-int8_t		check_file_name(char *file, size_t len);
-int8_t		parse_file_and_get_info(t_vm *vm, t_vector *file, size_t index);
-uint8_t		hexa(t_vector *file, size_t i);
-t_vm		*malloc_vm_and_players(void);
-int8_t		is_player_well_assigned(t_vm *vm);
-t_vm		*set_up_arena(t_vm *vm);
+t_vm				*init_and_parse(size_t ac, char **av);
+ssize_t				get_nb(char *nb_str);
+int8_t				check_file_name(char *file, size_t len);
+int8_t				parse_file_and_get_info(t_vm *vm, t_vector *file,
+						size_t index);
+uint8_t				hexa(t_vector *file, size_t i);
+t_vm				*malloc_vm_and_players(void);
+int8_t				is_player_well_assigned(t_vm *vm);
+t_vm				*set_up_arena(t_vm *vm);
 
 /*
 ** ############################################################################
 ** ############################### BATTLE #####################################
 ** ############################################################################
 */
-void		battle(t_vm *vm);
-void		lets_fight(t_vm *vm, t_cursor *cursor);
-void		move_to_next_op(t_vm *vm, t_cursor *cursor, uint8_t op_code);
-uint8_t		get_param(t_vm *vm, t_cursor *cursor, size_t pc);
-uint8_t		param_type(t_vm *vm, t_cursor *cursor, uint8_t bit_shift);
-int32_t		get_register(t_cursor *cursor, size_t reg_number);
-int32_t		get_indirect(t_vm *vm, t_cursor *cursor, uint8_t nb_arg);
-uint16_t	modulo(int16_t a, int16_t b);
-int32_t		get_param_when_3_possible_type(t_vm *vm, t_cursor *cursor, 
-									uint8_t arg, uint8_t type);
+void				battle(t_vm *vm);
+void				lets_fight(t_vm *vm, t_cursor *cursor);
+void				move_to_next_op(t_vm *vm, t_cursor *cursor,
+						uint8_t op_code);
+uint8_t				get_param(t_vm *vm, t_cursor *cursor, size_t pc);
+uint8_t				param_type(t_vm *vm, t_cursor *cursor, uint8_t bit_shift);
+int32_t				get_register(t_cursor *cursor, size_t reg_number);
+int32_t				get_indirect(t_vm *vm, t_cursor *cursor, uint8_t nb_arg);
+uint16_t			modulo(int16_t a, int16_t b);
+int32_t				get_param_when_3_possible_type(t_vm *vm, t_cursor *cursor,
+						uint8_t arg, uint8_t type);
 
 /*
 ** ############################################################################
 ** ############################## OPERATION ###################################
 ** ############################################################################
 */
-uint8_t		check_bytecode_and_param(uint8_t op_code, uint8_t bytecode);
-uint8_t		check_register(t_vm *vm, size_t pc, uint8_t bytecode);
-void		op_live(t_vm *vm, t_cursor *cursor);
-void		op_ld(t_vm *vm, t_cursor *cursor);
-void		op_st(t_vm *vm, t_cursor *cursor);
-void		op_add(t_vm *vm, t_cursor *cursor);
-void		op_sub(t_vm *vm, t_cursor *cursor);
-void		op_and(t_vm *vm, t_cursor *cursor);
-void		op_or(t_vm *vm, t_cursor *cursor);
-void		op_xor(t_vm *vm, t_cursor *cursor);
-void		op_zjmp(t_vm *vm, t_cursor *cursor);
-void		op_ldi(t_vm *vm, t_cursor *cursor);
-void		op_sti(t_vm *vm, t_cursor *cursor);
-void		op_lld(t_vm *vm, t_cursor *cursor);
-void		op_lldi(t_vm *vm, t_cursor *cursor);
-void		op_aff(t_vm *vm, t_cursor *cursor);
-void		op_fork(t_vm *vm, t_cursor *cursor);
-t_cursor	*fork_cursor(t_cursor *cursor, int32_t address);
-void		op_lfork(t_vm *vm, t_cursor *cursor);
+uint8_t				check_bytecode_and_param(uint8_t op_code, uint8_t bytecode);
+uint8_t				check_register(t_vm *vm, size_t pc, uint8_t bytecode);
+void				op_live(t_vm *vm, t_cursor *cursor);
+void				op_ld(t_vm *vm, t_cursor *cursor);
+void				op_st(t_vm *vm, t_cursor *cursor);
+void				op_add(t_vm *vm, t_cursor *cursor);
+void				op_sub(t_vm *vm, t_cursor *cursor);
+void				op_and(t_vm *vm, t_cursor *cursor);
+void				op_or(t_vm *vm, t_cursor *cursor);
+void				op_xor(t_vm *vm, t_cursor *cursor);
+void				op_zjmp(t_vm *vm, t_cursor *cursor);
+void				op_ldi(t_vm *vm, t_cursor *cursor);
+void				op_sti(t_vm *vm, t_cursor *cursor);
+void				op_lld(t_vm *vm, t_cursor *cursor);
+void				op_lldi(t_vm *vm, t_cursor *cursor);
+void				op_aff(t_vm *vm, t_cursor *cursor);
+void				op_fork(t_vm *vm, t_cursor *cursor);
+t_cursor			*fork_cursor(t_cursor *cursor, int32_t address);
+void				op_lfork(t_vm *vm, t_cursor *cursor);
 
 /*
 ** ############################################################################
 ** ################################ PRINT #####################################
 ** ############################################################################
 */
-void		annonce_player(t_player **all_players);
-void		and_the_winner_is(t_vm *vm);
-void		print_all_player_and_option(t_vm *vm);
-void		print_player(t_player *player);
-void		print_cursor(t_cursor *cursor);
-void		dump_option(t_vm *vm);
+void				annonce_player(t_player **all_players);
+void				and_the_winner_is(t_vm *vm);
+void				print_all_player_and_option(t_vm *vm);
+void				print_player(t_player *player);
+void				print_cursor(t_cursor *cursor);
+void				dump_option(t_vm *vm);
 
 /*
 ** ############################################################################
 ** ################################ CLEAN #####################################
 ** ############################################################################
 */
-void 		clean_vm(t_vm **vm);
-void		clean_player(t_player **player);
-void		clean_cursor(t_cursor **cursor);
+void				clean_vm(t_vm **vm);
+void				clean_player(t_player **player);
+void				clean_cursor(t_cursor **cursor);
 
 #endif

@@ -6,29 +6,19 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/29 14:38:45 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/18 18:24:57 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/07/19 10:04:00 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 #include "visu.h"
 
-static void			remove_cursor(t_vm *vm)
+static void			remove_other_cursor(t_vm *vm)
 {
 	t_cursor	*cursor;
 	t_cursor	*tmp;
 	size_t		last_live;
 
-	if (vm->cursor == NULL)
-		return ;
-	last_live = vm->cycle_counter - vm->cursor->last_live;
-	if (vm->cursor != NULL && last_live > (size_t)vm->cycle_to_die)
-	{
-		tmp = vm->cursor->next;
-		free(vm->cursor);
-		vm->cursor = tmp;
-		remove_cursor(vm);
-	}
 	cursor = vm->cursor;
 	while (cursor != NULL && cursor->next != NULL)
 	{
@@ -42,6 +32,24 @@ static void			remove_cursor(t_vm *vm)
 		else
 			cursor = cursor->next;
 	}
+}
+
+static void			remove_cursor(t_vm *vm)
+{
+	t_cursor	*tmp;
+	size_t		last_live;
+
+	if (vm->cursor == NULL)
+		return ;
+	last_live = vm->cycle_counter - vm->cursor->last_live;
+	if (vm->cursor != NULL && last_live > (size_t)vm->cycle_to_die)
+	{
+		tmp = vm->cursor->next;
+		free(vm->cursor);
+		vm->cursor = tmp;
+		remove_cursor(vm);
+	}
+	remove_other_cursor(vm);
 }
 
 static uint8_t		remove_dead_cursor(t_vm *vm)

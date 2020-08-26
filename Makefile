@@ -6,7 +6,7 @@
 #    By: amartino <amartino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/26 11:56:39 by amartino          #+#    #+#              #
-#    Updated: 2020/07/19 09:19:20 by amartinod        ###   ########.fr        #
+#    Updated: 2020/07/19 10:32:41 by amartinod        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
                      ####################################
@@ -29,7 +29,6 @@ INCLUDES += -I./libft/ft_printf/includes
 HEAD += ./include/define_vm.h
 HEAD += ./include/visu.h
 HEAD += ./include/vm.h
-
 
 
                      ####################################
@@ -121,7 +120,6 @@ SRCS += get_param
 SRCS += battle_utilities
 
 # print
-SRCS += print_debug
 SRCS += option_dump
 SRCS += print_output
 

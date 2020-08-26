@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/17 09:54:14 by francis           #+#    #+#             */
-/*   Updated: 2020/07/18 17:54:35 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/19 11:43:24 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void	run_visu(t_vm *vm, t_window *win)
 				event_handler(win);
 			active_zones(vm, win, &all_rec);
 			SDL_RenderPresent(win->renderer);
-			SDL_Delay(100);
 		}
 		if (win->running == OFF)
 			destroy_visual(win);
@@ -63,7 +62,6 @@ void	end_visu(t_vm *vm, t_window *win)
 				event_handler(win);
 			ending_screen(vm, win, &all_rec);
 			SDL_RenderPresent(win->renderer);
-			SDL_Delay(50);
 		}
 		destroy_visual(win);
 	}

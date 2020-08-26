@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 11:18:57 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/18 17:34:15 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/19 11:35:58 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ static int8_t		opt_position(t_vm *vm, size_t *i, size_t ac, char **av)
 		else if (position != FAILURE)
 		{
 			vm->option |= ((1 << position) << BITWISE_OPT_SHIFT);
-			ret = SUCCESS;
 			(*i)++;
 			ret = get_player(vm, i, av, position);
 		}

@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/01 14:25:35 by amartinod         #+#    #+#             */
-/*   Updated: 2020/07/18 16:24:31 by francis          ###   ########.fr       */
+/*   Updated: 2020/07/19 11:35:02 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 **	is not applied.
 */
 
-static void	op_lldi_bis(t_vm *vm, int32_t value, int32_t address)
+static int32_t	op_lldi_bis(t_vm *vm, int32_t value, int32_t address)
 {
 	value = value | vm->arena[modulo(address, MEM_SIZE)];
 	value = value << 8;
@@ -26,9 +26,10 @@ static void	op_lldi_bis(t_vm *vm, int32_t value, int32_t address)
 	value = value | vm->arena[modulo(address + 2, MEM_SIZE)];
 	value = value << 8;
 	value = value | vm->arena[modulo(address + 3, MEM_SIZE)];
+	return (value);
 }
 
-void		op_lldi(t_vm *vm, t_cursor *cursor)
+void			op_lldi(t_vm *vm, t_cursor *cursor)
 {
 	int32_t		arg_1;
 	int32_t		arg_2;
@@ -47,7 +48,7 @@ void		op_lldi(t_vm *vm, t_cursor *cursor)
 	else
 		return ;
 	address = cursor->pc + (arg_1 + arg_2);
-	op_lldi_bis(vm, value, address);
+	value = op_lldi_bis(vm, value, address);
 	cursor->registries[cursor->param[2]] = value;
 	cursor->carry = (value == 0) ? 1 : 0;
 }

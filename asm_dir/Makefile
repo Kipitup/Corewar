@@ -6,7 +6,7 @@
 #    By: amartino <amartino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/26 11:56:39 by amartino          #+#    #+#              #
-#    Updated: 2020/07/19 09:12:01 by amartinod        ###   ########.fr        #
+#    Updated: 2020/07/19 09:54:29 by efischer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
                      ####################################
@@ -96,9 +96,6 @@ SRCS += replace_label_offset
 SRCS += ft_split_white_spaces
 SRCS += usage_error 
 SRCS += utils
-
-SRCS += debug_label
-SRCS += debug_token
                      ####################################
                      #                   				#
                      #       	  VARIABLES    			#

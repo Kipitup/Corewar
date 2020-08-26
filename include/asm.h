@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 12:01:37 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/18 20:18:29 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/19 10:01:56 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 # include "op.h"
 # include <stdbool.h>
 
-# define NB_OP				16
-# define NB_TOKEN			28
-# define NB_STATE			3
+# define NB_OP					16
+# define NB_TOKEN				28
+# define NB_STATE				3
 
 # define TOO_FEW_ARG			"Too few argument"
 # define TOO_MUCH_ARG			"Too much arguments"
@@ -37,10 +37,10 @@
 # define WRONG_REG_NB			"Invalid register number"
 # define LABEL_ALREADY_EXIST	"Label name already exists"
 
-# define REGISTER_SIZE		1
-# define SMALL_DIRECT_SIZE	2
-# define LONG_DIRECT_SIZE	4
-# define INDIRECT_SIZE		2
+# define REGISTER_SIZE			1
+# define SMALL_DIRECT_SIZE		2
+# define LONG_DIRECT_SIZE		4
+# define INDIRECT_SIZE			2
 
 enum			e_token
 {
@@ -110,7 +110,7 @@ typedef struct	s_data
 	enum e_state	state;
 }				t_data;
 
-void		check_no_ocp_op(t_data *data, const enum e_token type,
+void			check_no_ocp_op(t_data *data, const enum e_token type,
 				const uint64_t ocp);
 void			check_op(t_data *data, const t_token *op_token,
 						const uint64_t ocp, const size_t nb_args);
@@ -148,8 +148,5 @@ void			parser_asm(t_data *data);
 void			replace_label_offset(t_data *data);
 char			*trim_side(char *s);
 int				usage_error(int ac);
-
-void			debug_label(t_list *label_lst);
-void			debug_token(t_list *token_lst);
 
 #endif

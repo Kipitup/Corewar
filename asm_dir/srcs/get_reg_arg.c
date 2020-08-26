@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/17 18:21:32 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/17 18:38:39 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/19 11:25:47 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static bool		check_reg_number(const int reg_nb)
 {
-	return (reg_nb > 0 && reg_nb < REG_NUMBER);
+	return (reg_nb > 0 && reg_nb <= REG_NUMBER);
 }
 
 uint64_t		get_reg_arg(t_data *data, char *arg)
