@@ -57,7 +57,7 @@ This number impacts the turn order (biggest to smallest):
 Here 'a' will be set to 1, 'b' to 3 and 'c' to 2, 'b' will play first then 'c', then 'b' (consult the subject for more informations).  
 
 • -dump32 or -dump64 followed by a number to stop the game at the beginning of the given cycle and print out the memory in hexadecimal (0 being the first cycle).
-The suffix 32 or 64 is just for the number of character display on each line
+The suffix 32 or 64 is just for the number of characters displayed on each line.
 ```  
 ./corewar champion.cor -dump64 42
 ```
