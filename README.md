@@ -72,6 +72,13 @@ Hard to understand what happened without the visualizer or the dump option, here
 
 #### Visualizer (-visu):
 
+Each player is represented in a color. Every ```CYCLE_TO_DIE```, they need to tell the VM that they are alive or theyvwill be eleminated.
+Every cycle, the VM check if some action need to be done.
 
-#### Dump option (-dump64):
+
+![Start of the game](https://user-images.githubusercontent.com/33808300/91315475-00b3bf00-e7b8-11ea-8a6b-36adab1ed955.png)
+
+This is almost the end, you can see that Helltrain is pretty much controling most of the map. ```CYCLE_TO_DIE``` is slowly decreasing so player need te be reported alive more often.
+
+![Almsot the end](https://user-images.githubusercontent.com/33808300/91315447-fabdde00-e7b7-11ea-9afd-2fe673f623f0.png)
 
